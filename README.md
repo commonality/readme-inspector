@@ -1,6 +1,6 @@
 # `readme-inspector` [![NPM version][npm-image]][npm-url]
 
-> <img align="left" alt="markdown" height="50" width="50"  src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/markdown.svg"> Inspect GitHub (and GitHub Enterprise) repositories for the presence and quality of READMEs.
+> <img align="middle" alt="markdown" height="50" width="50"  src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/markdown.svg"> Inspect GitHub (and GitHub Enterprise) repositories for the presence and quality of READMEs.
 
 [![The MIT License][license-image]][license-url]
 [![FOSSA Status][fossa-image]][fossa-url]<br>
@@ -14,10 +14,21 @@
 [![NPMS score][npms-image]][npms-url]
 [![NPM downloads per month][npm-downloads-month]][npm-url]
 
+## Table of contents
+
+<!-- ⛔️ AUTO-GENERATED-CONTENT:START (TOC:excludeText=Table of contents) -->
+- [Installation](#installation)
+- [Usage](#usage)
+- [API](#api)
+- [Version](#version)
+- [Contributing](#contributing)
+- [License](#license)
+<!-- ⛔️ AUTO-GENERATED-CONTENT:END -->
+
 ## Installation
 
-`readme-inspector` is written in JavaScript (CommonJS) for
-[Node.js ![External link][icon-octicon-link-external]](https://nodejs.org/) versions 6 or higher.
+> ![info][icon-octicon-info] `readme-inspector` is written in JavaScript (CommonJS) for
+> [Node.js ![External link][icon-octicon-link-external]](https://nodejs.org/) versions 6 or higher.
 
 ```sh
 $ npm install --save readme-inspector
@@ -128,6 +139,8 @@ Before embarking on a significant change, please adhere to the following guideli
 ## License
 
 MIT © [commonality](https://github.com/commonality)
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcommonality%2Freadme-inspector.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcommonality%2Freadme-inspector?ref=badge_large)
 
 <!-- ⛔️ Link References ⛔️  -->
 
