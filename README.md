@@ -21,6 +21,15 @@
 - [Usage](#usage)
 - [API](#api)
   * [`ScoreMe`](#scoreme)
+    + [`ScoreMe#constructor(url: string): ScoreMe`](#scoreme%23constructorurl-string-scoreme)
+      - [Parameters](#parameters)
+      - [Examples](#examples)
+    + [`ScoreMe#calculate(): Promise`](#scoreme%23calculate-promise)
+    + [Parameters](#parameters-1)
+      - [Examples](#examples-1)
+    + [`ScoreMe#score(url: String): Promise`](#scoreme%23scoreurl-string-promise)
+      - [Parameters](#parameters-2)
+      - [Examples](#examples-2)
   * [`ReadmeInspector`](#readmeinspector)
 - [Version](#version)
 - [Contributing](#contributing)
@@ -39,7 +48,7 @@ $ npm install --save readme-inspector
 ## Usage
 
 ```js
-const ReadmeInspector = require('readme-inspector')
+const { ReadmeInspector } = require('readme-inspector')
 
 const inspector = new ReadmeInspector({
   owner: 'gregswindle',
@@ -98,6 +107,128 @@ const results = await inspector.check()
 ### `ScoreMe`
 
 An API proxy for [@clayallsopp ![External link][icon-octicon-link-external]](https://github.com/clayallsopp)'s [`readme-score-api` ![External link][icon-octicon-link-external]](https://github.com/clayallsopp/readme-score-api).
+
+#### `ScoreMe#constructor(url: string): ScoreMe`
+
+Create a shadow (instance) of `ScoreMe.prototype`.
+
+##### Parameters
+
+| Name | Type   | Description                                                     |
+| :--- | :----- | :-------------------------------------------------------------- |
+| url  | String | The URL or slug of the repository to be evaluated for a README. |
+
+##### Examples
+
+* _URL:_
+
+  > ```js
+  > const { ScoreMe } = require('readme-inspector')
+  > const url = 'https://github.com/gregswindle/github-resource-converter'
+  >
+  > const scoreMe = new ScoreMe(url)
+  > ```
+
+* _Repository slug:_
+
+  > ```js
+  > const { ScoreMe } = require('readme-inspector')
+  > const slug = 'gregswindle/github-resource-converter'
+  >
+  > const scoreMe = new ScoreMe(slug)
+  > ```
+
+#### `ScoreMe#calculate(): Promise<ScoreMeData>`
+
+Returns the Promise resolution:
+
+```js
+// ScoreMeData
+{
+  'breakdown': {
+    'cumulative_code_block_length': 0,
+    'has_lists': 0,
+    'low_code_block_penalty': 0,
+    'number_of_code_blocks': 0,
+    'number_of_gifs': 0,
+    'number_of_images': 0,
+    'number_of_non_code_sections': 0
+  },
+  'err': null,
+  'score': 0,
+  'url': null
+}
+```
+
+#### Parameters
+
+None.
+
+##### Examples
+
+* _async/await:_
+
+  > ```js
+  > const { ScoreMe } = require('readme-inspector')
+  >
+  > const scoreMe = new ScoreMe('gregswindle/github-resource-converter')
+  >
+  > try {
+  >   const result = await scoreMe.calculate()
+  > } catch (err) {
+  >   console.error(err)
+  > }
+  > ```
+
+* _Promise:_
+
+  > ```js
+  > const { ScoreMe } = require('readme-inspector')
+  >
+  > const scoreMe = new ScoreMe('gregswindle/github-resource-converter')
+  >
+  > scoreMe
+  >   .calculate()
+  >   .then(result => {
+  >     console.log(result)
+  >   })
+  >   .catch(err => {
+  >     console.error(err)
+  >   })
+  > ```
+
+#### `ScoreMe#score(url: String): Promise<ScoreMeData>`
+
+##### Parameters
+
+| Name | Type   | Description                                                     |
+| :--- | :----- | :-------------------------------------------------------------- |
+| url  | String | The URL or slug of the repository to be evaluated for a README. |
+
+##### Examples
+
+* _URL:_
+
+  > ```js
+  > const { ScoreMe } = require('readme-inspector')
+  > const url = 'https://github.com/gregswindle/github-resource-converter'
+  >
+  > const scoreMe = new ScoreMe()
+  > scoreMe
+  >   .score(url)
+  >   .then(result => result)
+  >   .catch(err => err)
+  > ```
+
+* _Repository slug:_
+
+  > ```js
+  > const { ScoreMe } = require('readme-inspector')
+  > const slug = 'gregswindle/github-resource-converter'
+  >
+  > const scoreMe = new ScoreMe()
+  > const result = await scoreMe.score(slug)
+  > ```
 
 ### `ReadmeInspector`
 
