@@ -21,13 +21,13 @@
 - [Usage](#usage)
 - [API](#api)
   * [`ScoreMe`](#scoreme)
-    + [`ScoreMe#constructor(url: string): ScoreMe`](#scoreme%23constructorurl-string-scoreme)
+    + [`constructor(url: string): ScoreMe`](#constructorurl-string-scoreme)
       - [Parameters](#parameters)
       - [Examples](#examples)
-    + [`ScoreMe#calculate(): Promise`](#scoreme%23calculate-promise)
+    + [`calculate(): Promise`](#calculate-promise)
     + [Parameters](#parameters-1)
       - [Examples](#examples-1)
-    + [`ScoreMe#score(url: String): Promise`](#scoreme%23scoreurl-string-promise)
+    + [`score(url: String): Promise`](#scoreurl-string-promise)
       - [Parameters](#parameters-2)
       - [Examples](#examples-2)
   * [`ReadmeInspector`](#readmeinspector)
@@ -108,7 +108,7 @@ const results = await inspector.check()
 
 An API proxy for [@clayallsopp ![External link][icon-octicon-link-external]](https://github.com/clayallsopp)'s [`readme-score-api` ![External link][icon-octicon-link-external]](https://github.com/clayallsopp/readme-score-api).
 
-#### `ScoreMe#constructor(url: string): ScoreMe`
+#### `constructor(url: string): ScoreMe`
 
 Create a shadow (instance) of `ScoreMe.prototype`.
 
@@ -138,7 +138,7 @@ Create a shadow (instance) of `ScoreMe.prototype`.
   > const scoreMe = new ScoreMe(slug)
   > ```
 
-#### `ScoreMe#calculate(): Promise<ScoreMeData>`
+#### `calculate(): Promise<ScoreMeData>`
 
 Returns the Promise resolution:
 
@@ -197,7 +197,7 @@ None.
   >   })
   > ```
 
-#### `ScoreMe#score(url: String): Promise<ScoreMeData>`
+#### `score(url: String): Promise<ScoreMeData>`
 
 ##### Parameters
 
