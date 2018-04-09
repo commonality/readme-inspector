@@ -1,6 +1,6 @@
 # `readme-inspector` [![NPM version][npm-image]][npm-url]
 
-> <img align="left" alt="markdown" height="50" width="50"  src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/markdown.svg"> Inspect GitHub (and GitHub Enterprise) repositories for the presence and quality of READMEs.
+> <img align="middle" alt="markdown" height="50" width="50"  src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/markdown.svg"> Inspect GitHub (and GitHub Enterprise) repositories for the presence and quality of READMEs.
 
 [![The MIT License][license-image]][license-url]
 [![FOSSA Status][fossa-image]][fossa-url]<br>
@@ -14,10 +14,23 @@
 [![NPMS score][npms-image]][npms-url]
 [![NPM downloads per month][npm-downloads-month]][npm-url]
 
+## Table of contents
+
+<!-- ⛔️ AUTO-GENERATED-CONTENT:START (TOC:excludeText=Table of contents) -->
+- [Installation](#installation)
+- [Usage](#usage)
+- [API](#api)
+  * [`ScoreMe`](#scoreme)
+  * [`ReadmeInspector`](#readmeinspector)
+- [Version](#version)
+- [Contributing](#contributing)
+- [License](#license)
+<!-- ⛔️ AUTO-GENERATED-CONTENT:END -->
+
 ## Installation
 
-`readme-inspector` is written in JavaScript (CommonJS) for
-[Node.js ![External link][icon-octicon-link-external]](https://nodejs.org/) versions 6 or higher.
+> ![info][icon-octicon-info] `readme-inspector` is written in JavaScript (CommonJS) for
+> [Node.js ![External link][icon-octicon-link-external]](https://nodejs.org/) versions 6 or higher.
 
 ```sh
 $ npm install --save readme-inspector
@@ -82,6 +95,12 @@ const results = await inspector.check()
 
 ## API
 
+### `ScoreMe`
+
+An API proxy for [@clayallsopp ![External link][icon-octicon-link-external]](https://github.com/clayallsopp)'s [`readme-score-api` ![External link][icon-octicon-link-external]](https://github.com/clayallsopp/readme-score-api).
+
+### `ReadmeInspector`
+
 ## Version
 
 [![NPM version][npm-image]][npm-url]
@@ -129,6 +148,13 @@ Before embarking on a significant change, please adhere to the following guideli
 
 MIT © [commonality](https://github.com/commonality)
 
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcommonality%2Freadme-inspector.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcommonality%2Freadme-inspector?ref=badge_large)
+
+---
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/commonality/readme-inspector.svg)](https://greenkeeper.io/)
+[![Readme Score](http://readme-score-api.herokuapp.com/score.svg?url=https://github.com/commonality/readme-inspector)](http://clayallsopp.github.io/readme-score?url=https://github.com/commonality/readme-inspector)
+
 <!-- ⛔️ Link References ⛔️  -->
 
 [bunyan-format-url]: https://github.com/thlorenz/bunyan-format/#readme
@@ -141,7 +167,7 @@ MIT © [commonality](https://github.com/commonality)
 <!-- ⛔️ CI Services ⛔️  -->
 
 [notice-url]: https://app.fossa.io/reports/07123904-7d26-40a6-b6af-c74e82a53789
-[appveyor-image]: https://img.shields.io/appveyor/ci/commonality/readme-inspector.svg?style=flat-square&logo=appveyor&label=windows%20build
+[appveyor-image]: https://img.shields.io/appveyor/ci/gregswindle/readme-inspector.svg?style=flat-square&logo=appveyor&label=windows%20build
 [appveyor-url]: https://ci.appveyor.com/project/commonality/readme-inspector
 [codacy-image]: https://img.shields.io/codacy/grade/21f517a2d5bf4304895f40c5cbb596c4.svg?style=flat-square
 [codacy-coverage-image]: https://img.shields.io/codacy/coverage/21f517a2d5bf4304895f40c5cbb596c4.svg?style=flat-square
