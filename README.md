@@ -20,6 +20,8 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [API](#api)
+  * [`ScoreMe`](#scoreme)
+  * [`ReadmeInspector`](#readmeinspector)
 - [Version](#version)
 - [Contributing](#contributing)
 - [License](#license)
@@ -93,6 +95,12 @@ const results = await inspector.check()
 
 ## API
 
+### `ScoreMe`
+
+An API proxy for [@clayallsopp ![External link][icon-octicon-link-external]](https://github.com/clayallsopp)'s [`readme-score-api` ![External link][icon-octicon-link-external]](https://github.com/clayallsopp/readme-score-api).
+
+### `ReadmeInspector`
+
 ## Version
 
 [![NPM version][npm-image]][npm-url]
@@ -154,7 +162,7 @@ MIT © [commonality](https://github.com/commonality)
 <!-- ⛔️ CI Services ⛔️  -->
 
 [notice-url]: https://app.fossa.io/reports/07123904-7d26-40a6-b6af-c74e82a53789
-[appveyor-image]: https://img.shields.io/appveyor/ci/commonality/readme-inspector.svg?style=flat-square&logo=appveyor&label=windows%20build
+[appveyor-image]: https://img.shields.io/appveyor/ci/gregswindle/readme-inspector.svg?style=flat-square&logo=appveyor&label=windows%20build
 [appveyor-url]: https://ci.appveyor.com/project/commonality/readme-inspector
 [codacy-image]: https://img.shields.io/codacy/grade/21f517a2d5bf4304895f40c5cbb596c4.svg?style=flat-square
 [codacy-coverage-image]: https://img.shields.io/codacy/coverage/21f517a2d5bf4304895f40c5cbb596c4.svg?style=flat-square

@@ -1,0 +1,20 @@
+environment:
+  matrix:
+    - nodejs_version: '9'
+    - nodejs_version: '8'
+    - nodejs_version: '7.6.0'
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - npm i npm@latest -g
+  - npm install
+matrix:
+  fast_finish: true
+build: off
+shallow_clone: true
+clone_depth: 1
+test_script:
+  - node --version
+  - npm --version
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - npm run test:config
+  - npm test
