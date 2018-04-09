@@ -1,0 +1,158 @@
+{
+  "name": "readme-inspector",
+  "description":
+    "Inspect GitHub (and GitHub Enterprise) repositories for the presence and quality of READMEs.",
+  "version": "0.0.0",
+  "author": {
+    "name": "commonality",
+    "email": "greg@swindle.net",
+    "url": "https://github.com/commonality"
+  },
+  "bugs": "https://github.com/commonality/readme-inspector/issues",
+  "commitplease": {
+    "style": "angular",
+    "types": [
+      "build",
+      "chore",
+      "ci",
+      "docs",
+      "feat",
+      "fix",
+      "perf",
+      "refactor",
+      "revert",
+      "style",
+      "test"
+    ],
+    "scope": "\\S+.*"
+  },
+  "contributors": [],
+  "dependencies": {
+    "@octokit/rest": "15.2.6",
+    "bunyan": "1.8.12",
+    "bunyan-format": "0.2.1",
+    "dotenv": "5.0.1",
+    "got": "8.3.0",
+    "insight": "0.10.1",
+    "meow": "4.0.0"
+  },
+  "devDependencies": {
+    "@semantic-release/git": "4.0.1",
+    "@semantic-release/npm": "3.2.4",
+    "ajv": "6.4.0",
+    "ajv-keywords": "3.1.0",
+    "codacy-coverage": "2.1.1",
+    "commitplease": "3.2.0",
+    "coveralls": "3.0.0",
+    "eslint": "4.19.1",
+    "eslint-config-prettier": "^2.4.0",
+    "eslint-config-scanjs": "1.0.0-beta4",
+    "eslint-config-standard": "11.0.0",
+    "eslint-config-xo": "0.20.1",
+    "eslint-plugin-import": "2.10.0",
+    "eslint-plugin-jsdoc": "3.6.2",
+    "eslint-plugin-json": "1.2.0",
+    "eslint-plugin-no-unsafe-innerhtml": "1.0.16",
+    "eslint-plugin-node": "6.0.1",
+    "eslint-plugin-prettier": "^2.2.0",
+    "eslint-plugin-promise": "3.7.0",
+    "eslint-plugin-security": "1.4.0",
+    "eslint-plugin-standard": "3.0.1",
+    "eslint-plugin-unicorn": "4.0.3",
+    "eslint-plugin-xss": "0.1.9",
+    "fixpack": "2.3.1",
+    "husky": "^0.14.3",
+    "jest": "22.4.3",
+    "jest-runner-eslint": "0.4.0",
+    "lec": "^1.0.1",
+    "lint-staged": "7.0.4",
+    "lodash.isundefined": "3.0.1",
+    "lodash.noop": "3.0.1",
+    "markdown-magic": "0.1.21",
+    "markdown-magic-dependency-table": "1.3.2",
+    "markdown-magic-install-command": "1.3.1",
+    "markdown-magic-package-scripts": "1.2.1",
+    "nsp": "^3.2.1",
+    "prettier": "1.11.1",
+    "semantic-release": "15.1.5",
+    "standard-version": "4.3.0"
+  },
+  "engines": {
+    "npm": ">= 4.0.0"
+  },
+  "eslintIgnore": ["lib/__tests__/coverage/**"],
+  "files": ["lib"],
+  "homepage": "https://github.com/commonality/readme-inspector/#readme",
+  "jest": {
+    "automock": false,
+    "collectCoverage": true,
+    "coverageDirectory": "lib/__tests__/coverage",
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    },
+    "moduleDirectories": ["node_modules", "lib"],
+    "testMatch": [
+      "<rootDir>/lib/__tests__/**/*.test.js",
+      "<rootDir>/lib/__tests__/*.test.js"
+    ],
+    "watchman": false
+  },
+  "keywords": [
+    "readme",
+    "readme-score",
+    "recommended community standards",
+    "scoreme"
+  ],
+  "license": "MIT",
+  "lint-staged": {
+    "*.js": ["npm run lint:js", "git add"],
+    "*.json": ["npm run lint:json", "git add"],
+    "*.md": ["npm run lint:md", "npm run docs", "git add"]
+  },
+  "main": "lib/index.js",
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/commonality/readme-inspector.git"
+  },
+  "scripts": {
+    "docs": "npm run docs:toc",
+    "docs:changelog": "standard-version --commit-all",
+    "docs:toc":
+      "md-magic --config '.github/config/markdown.config.js' --ignore 'node_modules'",
+    "lint":
+      "npm run lint:js && npm run lint:json && npm run lint:manifest && npm run lint:md",
+    "lint:js": "eslint -c .github/config/.eslintrc.yml --ext .js . --fix",
+    "lint:json":
+      "prettier ./**/*.json --ignore-path '.github/config/.prettierignore' --write",
+    "lint:manifest": "fixpack",
+    "lint:md": "prettier ./**/*.md -prose-wrap always --write",
+    "posttest:ci:coverage:codacy":
+      "cat ./lib/__tests__/coverage/lcov.info | codacy-coverage",
+    "precommit": "lint-staged",
+    "prepare": "npm run lint && npm run security",
+    "prepublish": "npm run security",
+    "prepublishOnly": "npm run prepare",
+    "pretest": "npm run lint",
+    "security": "npm run security:nsp:scan",
+    "security:nsp:scan": "nsp check",
+    "test": "jest",
+    "test:config": "jest --showConfig",
+    "test:watch": "jest ./lib/__tests__/*.test.js --watch",
+    "test:watch:all": "jest ./lib/__tests__/*.test.js --watchAll"
+  },
+  "standard-version": {
+    "skip": {
+      "commit": true,
+      "tag": true
+    }
+  }
+}
