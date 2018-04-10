@@ -77,6 +77,7 @@
     "nsp": "^3.2.1",
     "prettier": "1.11.1",
     "semantic-release": "15.1.5",
+    "sinon": "4.5.0",
     "standard-version": "4.3.0"
   },
   "engines": {
@@ -89,6 +90,10 @@
     "automock": false,
     "collectCoverage": true,
     "coverageDirectory": "lib/__tests__/coverage",
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/node_modules",
+      "<rootDir>/lib/__tests__/coverage"
+    ],
     "coverageThreshold": {
       "global": {
         "branches": 100,
@@ -96,6 +101,9 @@
         "lines": 100,
         "statements": 100
       }
+    },
+    "globals": {
+      "sinon": true
     },
     "moduleDirectories": ["node_modules", "lib"],
     "testMatch": [

@@ -646,6 +646,7 @@
  | [nsp@^3.2.1](https://github.com/nodesecurity/nsp#readme) | The Node Security (nodesecurity.io) command line interface | 3.2.1 | Apache-2.0 | dev | 
  | [prettier@1.11.1](https://prettier.io) | Prettier is an opinionated code formatter | 1.11.1 | MIT | dev | 
  | [semantic-release@15.1.5](https://github.com/semantic-release/semantic-release#readme) | Automated semver compliant package publishing | 15.1.5 | MIT | dev | 
+ | [sinon@4.5.0](http://sinonjs.org/) | JavaScript test spies, stubs and mocks. | 4.5.0 | BSD-3-Clause | dev | 
  | [standard-version@4.3.0](https://github.com/conventional-changelog/standard-version#readme) | replacement for `npm version` with automatic CHANGELOG generation | 4.3.0 | ISC | dev | 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
