@@ -34,6 +34,9 @@
     "dotenv": "5.0.1",
     "got": "8.3.0",
     "insight": "0.10.1",
+    "lodash.camelcase": "4.3.0",
+    "lodash.isstring": "4.0.1",
+    "lodash.transform": "4.6.0",
     "meow": "4.0.0"
   },
   "devDependencies": {
@@ -67,7 +70,6 @@
     "lec": "^1.0.1",
     "lint-staged": "7.0.4",
     "lodash.isundefined": "3.0.1",
-    "lodash.noop": "3.0.1",
     "markdown-magic": "0.1.21",
     "markdown-magic-dependency-table": "1.3.2",
     "markdown-magic-install-command": "1.3.1",
@@ -103,10 +105,10 @@
     "watchman": false
   },
   "keywords": [
+    "Score",
     "readme",
     "readme-score",
-    "recommended community standards",
-    "scoreme"
+    "recommended community standards"
   ],
   "license": "MIT",
   "lint-staged": {

@@ -17,26 +17,35 @@
 ## Table of contents
 
 <!-- ⛔️ AUTO-GENERATED-CONTENT:START (TOC:excludeText=Table of contents) -->
-- [Installation](#installation)
-- [Usage](#usage)
-- [API](#api)
-  * [`ScoreMe`](#scoreme)
-    + [`constructor(url: string): ScoreMe`](#constructorurl-string-scoreme)
-      - [Parameters](#parameters)
-      - [Examples](#examples)
-    + [`calculate(): Promise`](#calculate-promise)
-    + [Parameters](#parameters-1)
-      - [Examples](#examples-1)
-    + [`score(url: String): Promise`](#scoreurl-string-promise)
-      - [Parameters](#parameters-2)
-      - [Examples](#examples-2)
-  * [`ReadmeInspector`](#readmeinspector)
-- [Version](#version)
-- [Contributing](#contributing)
-- [License](#license)
+- [1. Installation](#1-installation)
+- [2. Usage](#2-usage)
+- [3. API](#3-api)
+  * [3.1. `ReadmeInspector`](#31-readmeinspector)
+    + [3.1.1. `constructor({owner, repo}): ReadmeInspector`](#311-constructorowner-repo-readmeinspector)
+      - [3.1.1.1. Parameters](#3111-parameters)
+    + [3.1.1.2. Examples](#3112-examples)
+  * [3.2.1. `authenticate({token, type, key}): void`](#321-authenticatetoken-type-key-void)
+    + [3.2.1. Parameters](#321-parameters)
+    + [3.2.2. Example](#322-example)
+  * [3.3. `check(): Promise`](#33-check-promise)
+    + [3.3.1. Parameters](#331-parameters)
+    + [3.3.2. Return type: `Promise`](#332-return-type-promise)
+    + [3.3.2. Examples](#332-examples)
+  * [3.4 `getReadmeInfo(): Promise`](#34-getreadmeinfo-promise)
+    + [3.4.1. Return type: `Promise`](#341-return-type-promise)
+    + [3.4.2. Examples](#342-examples)
+  * [3.5. `score(): Promise`](#35-score-promise)
+  * [3.2. `ReadmeScore`](#32-readmescore)
+    + [3.2.1. `static for(url: String): Promise`](#321-static-forurl-string-promise)
+      - [3.2.1.1. Parameters](#3211-parameters)
+      - [3.2.1.2. Returns `Promise`](#3212-returns-promise)
+      - [3.2.1.3. Examples](#3213-examples)
+- [4. Version](#4-version)
+- [5. Contributing](#5-contributing)
+- [6. License](#6-license)
 <!-- ⛔️ AUTO-GENERATED-CONTENT:END -->
 
-## Installation
+## 1. Installation
 
 > ![info][icon-octicon-info] `readme-inspector` is written in JavaScript (CommonJS) for
 > [Node.js ![External link][icon-octicon-link-external]](https://nodejs.org/) versions 6 or higher.
@@ -45,7 +54,7 @@
 $ npm install --save readme-inspector
 ```
 
-## Usage
+## 2. Usage
 
 ```js
 const { ReadmeInspector } = require('readme-inspector')
@@ -102,141 +111,298 @@ const results = await inspector.check()
 */
 ```
 
-## API
+## 3. API
 
-### `ScoreMe`
+> [![beaker][icon-octicon-beaker] Test `readme-inspector` in your Web browser ![link-external][icon-octicon-link-external]][runkit-readme-inspector-url].
 
-An API proxy for [@clayallsopp ![External link][icon-octicon-link-external]](https://github.com/clayallsopp)'s [`readme-score-api` ![External link][icon-octicon-link-external]](https://github.com/clayallsopp/readme-score-api).
+### 3.1. `ReadmeInspector`
 
-#### `constructor(url: string): ScoreMe`
+#### 3.1.1. `constructor({owner, repo}): ReadmeInspector`
 
-Create a shadow (instance) of `ScoreMe.prototype`.
+Create a shadow (instance) of `ReadmeInspector.prototype`.
 
-##### Parameters
+##### 3.1.1.1. Parameters
 
-| Name | Type   | Description                                                     |
-| :--- | :----- | :-------------------------------------------------------------- |
-| url  | String | The URL or slug of the repository to be evaluated for a README. |
+| Field                | Type   | Description                                     |
+| :------------------- | :----- | :---------------------------------------------- |
+| <samp>baseUrl</samp> | String | The name of the GitHub account or organziation. |
+| <samp>owner</samp>   | String | The name of the GitHub account or organziation. |
+| <samp>repo</samp>    | String | The name of a GitHub (Enterprise) repository.   |
 
-##### Examples
+#### 3.1.1.2. Examples
 
-* _URL:_
-
-  > ```js
-  > const { ScoreMe } = require('readme-inspector')
-  > const url = 'https://github.com/gregswindle/github-resource-converter'
-  >
-  > const scoreMe = new ScoreMe(url)
-  > ```
-
-* _Repository slug:_
+* _GitHub:_
 
   > ```js
-  > const { ScoreMe } = require('readme-inspector')
-  > const slug = 'gregswindle/github-resource-converter'
+  > const { ReadmeInspector } = require('readme-inspector')
   >
-  > const scoreMe = new ScoreMe(slug)
+  > const inspector = new ReadmeInspector({
+  >   owner: 'rails',
+  >   repo: 'rails'
+  > })
   > ```
 
-#### `calculate(): Promise<ScoreMeData>`
+* _GitHub Enterprise:_
 
-Returns the Promise resolution:
+  > ```js
+  > const { ReadmeInspector } = require('readme-inspector')
+  >
+  > const inspector = new ReadmeInspector({
+  >   baseUrl: 'https://evilcorp.com/api/v3',
+  >   owner: 'rails',
+  >   repo: 'rails'
+  > })
+  > ```
+
+### 3.2.1. `authenticate({token, type, key}): void`
+
+> ![Info][icon-octicon-info] Most GitHub API calls don't require authentication. Rules of thumb:
+>
+> 1.  If you can see the information by visiting the site without being logged in, you don't have to be authenticated to retrieve the same information through the API.
+> 1.  If you want to change data, you have to be authenticated.
+>
+> octokit/rest.js. (2018). GitHub. Retrieved 21 March 2018, from <https://github.com/octokit/rest.js#authentication> ![link-external][icon-octicon-link-external]
+
+#### 3.2.1. Parameters
+
+| Name  | Type   | Description                                                      | Notes |
+| :---- | :----- | :--------------------------------------------------------------- | :---- |
+| key   | String |                                                                  |       |
+| token | String |                                                                  |       |
+| type  | Enum   | `basic`, `oauth`, `oauth-key-secret`, `token`, and `integration` |       |
+
+#### 3.2.2. Example
+
+> ```javascript
+> // Token (https://github.com/settings/tokens)
+> const { ReadmeInspector } = require('readme-inspector')
+>
+> const inspector = new ReadmeInspector()
+>
+> inspector.authenticate({
+>   token: 'secrettoken123',
+>   type: 'token'
+> })
+> ```
+
+### 3.3. `check(): Promise<ReadmeInfo>`
+
+A convenience method that
+
+* Attempts to <samp>GET</samp> a repository's root-level README, and, if found,
+* Scores the README.
+
+![GET][rest-get-img]
+
+```http
+/repos/:owner/:repo/readme
+```
+
+#### 3.3.1. Parameters
+
+<table>
+  <thead>
+    <tr>
+    <th style="width: 30%">Field</th>
+      <th style="width: 10%">Type</th>
+      <th style="width: 60%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><samp>owner</samp></td>
+        <td>
+          String
+        </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><samp>repo</samp></td>
+        <td>
+          String
+        </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><samp>ref</samp> <img align="right" alt="optional" src="https://fakeimg.pl/60x22/757575/FFF/?text=optional&font_size=16" height="22" width="60"></td>
+        <td>
+          String
+        </td>
+      <td>The name of the commit/branch/tag. Default: the repository’s default branch (usually master).</td>
+    </tr>
+  </tbody>
+</table>
+
+#### 3.3.2. Return type: `Promise<ReadmeInfo>`
+
+`ReadmeInfo's` interface (as a `NullObject`):
 
 ```js
-// ScoreMeData
 {
-  'breakdown': {
-    'cumulative_code_block_length': 0,
-    'has_lists': 0,
-    'low_code_block_penalty': 0,
-    'number_of_code_blocks': 0,
-    'number_of_gifs': 0,
-    'number_of_images': 0,
-    'number_of_non_code_sections': 0
-  },
   'err': null,
-  'score': 0,
-  'url': null
+  'isPresent': null,
+  'scoreData': {
+    'breakdown': {
+      'cumulative_code_block_length': 0,
+      'has_lists': 0,
+      'low_code_block_penalty': 0,
+      'number_of_code_blocks': 0,
+      'number_of_gifs': 0,
+      'number_of_images': 0,
+      'number_of_non_code_sections': 0
+    },
+    'err': null,
+    'score': 0,
+    'url': null
+  },
+  'value': null
 }
 ```
 
-#### Parameters
-
-None.
-
-##### Examples
+#### 3.3.2. Examples
 
 * _async/await:_
 
   > ```js
-  > const { ScoreMe } = require('readme-inspector')
-  >
-  > const scoreMe = new ScoreMe('gregswindle/github-resource-converter')
-  >
-  > try {
-  >   const result = await scoreMe.calculate()
-  > } catch (err) {
-  >   console.error(err)
-  > }
   > ```
 
 * _Promise:_
 
   > ```js
-  > const { ScoreMe } = require('readme-inspector')
-  >
-  > const scoreMe = new ScoreMe('gregswindle/github-resource-converter')
-  >
-  > scoreMe
-  >   .calculate()
-  >   .then(result => {
-  >     console.log(result)
-  >   })
-  >   .catch(err => {
-  >     console.error(err)
-  >   })
   > ```
 
-#### `score(url: String): Promise<ScoreMeData>`
+### 3.4 `getReadmeInfo(): Promise<ReadmeInfo>`
 
-##### Parameters
+Retrieves README information _without_ any `ScoreData`.
+
+#### 3.4.1. Return type: `Promise<ReadmeInfo>`
+
+`ReadmeInfo's` interface (as a `NullObject`):
+
+```js
+{
+  'err': null,
+  'isPresent': null,
+  'scoreData': {
+    'breakdown': {
+      'cumulative_code_block_length': 0,
+      'has_lists': 0,
+      'low_code_block_penalty': 0,
+      'number_of_code_blocks': 0,
+      'number_of_gifs': 0,
+      'number_of_images': 0,
+      'number_of_non_code_sections': 0
+    },
+    'err': null,
+    'score': 0,
+    'url': null
+  },
+  'value': null
+}
+```
+
+#### 3.4.2. Examples
+
+* _async/await:_
+
+  > ```js
+  > ```
+
+* _Promise:_
+
+  > ```js
+  > ```
+
+### 3.5. `score(): Promise<ScoreData>`
+
+Retrieves `ScoreData` _without_ the additional README document's details.
+
+### 3.2. `ReadmeScore`
+
+`ReadmeScore` is an API proxy for [@clayallsopp ![External link][icon-octicon-link-external]](https://github.com/clayallsopp)'s [`readme-score-api` ![External link][icon-octicon-link-external]](https://github.com/clayallsopp/readme-score-api).
+
+> ![quote][icon-octicon-quote] ScoreMe gives you a numerical score from 0 to 100 for your Github-style README. The intention is to measure complexity, which is a generally correlated with quality.
+>
+> It won't measure if one README is absolutely better than another, but it will give you a good idea if the README is high-quality, needs more work, or somewhere inbetween.
+>
+> ScoreMe. (2018). Clayallsopp.github.io. Retrieved 10 April 2018, from <http://clayallsopp.github.io/readme-score/>
+
+#### 3.2.1. `static for(url: String): Promise<ScoreData>`
+
+Evaluate the README at the root of a GitHub repository.
+
+##### 3.2.1.1. Parameters
 
 | Name | Type   | Description                                                     |
 | :--- | :----- | :-------------------------------------------------------------- |
 | url  | String | The URL or slug of the repository to be evaluated for a README. |
 
-##### Examples
+##### 3.2.1.2. Returns `Promise<ScoreData>`
+
+* `ScoreData` as a `NullObject` (see <samp>[lib/null-score-data](lib/null-score-data.js)</samp>):
+
+  > ```js
+  > {
+  >   breakdown: {
+  >     cumulativeCodeBlockLength: 0
+  >     hasLists: 0
+  >     lowCodeBlockPenalty: 0
+  >     numberOfCodeBlocks: 0
+  >     numberOfGifs: 0
+  >     numberOfImages: 0
+  >     numberOfNonCodeSections: 0
+  >   },
+  >   err: null,
+  >   score: 0
+  >   url: null
+  > }
+  > ```
+
+##### 3.2.1.3. Examples
 
 * _URL:_
 
   > ```js
-  > const { ScoreMe } = require('readme-inspector')
+  > const { ReadmeScore } = require('readme-inspector')
+  >
   > const url = 'https://github.com/gregswindle/github-resource-converter'
   >
-  > const scoreMe = new ScoreMe()
-  > scoreMe
-  >   .score(url)
-  >   .then(result => result)
-  >   .catch(err => err)
+  > const result = new ReadmeScore.for(url)
+  > /** =>
+  >  * {
+  >  *   breakdown: {
+  >  *    cumulativeCodeBlockLength: 10
+  >  *    hasLists: 10
+  >  *    lowCodeBlockPenalty: 0
+  >  *    numberOfCodeBlocks: 40
+  >  *    numberOfGifs: 0
+  >  *    numberOfImages: 15
+  >  *    numberOfNonCodeSections: 30
+  >  *  },
+  >  *  err: null,
+  >  *  score: 100
+  >  *  url: 'https://github.com/gregswindle/github-resource-converter'
+  >  * }
+  >  */
   > ```
 
 * _Repository slug:_
 
   > ```js
-  > const { ScoreMe } = require('readme-inspector')
+  > const { ReadmeScore } = require('readme-inspector')
+  >
   > const slug = 'gregswindle/github-resource-converter'
   >
-  > const scoreMe = new ScoreMe()
-  > const result = await scoreMe.score(slug)
+  > const result = new ReadmeScore.for(slug)
   > ```
 
-### `ReadmeInspector`
-
-## Version
+## 4. Version
 
 [![NPM version][npm-image]][npm-url]
 
-## Contributing
+View the [Change Log](CHANGELOG.md) and [Releases](https://github.com/gregswindle/github-resource-converter/releases) for details.
+
+## 5. Contributing
 
 [![PRs Welcome][makeapullrequest-image] ![External link][icon-octicon-link-external]][makeapullrequest-url] We welcome contributions with GitHub **issues** and **pull requests**.
 
@@ -249,33 +415,29 @@ None.
 
 ---
 
-Before embarking on a significant change, please adhere to the following guidelines:
+Before embarking on a significant change, please follow these guidelines:
 
 1.  **[Create an issue][issues-url]**&mdash;e.g., a [defect ("bug") report][issues-new-defect-url] or a [feature request][issues-new-feat-url]&mdash;to propose changes.
 
-    _Exceptions:_
+    <br>_Exceptions:_<br><br>
 
     > If you're working on documentation and fixing something simple like a typo or an easy bug, go ahead and make a pull request.
 
 1.  **[Follow the CONTRIBUTING guidelines][contributing-url].**
 
-    _Why:_
+    <br>_Why:_<br><br>
 
-    > Standards and guidelines make communication easier. If you're willing and able to program&mdash;or want to learn how&mdash; following the guidelines will increase the likelihood of adding your changes to the software product.
+    > Standards and guidelines make communication easier. If you're willing and able to program&mdash;or want to learn how&mdash; following the guidelines will increase the likelihood of having your changes added to `readme-inspector`.
 
-1.  **[Read the Code of Conduct][code-of-conduct-url].**
-
-    _Why:_
-
-    > It's more fun when everybody's friendly and respectful.
+1.  **[Read the Code of Conduct][code-of-conduct-url].**<br><br>
 
 1.  **[Make a pull request][pr-url]** when you're ready for other to review your changes (or you get stuck somewhere).
 
-    _PR novices:_
+    <br>_Never created a pull request?_<br><br>
 
-    > **🙋 Never created a pull request?** No problem. [🆓 Take this free online training ![External link][icon-octicon-link-external]][makeapullrequest-url]. (It even covers most of the conventions in the [CONTRIBUTING guidelines][contributing-url]!)
+    > No problem: [this free online training ![External link][icon-octicon-link-external]][makeapullrequest-url] covers most of the conventions in the [CONTRIBUTING guidelines][contributing-url].)
 
-## License
+## 6. License
 
 MIT © [commonality](https://github.com/commonality)
 
@@ -284,15 +446,15 @@ MIT © [commonality](https://github.com/commonality)
 ---
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/commonality/readme-inspector.svg)](https://greenkeeper.io/)
-[![Readme Score](http://readme-score-api.herokuapp.com/score.svg?url=https://github.com/commonality/readme-inspector)](http://clayallsopp.github.io/readme-score?url=https://github.com/commonality/readme-inspector)
+[![Readme ReadmeScore](http://readme-score-api.herokuapp.com/score.svg?url=https://github.com/commonality/readme-inspector)](http://clayallsopp.github.io/readme-score?url=https://github.com/commonality/readme-inspector)
 
 <!-- ⛔️ Link References ⛔️  -->
 
 [bunyan-format-url]: https://github.com/thlorenz/bunyan-format/#readme
 [node-bunyan-url]: https://github.com/trentm/node-bunyan/#readme
 [optional-param-img]: https://fakeimg.pl/60x22/757575/FFF/?text=optional&font_size=16
-[rest-get-img]: https://fakeimg.pl/40x40/0e8a16/FFF/?text=GET&font_size=20
-[runkit-grc-url]: https://runkit.com/commonality/readme-inspector
+[rest-get-img]: https://fakeimg.pl/40x30/0e8a16/FFF/?text=GET&font_size=20
+[runkit-readme-inspector-url]: https://runkit.com/gregswindle/5acc09bde794d70011a136e5
 [toc]: #table-of-contents
 
 <!-- ⛔️ CI Services ⛔️  -->
