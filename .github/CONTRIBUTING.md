@@ -636,6 +636,7 @@
  | [husky@^0.14.3](https://github.com/typicode/husky) | Prevents bad commit or push (git hooks, pre-commit/precommit, pre-push/prepush, post-merge/postmerge and all that stuff...) | 0.14.3 | MIT | dev | 
  | [jest@22.4.3](http://facebook.github.io/jest/) | Delightful JavaScript Testing. | 22.4.3 | MIT | dev | 
  | [jest-runner-eslint@0.4.0](https://github.com/jest-community/jest-runner-eslint) | An experimental ESLint runner for Jest | 0.4.0 | MIT | dev | 
+ | [jsdoc@3.5.5](https://github.com/jsdoc3/jsdoc#readme) | An API documentation generator for JavaScript. | 3.5.5 | Apache-2.0 | dev | 
  | [lec@^1.0.1](https://github.com/iShafayet/lec) | Command Line Wrapper for Line Ending Corrector (An utility that makes sure your files have consistent line endings) | 1.0.1 | MIT | dev | 
  | [lint-staged@7.0.4](https://github.com/okonet/lint-staged#readme) | Lint files staged by git | 7.0.4 | MIT | dev | 
  | [lodash.isundefined@3.0.1](https://lodash.com/) | The modern build of lodash’s `_.isUndefined` as a module. | 3.0.1 | MIT | dev | 
@@ -643,10 +644,10 @@
  | [markdown-magic-dependency-table@1.3.2](https://github.com/camacho/markdown-magic-dependency-table#readme) | Generate table of information about dependencies automatically in markdown | 1.3.2 | MIT | dev | 
  | [markdown-magic-install-command@1.3.1](https://github.com/camacho/markdown-magic-install-command#readme) | Print install command for markdown file | 1.3.1 | MIT | dev | 
  | [markdown-magic-package-scripts@1.2.1](https://github.com/camacho/markdown-magic-package-scripts#readme) | Print list of scripts in package.json with descriptions | 1.2.1 | MIT | dev | 
+ | [minami@1.2.3](https://github.com/Nijikokun/minami) | Clean and minimal JSDoc 3 Template / Theme | 1.2.3 | UNLICENSED | dev | 
  | [nsp@^3.2.1](https://github.com/nodesecurity/nsp#readme) | The Node Security (nodesecurity.io) command line interface | 3.2.1 | Apache-2.0 | dev | 
  | [prettier@1.11.1](https://prettier.io) | Prettier is an opinionated code formatter | 1.11.1 | MIT | dev | 
  | [semantic-release@15.1.5](https://github.com/semantic-release/semantic-release#readme) | Automated semver compliant package publishing | 15.1.5 | MIT | dev | 
- | [sinon@4.5.0](http://sinonjs.org/) | JavaScript test spies, stubs and mocks. | 4.5.0 | BSD-3-Clause | dev | 
  | [standard-version@4.3.0](https://github.com/conventional-changelog/standard-version#readme) | replacement for `npm version` with automatic CHANGELOG generation | 4.3.0 | ISC | dev | 
 <!-- AUTO-GENERATED-CONTENT:END -->
 

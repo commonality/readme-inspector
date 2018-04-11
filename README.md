@@ -19,27 +19,23 @@
 <!-- ⛔️ AUTO-GENERATED-CONTENT:START (TOC:excludeText=Table of contents) -->
 - [1. Installation](#1-installation)
 - [2. Usage](#2-usage)
-- [3. API](#3-api)
-  * [3.1. `ReadmeInspector`](#31-readmeinspector)
-    + [3.1.1. `constructor({owner, repo}): ReadmeInspector`](#311-constructorowner-repo-readmeinspector)
-      - [3.1.1.1. Parameters](#3111-parameters)
-    + [3.1.1.2. Examples](#3112-examples)
-  * [3.2.1. `authenticate({token, type, key}): void`](#321-authenticatetoken-type-key-void)
+- [3. `readmeInspector` API](#3-readmeinspector-api)
+  * [3.1. `authenticate({token, type, key}): void`](#31-authenticatetoken-type-key-void)
+    + [3.1.1. Parameters](#311-parameters)
+    + [3.1.2. Example](#312-example)
+  * [3.2. `check(ower, repo, ref): Promise`](#32-checkower-repo-ref-promise)
     + [3.2.1. Parameters](#321-parameters)
-    + [3.2.2. Example](#322-example)
-  * [3.3. `check(): Promise`](#33-check-promise)
+    + [3.2.2. Return type: `Promise`](#322-return-type-promise)
+    + [3.2.3. Examples](#323-examples)
+  * [3.3 `getReadmeInfo(owner, repo, ref): Promise`](#33-getreadmeinfoowner-repo-ref-promise)
     + [3.3.1. Parameters](#331-parameters)
     + [3.3.2. Return type: `Promise`](#332-return-type-promise)
-    + [3.3.2. Examples](#332-examples)
-  * [3.4 `getReadmeInfo(): Promise`](#34-getreadmeinfo-promise)
-    + [3.4.1. Return type: `Promise`](#341-return-type-promise)
-    + [3.4.2. Examples](#342-examples)
-  * [3.5. `score(): Promise`](#35-score-promise)
-  * [3.2. `ReadmeScore`](#32-readmescore)
-    + [3.2.1. `static for(url: String): Promise`](#321-static-forurl-string-promise)
-      - [3.2.1.1. Parameters](#3211-parameters)
-      - [3.2.1.2. Returns `Promise`](#3212-returns-promise)
-      - [3.2.1.3. Examples](#3213-examples)
+    + [3.3.3. Examples](#333-examples)
+  * [3.4. `ReadmeScore`](#34-readmescore)
+    + [3.4.1. `for(url: String): Promise`](#341-forurl-string-promise)
+      - [3.4.1.1. Parameters](#3411-parameters)
+      - [3.4.1.2. Returns `Promise`](#3412-returns-promise)
+      - [3.4.1.3. Examples](#3413-examples)
 - [4. Version](#4-version)
 - [5. Contributing](#5-contributing)
 - [6. License](#6-license)
@@ -57,26 +53,24 @@ $ npm install --save readme-inspector
 ## 2. Usage
 
 ```js
-const { ReadmeInspector } = require('readme-inspector')
-
-const inspector = new ReadmeInspector({
-  owner: 'gregswindle',
-  repo: 'github-resource-converter'
-})
+const readmeInspector = require('readme-inspector')
 
 // Recommended: authenticate to avoid rate limts
-inspector.authenticate({
+readmeInspector.authenticate({
   token: process.env.GITHUB_ACCESS_TOKEN,
   type: 'oauth'
 })
 
-const results = await inspector.check()
+const results = await readmeInspector.check(
+  'gregswindle',
+  'github-resource-converter'
+)
 // => Formatted and stringified
 /*
 {
   "err": null,
   "isPresent": true,
-  "score": {
+  "scoreData": {
     "score": 100,
     "url": "https://github.com/gregswindle/github-resource-converter",
     "breakdown": {
@@ -111,50 +105,13 @@ const results = await inspector.check()
 */
 ```
 
-## 3. API
+## 3. `readmeInspector` API
 
 > [![beaker][icon-octicon-beaker] Test `readme-inspector` in your Web browser ![link-external][icon-octicon-link-external]][runkit-readme-inspector-url].
 
-### 3.1. `ReadmeInspector`
+The `readmeInspector` module detects whether or not a README document exists at the root of a GitHub or GitHub Enterprise repository. If a README exists, it can evaluate the README's quality and provide a numerical score from 0 to 100, where 0 is the lowest quality and 100 is the highest.
 
-#### 3.1.1. `constructor({owner, repo}): ReadmeInspector`
-
-Create a shadow (instance) of `ReadmeInspector.prototype`.
-
-##### 3.1.1.1. Parameters
-
-| Field                | Type   | Description                                     |
-| :------------------- | :----- | :---------------------------------------------- |
-| <samp>baseUrl</samp> | String | The name of the GitHub account or organziation. |
-| <samp>owner</samp>   | String | The name of the GitHub account or organziation. |
-| <samp>repo</samp>    | String | The name of a GitHub (Enterprise) repository.   |
-
-#### 3.1.1.2. Examples
-
-* _GitHub:_
-
-  > ```js
-  > const { ReadmeInspector } = require('readme-inspector')
-  >
-  > const inspector = new ReadmeInspector({
-  >   owner: 'rails',
-  >   repo: 'rails'
-  > })
-  > ```
-
-* _GitHub Enterprise:_
-
-  > ```js
-  > const { ReadmeInspector } = require('readme-inspector')
-  >
-  > const inspector = new ReadmeInspector({
-  >   baseUrl: 'https://evilcorp.com/api/v3',
-  >   owner: 'rails',
-  >   repo: 'rails'
-  > })
-  > ```
-
-### 3.2.1. `authenticate({token, type, key}): void`
+### 3.1. `authenticate({token, type, key}): void`
 
 > ![Info][icon-octicon-info] Most GitHub API calls don't require authentication. Rules of thumb:
 >
@@ -163,7 +120,7 @@ Create a shadow (instance) of `ReadmeInspector.prototype`.
 >
 > octokit/rest.js. (2018). GitHub. Retrieved 21 March 2018, from <https://github.com/octokit/rest.js#authentication> ![link-external][icon-octicon-link-external]
 
-#### 3.2.1. Parameters
+#### 3.1.1. Parameters
 
 | Name  | Type   | Description                                                      | Notes |
 | :---- | :----- | :--------------------------------------------------------------- | :---- |
@@ -171,21 +128,19 @@ Create a shadow (instance) of `ReadmeInspector.prototype`.
 | token | String |                                                                  |       |
 | type  | Enum   | `basic`, `oauth`, `oauth-key-secret`, `token`, and `integration` |       |
 
-#### 3.2.2. Example
+#### 3.1.2. Example
 
 > ```javascript
 > // Token (https://github.com/settings/tokens)
-> const { ReadmeInspector } = require('readme-inspector')
+> const readmeInspector = require('readme-inspector')
 >
-> const inspector = new ReadmeInspector()
->
-> inspector.authenticate({
+> readmeInspector.authenticate({
 >   token: 'secrettoken123',
 >   type: 'token'
 > })
 > ```
 
-### 3.3. `check(): Promise<ReadmeInfo>`
+### 3.2. `check(ower, repo, ref): Promise<ReadmeInfo>`
 
 A convenience method that
 
@@ -197,6 +152,96 @@ A convenience method that
 ```http
 /repos/:owner/:repo/readme
 ```
+
+#### 3.2.1. Parameters
+
+<table>
+  <thead>
+    <tr>
+    <th style="width: 30%">Field</th>
+      <th style="width: 10%">Type</th>
+      <th style="width: 60%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><samp>owner</samp></td>
+        <td>
+          String
+        </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><samp>repo</samp></td>
+        <td>
+          String
+        </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><samp>ref</samp> <img align="right" alt="optional" src="https://fakeimg.pl/60x22/757575/FFF/?text=optional&font_size=16" height="22" width="60"></td>
+        <td>
+          String
+        </td>
+      <td>The name of the commit/branch/tag. Default: the repository’s default branch (usually master).</td>
+    </tr>
+  </tbody>
+</table>
+
+#### 3.2.2. Return type: `Promise<ReadmeInfo>`
+
+`ReadmeInfo's` interface (as a `NullObject`):
+
+```js
+{
+  'err': null,
+  'isPresent': null,
+  'scoreData': {
+    'breakdown': {
+      'cumulative_code_block_length': 0,
+      'has_lists': 0,
+      'low_code_block_penalty': 0,
+      'number_of_code_blocks': 0,
+      'number_of_gifs': 0,
+      'number_of_images': 0,
+      'number_of_non_code_sections': 0
+    },
+    'err': null,
+    'score': 0,
+    'url': null
+  },
+  'value': null
+}
+```
+
+#### 3.2.3. Examples
+
+* _async/await:_<br><br>
+
+  > ```js
+  > const readmeInfo = await readmeInspector.check({
+  >   owner: 'commonality',
+  >   ref: 'GH-1-feat-inspect-readmes',
+  >   repo: 'readme-inspector'
+  > })
+  > ```
+
+* _Promise:_<br><br>
+
+  > ```js
+  > readmeInspector
+  >   .check({
+  >     owner: 'commonality',
+  >     ref: 'GH-1-feat-inspect-readmes',
+  >     repo: 'readme-inspector'
+  >   })
+  >   .then(readmeInfo => {})
+  >   .catch(err => {})
+  > ```
+
+### 3.3 `getReadmeInfo(owner, repo, ref): Promise<ReadmeInfo>`
+
+Retrieves README information _without_ any `ScoreData`.
 
 #### 3.3.1. Parameters
 
@@ -259,65 +304,32 @@ A convenience method that
 }
 ```
 
-#### 3.3.2. Examples
+#### 3.3.3. Examples
 
-* _async/await:_
-
-  > ```js
-  > ```
-
-* _Promise:_
+* _async/await:_<br><br>
 
   > ```js
+  > const readmeInfo = await readmeInspector.getReadmeInfo({
+  >   owner: 'commonality',
+  >   ref: 'GH-1-feat-inspect-readmes',
+  >   repo: 'readme-inspector'
+  > })
   > ```
 
-### 3.4 `getReadmeInfo(): Promise<ReadmeInfo>`
-
-Retrieves README information _without_ any `ScoreData`.
-
-#### 3.4.1. Return type: `Promise<ReadmeInfo>`
-
-`ReadmeInfo's` interface (as a `NullObject`):
-
-```js
-{
-  'err': null,
-  'isPresent': null,
-  'scoreData': {
-    'breakdown': {
-      'cumulative_code_block_length': 0,
-      'has_lists': 0,
-      'low_code_block_penalty': 0,
-      'number_of_code_blocks': 0,
-      'number_of_gifs': 0,
-      'number_of_images': 0,
-      'number_of_non_code_sections': 0
-    },
-    'err': null,
-    'score': 0,
-    'url': null
-  },
-  'value': null
-}
-```
-
-#### 3.4.2. Examples
-
-* _async/await:_
+* _Promise:_<br><br>
 
   > ```js
+  > readmeInspector
+  >   .getReadmeInfo({
+  >     owner: 'commonality',
+  >     ref: 'GH-1-feat-inspect-readmes',
+  >     repo: 'readme-inspector'
+  >   })
+  >   .then(readmeInfo => {})
+  >   .catch(err => {})
   > ```
 
-* _Promise:_
-
-  > ```js
-  > ```
-
-### 3.5. `score(): Promise<ScoreData>`
-
-Retrieves `ScoreData` _without_ the additional README document's details.
-
-### 3.2. `ReadmeScore`
+### 3.4. `ReadmeScore`
 
 `ReadmeScore` is an API proxy for [@clayallsopp ![External link][icon-octicon-link-external]](https://github.com/clayallsopp)'s [`readme-score-api` ![External link][icon-octicon-link-external]](https://github.com/clayallsopp/readme-score-api).
 
@@ -327,19 +339,19 @@ Retrieves `ScoreData` _without_ the additional README document's details.
 >
 > ScoreMe. (2018). Clayallsopp.github.io. Retrieved 10 April 2018, from <http://clayallsopp.github.io/readme-score/>
 
-#### 3.2.1. `static for(url: String): Promise<ScoreData>`
+#### 3.4.1. `for(url: String): Promise<ScoreData>`
 
 Evaluate the README at the root of a GitHub repository.
 
-##### 3.2.1.1. Parameters
+##### 3.4.1.1. Parameters
 
-| Name | Type   | Description                                                     |
-| :--- | :----- | :-------------------------------------------------------------- |
-| url  | String | The URL or slug of the repository to be evaluated for a README. |
+| Name | Type   | Description                                                      |
+| :--- | :----- | :--------------------------------------------------------------- |
+| url  | String | The URL, or slug of the repository to be evaluated for a README. |
 
-##### 3.2.1.2. Returns `Promise<ScoreData>`
+##### 3.4.1.2. Returns `Promise<ScoreData>`
 
-* `ScoreData` as a `NullObject` (see <samp>[lib/null-score-data](lib/null-score-data.js)</samp>):
+* `ScoreData` as a `NullObject` (see <samp>[lib/score-data](lib/score-data.js)</samp>):<br><br>
 
   > ```js
   > {
@@ -358,16 +370,16 @@ Evaluate the README at the root of a GitHub repository.
   > }
   > ```
 
-##### 3.2.1.3. Examples
+##### 3.4.1.3. Examples
 
-* _URL:_
+* _URL:_<br><br>
 
   > ```js
-  > const { ReadmeScore } = require('readme-inspector')
+  > const inspector = require('readme-inspector')
   >
   > const url = 'https://github.com/gregswindle/github-resource-converter'
   >
-  > const result = new ReadmeScore.for(url)
+  > const result = inspector.readmeScore.for(url)
   > /** =>
   >  * {
   >  *   breakdown: {
@@ -386,14 +398,14 @@ Evaluate the README at the root of a GitHub repository.
   >  */
   > ```
 
-* _Repository slug:_
+* _Repository slug:_<br><br>
 
   > ```js
-  > const { ReadmeScore } = require('readme-inspector')
+  > const inspector = require('readme-inspector')
   >
   > const slug = 'gregswindle/github-resource-converter'
   >
-  > const result = new ReadmeScore.for(slug)
+  > const result = inspector.readmeScore.for(slug)
   > ```
 
 ## 4. Version
