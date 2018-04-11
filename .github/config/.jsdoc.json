@@ -16,7 +16,7 @@
     "showInheritedInNav": true
   },
   "opts": {
-    "destination": "./docs/",
+    "destination": "./.github/assets/docs/",
     "encoding": "utf8",
     "private": true,
     "recurse": true,

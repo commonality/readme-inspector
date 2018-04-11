@@ -39,8 +39,7 @@ script:
 
 after_script:
   - npm run posttest:ci:coverage:codacy
-  - test $TRAVIS_PULL_REQUEST != false
-    && sonar-scanner -Dproject.settings=./.github/config/sonar-project.properties -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.login=$SONAR_TOKEN -X
+  - sonar-scanner -Dproject.settings=./.github/config/sonar-project.properties -Dsonar.organization=$SONAR_ORGANIZATION -Dsonar.login=$SONAR_COMMONALITY_TOKEN -X
 
 jobs:
   include:

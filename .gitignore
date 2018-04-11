@@ -134,3 +134,4 @@ tsconfig.json
 jsconfig.json
 
 docs/
+.scannerwork/
