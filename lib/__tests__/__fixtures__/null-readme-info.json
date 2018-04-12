@@ -1,0 +1,19 @@
+{
+  "err": null,
+  "isPresent": null,
+  "scoreData": {
+    "breakdown": {
+      "cumulativeCodeBlockLength": 0,
+      "hasLists": 0,
+      "lowCodeBlockPenalty": 0,
+      "numberOfCodeBlocks": 0,
+      "numberOfGifs": 0,
+      "numberOfImages": 0,
+      "numberOfNonCodeSections": 0
+    },
+    "err": null,
+    "score": 0,
+    "url": null
+  },
+  "value": null
+}

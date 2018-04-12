@@ -1,5 +1,6 @@
 node_modules
 coverage
+.env
 
 # Logs
 logs
@@ -75,7 +76,8 @@ typings/
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
@@ -119,3 +121,18 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+lib/__tests__/index.test.js
+
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+.settings/
+.vscode/
+tsconfig.json
+jsconfig.json
+
+docs/
+.scannerwork/

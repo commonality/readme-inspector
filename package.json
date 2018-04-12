@@ -2,11 +2,16 @@
   "name": "readme-inspector",
   "description":
     "Inspect GitHub (and GitHub Enterprise) repositories for the presence and quality of READMEs.",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "author": {
     "name": "commonality",
     "email": "greg@swindle.net",
     "url": "https://github.com/commonality"
+  },
+  "analytics": {
+    "ga": {
+      "trackingCode": "UA-117338111-1"
+    }
   },
   "bugs": "https://github.com/commonality/readme-inspector/issues",
   "commitplease": {
@@ -34,6 +39,9 @@
     "dotenv": "5.0.1",
     "got": "8.3.0",
     "insight": "0.10.1",
+    "lodash.camelcase": "4.3.0",
+    "lodash.isstring": "4.0.1",
+    "lodash.transform": "4.6.0",
     "meow": "4.0.0"
   },
   "devDependencies": {
@@ -49,7 +57,7 @@
     "eslint-config-scanjs": "1.0.0-beta4",
     "eslint-config-standard": "11.0.0",
     "eslint-config-xo": "0.20.1",
-    "eslint-plugin-import": "2.10.0",
+    "eslint-plugin-import": "2.11.0",
     "eslint-plugin-jsdoc": "3.6.2",
     "eslint-plugin-json": "1.2.0",
     "eslint-plugin-no-unsafe-innerhtml": "1.0.16",
@@ -64,17 +72,18 @@
     "husky": "^0.14.3",
     "jest": "22.4.3",
     "jest-runner-eslint": "0.4.0",
+    "jsdoc": "3.5.5",
     "lec": "^1.0.1",
     "lint-staged": "7.0.4",
     "lodash.isundefined": "3.0.1",
-    "lodash.noop": "3.0.1",
     "markdown-magic": "0.1.21",
     "markdown-magic-dependency-table": "1.3.2",
     "markdown-magic-install-command": "1.3.1",
     "markdown-magic-package-scripts": "1.2.1",
+    "minami": "1.2.3",
     "nsp": "^3.2.1",
-    "prettier": "1.11.1",
-    "semantic-release": "15.1.5",
+    "prettier": "1.12.0",
+    "semantic-release": "15.1.6",
     "standard-version": "4.3.0"
   },
   "engines": {
@@ -87,6 +96,11 @@
     "automock": false,
     "collectCoverage": true,
     "coverageDirectory": "lib/__tests__/coverage",
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/docs/",
+      "<rootDir>/node_modules",
+      "<rootDir>/lib/__tests__/"
+    ],
     "coverageThreshold": {
       "global": {
         "branches": 100,
@@ -100,13 +114,14 @@
       "<rootDir>/lib/__tests__/**/*.test.js",
       "<rootDir>/lib/__tests__/*.test.js"
     ],
+    "testPathIgnorePatterns": ["/docs/", "/node_modules/"],
     "watchman": false
   },
   "keywords": [
+    "Score",
     "readme",
     "readme-score",
-    "recommended community standards",
-    "scoreme"
+    "recommended community standards"
   ],
   "license": "MIT",
   "lint-staged": {
@@ -125,6 +140,7 @@
   },
   "scripts": {
     "docs": "npm run docs:toc",
+    "docs:api": "jsdoc --configure .github/config/.jsdoc.json --verbose",
     "docs:changelog": "standard-version --commit-all",
     "docs:toc":
       "md-magic --config '.github/config/markdown.config.js' --ignore 'node_modules'",
@@ -136,7 +152,7 @@
     "lint:manifest": "fixpack",
     "lint:md": "prettier ./**/*.md -prose-wrap always --write",
     "posttest:ci:coverage:codacy":
-      "cat ./lib/__tests__/coverage/lcov.info | codacy-coverage",
+      "cat ./lib/__tests__/coverage/lcov.info | codacy-coverage -l javascript -t $CODACY_PROJECT_TOKEN_README_INSPECTOR",
     "precommit": "lint-staged",
     "prepare": "npm run lint && npm run security",
     "prepublish": "npm run security",
