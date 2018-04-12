@@ -269,13 +269,13 @@ A convenience method that
   'isPresent': null,
   'scoreData': {
     'breakdown': {
-      'cumulative_code_block_length': 0,
-      'has_lists': 0,
-      'low_code_block_penalty': 0,
-      'number_of_code_blocks': 0,
-      'number_of_gifs': 0,
-      'number_of_images': 0,
-      'number_of_non_code_sections': 0
+      'cumulativeCodeBlockLength': 0,
+      'hasLists': 0,
+      'lowCodeBlockPenalty': 0,
+      'numberOfCodeBlocks': 0,
+      'numberOfGifs': 0,
+      'numberOfImages': 0,
+      'numberOfNonCodeSections': 0
     },
     'err': null,
     'score': 0,
@@ -287,7 +287,7 @@ A convenience method that
 
 #### 3.2.3. Examples
 
-* _async/await:_<br>
+* _async/await:_
 
   > ```js
   > const readmeInfo = await readmeInspector.check({
@@ -297,7 +297,7 @@ A convenience method that
   > })
   > ```
 
-* _Promise:_<br>
+* _Promise:_
 
   > ```js
   > readmeInspector
@@ -383,7 +383,7 @@ Retrieves README information _without_ any `ScoreData`.
 
 #### 3.3.3. Examples
 
-* _async/await:_<br>
+* _async/await:_
 
   > ```js
   > const readmeInfo = await readmeInspector.getReadmeInfo({
@@ -393,7 +393,7 @@ Retrieves README information _without_ any `ScoreData`.
   > })
   > ```
 
-* _Promise:_<br>
+* _Promise:_
 
   > ```js
   > readmeInspector
@@ -453,7 +453,7 @@ Evaluate the README at the root of a GitHub repository.
 
 ##### 3.5.1.3. Examples
 
-* _URL:_<br>
+* _URL:_
 
   > ```js
   > const inspector = require('readme-inspector')
@@ -479,7 +479,7 @@ Evaluate the README at the root of a GitHub repository.
   >  */
   > ```
 
-* _Repository slug:_<br>
+* _Repository slug:_
 
   > ```js
   > const inspector = require('readme-inspector')
@@ -512,21 +512,21 @@ Before embarking on a significant change, please follow these guidelines:
 
 1.  **[Create an issue][issues-url]**&mdash;e.g., a [defect ("bug") report][issues-new-defect-url] or a [feature request][issues-new-feat-url]&mdash;to propose changes.
 
-    <br>_Exceptions:_<br>
+    <br>_Exceptions:_
 
     > If you're working on documentation and fixing something simple like a typo or an easy bug, go ahead and make a pull request.
 
 1.  **[Follow the CONTRIBUTING guidelines][contributing-url].**
 
-    <br>_Why:_<br>
+    <br>_Why:_
 
     > Standards and guidelines make communication easier. If you're willing and able to program&mdash;or want to learn how&mdash; following the guidelines will increase the likelihood of having your changes added to `readme-inspector`.
 
-1.  **[Read the Code of Conduct][code-of-conduct-url].**<br>
+1.  **[Read the Code of Conduct][code-of-conduct-url].**
 
 1.  **[Make a pull request][pr-url]** when you're ready for other to review your changes (or you get stuck somewhere).
 
-    <br>_Never created a pull request?_<br>
+    <br>_Never created a pull request?_
 
     > No problem: [this free online training ![External link][icon-octicon-link-external]][makeapullrequest-url] covers most of the conventions in the [CONTRIBUTING guidelines][contributing-url].)
 
