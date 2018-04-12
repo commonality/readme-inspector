@@ -15,10 +15,10 @@ All notable changes to this project will be documented in this file. See [standa
   >
   > In your README, try to answer the following questions:
   >
-  > What does this project do?
-  > Why is this project useful?
-  > How do I get started?
-  > Where can I get more help, if I need it?
+  > * What does this project do?
+  > * Why is this project useful?
+  > * How do I get started?
+  > * Where can I get more help, if I need it?
   >
   > You can use your README to answer other questions, like how you handle
   > contributions, what the goals of the project are, and information about
