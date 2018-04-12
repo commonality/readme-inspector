@@ -553,7 +553,7 @@ MIT © [commonality](https://github.com/commonality)
 <!-- ⛔️ CI Services ⛔️  -->
 
 [appveyor-image]: https://img.shields.io/appveyor/ci/gregswindle/readme-inspector.svg?style=flat-square&logo=appveyor&label=windows%20build
-[appveyor-url]: https://ci.appveyor.com/project/commonality/readme-inspector
+[appveyor-url]: https://ci.appveyor.com/project/gregswindle/readme-inspector
 [codacy-coverage-image]: https://img.shields.io/codacy/coverage/21f517a2d5bf4304895f40c5cbb596c4.svg?style=flat-square
 [codacy-image]: https://img.shields.io/codacy/grade/21f517a2d5bf4304895f40c5cbb596c4.svg?style=flat-square
 [codacy-url]: https://www.codacy.com/app/greg_7/readme-inspector?utm_source=github.com&utm_medium=referral&utm_content=commonality/readme-inspector&utm_campaign=Badge_Grade
