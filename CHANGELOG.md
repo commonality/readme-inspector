@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-* **module:readme-inspector:** Verify the existence—and assess the quality—of README files<br><br>
+* **module:readme-inspector:** Verify the existence—and assess the quality—of README files
 
   > ![quote][icon-octicon-quote] READMEs do more than explain how to use your project. They also
   > explain why your project matters, and what your users can do with it.
@@ -30,20 +30,25 @@ All notable changes to this project will be documented in this file. See [standa
 
   **Public API**
 
-  1.  Methods
-      1.1. `authenticate` - Sets GitHub credentials for all subsequent requests.
-      1.2. `check` - Attempts to GET and assess a README at a repo-root directory.
-      1.3. `getReadmeInfo` - Attempt to GET a README without assessing it.
-      1.4. `getReadmeScore` - Assess the quality of a README.
+  _Methods_
 
-  2.  Properties
-      2.1. `ReadmeScore` - An API proxy wrapper for the readme-score-api.
-      2.2. `api` - A configurable Octokit instance.
+  * `authenticate` - Sets GitHub credentials for all subsequent requests.
+  * `check` - Attempts to GET and assess a README at a repo-root directory.
+  * `getReadmeInfo` - Attempt to GET a README without assessing it.
+  * `getReadmeScore` - Assess the quality of a README.
 
-  **README.md**
+  _Properties_
+
+  * `ReadmeScore` - An API proxy wrapper for the readme-score-api.
+  * `api` - A configurable Octokit instance.
+
+  _Documentation_
 
   Visit <https://github.com/commonality/readme-inspector/#readme> for
-  installation, usage, API, version, contributing guidelines, and licenses.
+  more information about installation, usage, API, version,
+  contributing guidelines, and licenses.
+
+  _Commit_
 
   ([e04a07a](https://github.com/commonality/readme-inspector/commit/e04a07a)), closes [#1](https://github.com/commonality/readme-inspector/issues/1)
 
