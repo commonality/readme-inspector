@@ -50,4 +50,5 @@ jobs:
         provider: script
         skip_cleanup: true
         script:
+          # - npm run docs:changelog
           - npx travis-deploy-once "npx semantic-release"
