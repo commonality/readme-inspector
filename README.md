@@ -72,7 +72,7 @@ $ npm install --save readme-inspector
 
 ---
 
-<details><summary>Click here for detailed <samp>.env</samp> variable initialization instructions</summary><p>
+<details><summary>Click here for detailed <samp>.env</samp> variable initialization instructions</summary><pre>
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./lib/.env.schema) -->
 <!-- The below code snippet is automatically added from ./lib/.env.schema -->
@@ -102,7 +102,7 @@ GITHUB_ACCESS_TOKEN=
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-</p></details>
+</pre></details>
 
 ---
 
@@ -192,10 +192,15 @@ The `readmeInspector` module detects whether or not a README document exists at 
 
 > ```javascript
 > // Token (https://github.com/settings/tokens)
+> // Load your GH_TOKEN or GITHUB_ACCESS_TOKEN from
+> // environment variables:
+> const dotenvExtended = require('dotenv-extended')
+> const envConfig = dotenvExtended.config()
+>
 > const readmeInspector = require('readme-inspector')
 >
 > readmeInspector.authenticate({
->   token: 'secrettoken123',
+>   token: envConfig.GH_TOKEN,
 >   type: 'token'
 > })
 > ```

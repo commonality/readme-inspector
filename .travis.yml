@@ -24,15 +24,12 @@ git:
   depth: 1
 before_install:
 - "[[ $(node -v) =~ ^v9.*$ ]] || npm install -g npm@latest"
-- npm install -g greenkeeper-lockfile@1
 before_script:
-- greenkeeper-lockfile-update
 - npm dedupe
 script:
 - npm run test:config
 - npm test
 after_script:
-- greenkeeper-lockfile-upload
 - npm run posttest:ci:coverage:codacy
 - sonar-scanner -Dproject.settings=./.github/config/sonar-project.properties -Dsonar.organization=$SONAR_ORGANIZATION
   -Dsonar.login=$SONAR_COMMONALITY_TOKEN -X
@@ -45,6 +42,3 @@ jobs:
       skip_cleanup: true
       script:
       - npx travis-deploy-once "npx semantic-release"
-env:
-  global:
-    secure: VFXeKWEb3ji3GXHQ4u0GLmyqnuVDHfe3dvP/6AD00Dzf25iox4kC4Ru2an7UPca7q19rB35RVXY3mYCIvC6IYRZO611HwI8/zZlUQVmz4KOGYCGXZpc9ylHzQUwwPq+5DyMHWKwDLsWvlm4IziPYURPIrc33CagrqMuAijyf0SVdZVRVZXQXlQ39YNxhnjqGP6ezOhvjlV22Be97HNo3R+18wnMTIdStOfayKHRTF7akEMWrrugZTUga3aJDflTBREfGrkkiyfOEfu8rR1wuWbgSVLC38c3y/3di5jmj6qH8c/Tqgt2FJEDEC+iXeIOb9a4imgsNdhz4raYe/sdcCvC/cqdR6Q8dKWTEm3p0waam4pA8tReFg8JHF0Jfu3rXi+JroF6ZbIB4223Ez73L715rrGwnNvepWoXqkT4NqAvPTxgmowr2I4BZnCjauO1u9yLuZaP6xkFFDiZh9GsuCtQRSeDgrNxRMiKCCsyEgoVNoFIILvAFiC2cJdS8/tRZGV6hSaFef4WmOEtBxJh0O8vYiZH/X8B/MX0IME6pN703k9z5WpTFZvUEhqYHPfE8+TiL6dm1jwgg1RIreu8V3fqb5o37C5XQLDXERmGY2y/u6wR8KkBs4XIMQ9RwuF2+KeVoQBJgqDmNnohVNrOXMpZfmMaPxl3TgrqYFpxYrzY=
