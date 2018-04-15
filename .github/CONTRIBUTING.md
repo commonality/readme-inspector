@@ -594,6 +594,7 @@
  | [bunyan@1.8.12](https://github.com/trentm/node-bunyan#readme) | a JSON logging library for node.js services | 1.8.12 | MIT | production | 
  | [bunyan-format@0.2.1](https://github.com/thlorenz/bunyan-format) | Writable stream that formats bunyan records that are piped into it. | 0.2.1 | [object Object] | production | 
  | [dotenv@5.0.1](https://github.com/motdotla/dotenv#readme) | Loads environment variables from .env file | 5.0.1 | BSD-2-Clause | production | 
+ | [dotenv-extended@2.0.1](https://github.com/keithmorris/node-dotenv-extended#readme) | A module for loading .env files and optionally loading defaults and a schema for validating all values are present. | 2.0.1 | MIT | production | 
  | [got@8.3.0](https://github.com/sindresorhus/got#readme) | Simplified HTTP requests | 8.3.0 | MIT | production | 
  | [insight@0.10.1](https://github.com/yeoman/insight#readme) | Understand how your tool is being used by anonymously reporting usage metrics to Google Analytics or Yandex.Metrica | 0.10.1 | BSD-2-Clause | production | 
  | [lodash.camelcase@4.3.0](https://lodash.com/) | The lodash method `_.camelCase` exported as a module. | 4.3.0 | MIT | production | 
@@ -609,6 +610,7 @@
 <!-- AUTO-GENERATED-CONTENT:START (DEPENDENCYTABLE:dev=true) -->
 | **Dependency** | **Description** | **Version** | **License** | **Type** |
 | -------------- | --------------- | ----------- | ----------- | -------- |
+ | [@semantic-release/changelog@2.0.1](https://github.com/semantic-release/changelog#readme) | Set of semantic-release plugins for creating or updating a changelog file | 2.0.1 | MIT | dev | 
  | [@semantic-release/git@4.0.1](https://github.com/semantic-release/git#readme) | Set of semantic-release plugins to publish to a git repository | 4.0.1 | MIT | dev | 
  | [@semantic-release/npm@3.2.4](https://github.com/semantic-release/npm#readme) | Set of semantic-release plugins to publish to a npm registry | 3.2.4 | MIT | dev | 
  | [ajv@6.4.0](https://github.com/epoberezkin/ajv) | Another JSON Schema Validator | 6.4.0 | MIT | dev | 
@@ -647,7 +649,8 @@
  | [minami@1.2.3](https://github.com/Nijikokun/minami) | Clean and minimal JSDoc 3 Template / Theme | 1.2.3 | UNLICENSED | dev | 
  | [nsp@^3.2.1](https://github.com/nodesecurity/nsp#readme) | The Node Security (nodesecurity.io) command line interface | 3.2.1 | Apache-2.0 | dev | 
  | [prettier@1.12.0](https://prettier.io) | Prettier is an opinionated code formatter | 1.12.0 | MIT | dev | 
- | [semantic-release@15.1.6](https://github.com/semantic-release/semantic-release#readme) | Automated semver compliant package publishing | 15.1.6 | MIT | dev | 
+ | [semantic-release@15.1.7](https://github.com/semantic-release/semantic-release#readme) | Automated semver compliant package publishing | 15.1.7 | MIT | dev | 
+ | [standard-markdown@4.0.2](https://github.com/zeke/standard-markdown#readme) | Test your Markdown files for Standard JavaScript Style™ | 4.0.2 | MIT | dev | 
  | [standard-version@4.3.0](https://github.com/conventional-changelog/standard-version#readme) | replacement for `npm version` with automatic CHANGELOG generation | 4.3.0 | ISC | dev | 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
