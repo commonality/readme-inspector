@@ -101,8 +101,8 @@ $ npm test
 
 <!-- ⛔️ Logo img references ⛔️  -->
 
-[logo-eslint]: ./assets/img/logo-eslint.png
-[logo-jest]: ./assets/img/logo-jest.png
+[logo-eslint]: https://raw.githubusercontent.com/commonality/readme-inspector/master/.github/assets/img/logo-eslint.png
+[logo-jest]: https://raw.githubusercontent.com/commonality/readme-inspector/master/.github/assets/img/logo-jest.png
 
 <!-- ⛔️ Octicon img references ⛔️  -->
 
