@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 * **module:readme-inspector:** Verify the existence—and assess the quality—of README files
 
-  > ![quote][icon-octicon-quote] READMEs do more than explain how to use your project. They also
+  > ![quote][octicon-quote] READMEs do more than explain how to use your project. They also
   > explain why your project matters, and what your users can do with it.
   >
   > In your README, try to answer the following questions:
@@ -52,4 +52,4 @@ All notable changes to this project will be documented in this file. See [standa
 
   ([e04a07a](https://github.com/commonality/readme-inspector/commit/e04a07a)), closes [#1](https://github.com/commonality/readme-inspector/issues/1)
 
-[icon-octicon-quote]: https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/quote.svg
+[octicon-quote]: https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/quote.svg
