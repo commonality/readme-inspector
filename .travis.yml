@@ -24,15 +24,12 @@ git:
   depth: 1
 before_install:
 - "[[ $(node -v) =~ ^v9.*$ ]] || npm install -g npm@latest"
-- npm install -g greenkeeper-lockfile@1
 before_script:
-- greenkeeper-lockfile-update
 - npm dedupe
 script:
 - npm run test:config
 - npm test
 after_script:
-- greenkeeper-lockfile-upload
 - npm run posttest:ci:coverage:codacy
 - sonar-scanner -Dproject.settings=./.github/config/sonar-project.properties -Dsonar.organization=$SONAR_ORGANIZATION
   -Dsonar.login=$SONAR_COMMONALITY_TOKEN -X
