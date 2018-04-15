@@ -23,10 +23,7 @@ All notable changes to this project will be documented in this file. See [standa
   > You can use your README to answer other questions, like how you handle
   > contributions, what the goals of the project are, and information about
   > licenses and attribution. If you don’t want to accept contributions, or
-  > your project is not yet ready for production, write this information down.
-  >
-  > "Starting An Open Source Project." Open Source Guides.
-  > N. p., 2018. Web. 12 Apr. 2018.
+  > your project is not yet ready for production, write this information down. <sup><a href="#ref-1" title="View reference.">[1]</a></sup>
 
   **Public API**
 
@@ -51,5 +48,10 @@ All notable changes to this project will be documented in this file. See [standa
   _Commit_
 
   ([e04a07a](https://github.com/commonality/readme-inspector/commit/e04a07a)), closes [#1](https://github.com/commonality/readme-inspector/issues/1)
+
+## References
+
+<a name="ref-1"></a>
+**[1]** _Starting an Open Source Project._ (2018). _Open Source Guides._ Retrieved 15 April 2018, from <https://opensource.guide/starting-a-project/#writing-a-readme>
 
 [octicon-quote]: https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/quote.svg
