@@ -192,10 +192,15 @@ The `readmeInspector` module detects whether or not a README document exists at 
 
 > ```javascript
 > // Token (https://github.com/settings/tokens)
+> // Load your GH_TOKEN or GITHUB_ACCESS_TOKEN from
+> // environment variables:
+> const dotenvExtended = require('dotenv-extended')
+> const envConfig = dotenvExtended.config()
+>
 > const readmeInspector = require('readme-inspector')
 >
 > readmeInspector.authenticate({
->   token: 'secrettoken123',
+>   token: envConfig.GH_TOKEN,
 >   type: 'token'
 > })
 > ```
