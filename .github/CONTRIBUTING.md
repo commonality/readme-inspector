@@ -624,7 +624,7 @@
  | [eslint-config-standard@11.0.0](https://github.com/standard/eslint-config-standard) | JavaScript Standard Style - ESLint Shareable Config | 11.0.0 | MIT | dev | 
  | [eslint-config-xo@0.20.1](https://github.com/xojs/eslint-config-xo#readme) | ESLint shareable config for XO | 0.20.1 | MIT | dev | 
  | [eslint-plugin-import@2.11.0](https://github.com/benmosher/eslint-plugin-import) | Import with sanity. | 2.11.0 | MIT | dev | 
- | [eslint-plugin-jsdoc@3.6.2](https://github.com/gajus/eslint-plugin-jsdoc#readme) | JSDoc linting rules for ESLint. | 3.6.2 | BSD-3-Clause | dev | 
+ | [eslint-plugin-jsdoc@3.6.3](https://github.com/gajus/eslint-plugin-jsdoc#readme) | JSDoc linting rules for ESLint. | 3.6.3 | BSD-3-Clause | dev | 
  | [eslint-plugin-json@1.2.0](https://github.com/azeemba/eslint-plugin-json#readme) | Lint JSON files | 1.2.0 | ISC | dev | 
  | [eslint-plugin-no-unsafe-innerhtml@1.0.16](https://github.com/mozfreddyb/eslint-plugin-no-unsafe-innerhtml/) | custom ESLint rule to disallows unsafe innerHTML, outerHTML and insertAdjacentHTML | 1.0.16 | MPL-2.0 | dev | 
  | [eslint-plugin-node@6.0.1](https://github.com/mysticatea/eslint-plugin-node#readme) | Additional ESLint's rules for Node.js | 6.0.1 | MIT | dev | 
