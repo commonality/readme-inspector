@@ -72,7 +72,7 @@ $ npm install --save readme-inspector
 
 ---
 
-<details><summary>Click here for detailed <samp>.env</samp> variable initialization instructions</summary><p>
+<details><summary>Click here for detailed <samp>.env</samp> variable initialization instructions</summary><pre>
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./lib/.env.schema) -->
 <!-- The below code snippet is automatically added from ./lib/.env.schema -->
@@ -102,7 +102,7 @@ GITHUB_ACCESS_TOKEN=
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-</p></details>
+</pre></details>
 
 ---
 
