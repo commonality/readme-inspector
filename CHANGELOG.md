@@ -2,9 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.1"></a>
+
+## [1.0.1](https://github.com/commonality/readme-inspector/compare/v1.0.0...v1.0.1) (2018-04-16)
+
+### Bug Fixes
+
+* **config:** add default .env var values ([7a71637](https://github.com/commonality/readme-inspector/commit/7a71637)), closes [#11](https://github.com/commonality/readme-inspector/issues/11) [#10](https://github.com/commonality/readme-inspector/issues/10).
+
+  Replaced [`dotenv`][dotenv-url] with [`dotenv-extended`][dotenv-extended-url] in order to load default values.
+
 <a name="1.0.0"></a>
 
-# 1.0.0 (2018-04-12)
+## 1.0.0 (2018-04-12)
 
 ### Features
 
@@ -55,3 +65,5 @@ All notable changes to this project will be documented in this file. See [standa
 **[1]** _Starting an Open Source Project._ (2018). _Open Source Guides._ Retrieved 15 April 2018, from <https://opensource.guide/starting-a-project/#writing-a-readme>
 
 [octicon-quote]: https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/quote.svg
+[dotenv-url]: https://github.com/motdotla/dotenv
+[dotenv-extended-url]: https://github.com/keithmorris/node-dotenv-extended
