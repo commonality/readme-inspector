@@ -2,7 +2,7 @@
   "name": "readme-inspector",
   "description":
     "Inspect GitHub (and GitHub Enterprise) repositories for the presence and quality of READMEs.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "commonality",
     "email": "greg@swindle.net",
@@ -137,18 +137,6 @@
   "prettier": {
     "semi": false,
     "singleQuote": true
-  },
-  "release": {
-    "verifyConditions": [
-      "@semantic-release/changelog",
-      "@semantic-release/npm",
-      "@semantic-release/git"
-    ],
-    "prepare": [
-      "@semantic-release/changelog",
-      "@semantic-release/npm",
-      "@semantic-release/git"
-    ]
   },
   "repository": {
     "type": "git",
