@@ -2,7 +2,7 @@
   "name": "readme-inspector",
   "description":
     "Inspect GitHub (and GitHub Enterprise) repositories for the presence and quality of READMEs.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": {
     "name": "commonality",
     "email": "greg@swindle.net",
@@ -93,7 +93,7 @@
   "engines": {
     "npm": ">= 4.0.0"
   },
-  "eslintIgnore": ["lib/__tests__/coverage/**"],
+  "eslintIgnore": ["lib/__tests__/coverage/**", "docs/"],
   "files": ["lib"],
   "homepage": "https://github.com/commonality/readme-inspector/#readme",
   "jest": {
@@ -143,7 +143,7 @@
     "url": "https://github.com/commonality/readme-inspector.git"
   },
   "scripts": {
-    "docs": "npm run docs:toc",
+    "docs": "npm run docs:toc && npm run docs:api",
     "docs:api": "jsdoc --configure .github/config/.jsdoc.json --verbose",
     "docs:changelog": "standard-version --commit-all",
     "docs:toc":
@@ -157,6 +157,8 @@
     "lint:md": "prettier ./**/*.md -prose-wrap always --write",
     "posttest:ci:coverage:codacy":
       "cat ./lib/__tests__/coverage/lcov.info | codacy-coverage -l javascript -t $CODACY_PROJECT_TOKEN_README_INSPECTOR",
+    "posttest:ci:coverage:coveralls":
+      "cat ./lib/__tests__/coverage/lcov.info | coveralls",
     "precommit": "lint-staged",
     "prepare": "npm run lint && npm run security",
     "prepublish": "npm run security",

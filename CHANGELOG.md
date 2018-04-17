@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.2"></a>
+
+## [1.0.2](https://github.com/commonality/readme-inspector/compare/v1.0.1...v1.0.2) (2018-04-17)
+
+### Bug Fixes
+
+* **null-readme-score:** add url to search ([49d4065](https://github.com/commonality/readme-inspector/commit/49d4065)), closes [#18](https://github.com/commonality/readme-inspector/issues/18) [#19](https://github.com/commonality/readme-inspector/issues/19)
+
+  > [`ReadmeScore.for`](https://github.com/commonality/readme-inspector/blob/master/lib/readme-score.js#L60)&mdash;and consequently, [`readmeInspector.getReadmeScore`](https://github.com/commonality/readme-inspector/blob/master/lib/index.js#L150)&mdash;returning `nullScoreData`, i.e., scores for READMEs that should have high marks.
+  >
+  > Refactor `readmeScoreApiClientOptions` with a single property called `apiEndpoint: URL` in order to set the `url` query parameter explicitly, and call `apiEndpoint.toString()` for a serialized URL string.
+
 <a name="1.0.1"></a>
 
 ## [1.0.1](https://github.com/commonality/readme-inspector/compare/v1.0.0...v1.0.1) (2018-04-16)

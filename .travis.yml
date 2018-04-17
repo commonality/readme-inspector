@@ -20,10 +20,15 @@ os:
 - osx
 notifications:
   webhooks: https://app.fossa.io/hooks/travisci
+  slack:
+    secure: 6ZTfA/2SW9QWm5RC6hoiMtpqJLIyBPJtPLNOZLABjKu0APxWO4PHY0sPaUq8wd6d+AWWeCP76uqU6U/KwyDucvg05JVosWPXsuOG0kk1S2gh5t6ull1QJvOcUqWvcS83NreKYDghAbp91dmuXw5M/H2h5j9ZEjB5NVyeaw+R7T+W3GvWs4pQRxHipHgv9pY9XYzHdimY4xxJHBGSyRO/LytbJ0o4LO/vKaXpRxmiciz9FGeC4nageN1PXnfWcRQ+3qvd62DSgT/WBzLGP71p3soL5kf1Cr/kVeGsOA7OF9RgPTzcFFhA/5C+wbXTCL++Wo9XkxzPqe89NYl+BhwGPvhFY0VbYjCyORpqRmlXdz4R3Dmx6OE2CVThzohkCEQSOl+qJkzo9U/glZYrcfQgJEQ9rPPxdMxNdBwh8tG6Xf15P9J819OGSBUPTzZcmPtWWhzSK/vx9Qqd/MStdvLfPdudyOux9qqjGdpqC5NpC6a/37HxuESot8PXf5Sf4MOgAVIPzdUep63N44PAaX1UGLA/OJyNtT/ltX/mcPPUsTD8WN0HO5HwkDYX3bYWikmSJ5+2/0Dz7FSHIATv5pS9+KYzGOZlNk4qhCDaf9yMKm895YmZhc9Nyg/mw5fDi5K6a3AOgctJc2QYejkXM3xg90xEANB4vF2ml/rfno92SYM=
 git:
   depth: 1
 before_install:
 - "[[ $(node -v) =~ ^v9.*$ ]] || npm install -g npm@latest"
+install:
+- npm i
+- npm i --save-dev coveralls
 before_script:
 - npm dedupe
 script:
@@ -31,6 +36,7 @@ script:
 - npm test
 after_script:
 - npm run posttest:ci:coverage:codacy
+- npm run posttest:ci:coverage:coveralls
 - sonar-scanner -Dproject.settings=./.github/config/sonar-project.properties -Dsonar.organization=$SONAR_ORGANIZATION
   -Dsonar.login=$SONAR_COMMONALITY_TOKEN -X
 jobs:

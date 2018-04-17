@@ -1,4 +1,4 @@
-# `readme-inspector` [![NPM version][npm-image]][npm-url]
+# readme-inspector [![NPM version][npm-image]][npm-url]
 
 > <img align="middle" alt="markdown" height="50" width="50"  src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/markdown.svg"> Inspect GitHub (and GitHub Enterprise) repositories for the presence and quality of READMEs.
 
@@ -74,9 +74,9 @@ $ npm install --save readme-inspector
 
 <details><summary>Click here for detailed <samp>.env</samp> variable initialization instructions</summary><pre>
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=./lib/.env.schema) -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=./lib/.env.schema&syntax=properties) -->
 <!-- The below code snippet is automatically added from ./lib/.env.schema -->
-```schema
+```properties
 # .env.schema, committed to repo
 
 ## See https://github.com/keithmorris/node-dotenv-extended/#readme
@@ -91,9 +91,8 @@ $ npm install --save readme-inspector
 ## Add values to these ENV VARs and save to
 ## {your-project-root-directory}/.env
 
-# ▫️ OPTIONAL env vars:
+# 🔹 OPTIONAL env vars:
 API_ENDPOINT_README_SCORE=
-CODACY_PROJECT_TOKEN=
 GA_README_INSPECTOR=
 
 # 🔸 RECOMMENDED vars (to extend GitHub API rate limits)
@@ -108,58 +107,81 @@ GITHUB_ACCESS_TOKEN=
 
 ## 2. Usage
 
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=./.github/assets/examples/usage.js) -->
+<!-- The below code snippet is automatically added from ./.github/assets/examples/usage.js -->
 ```js
+// Load all .env variables before anything else.
+
+const dotenvExtended = require('dotenv-extended')
+const envConfig = dotenvExtended.config()
+
+// Import readme-inspector.
+
 const readmeInspector = require('readme-inspector')
 
-// Recommended: authenticate to avoid rate limts
+// Recommended: authenticate to avoid rate limts.
+
 readmeInspector.authenticate({
-  token: process.env.GH_TOKEN,
+  token: envConfig.GH_TOKEN,
   type: 'oauth'
 })
 
-const results = await readmeInspector.check(
+// Verify that the repository with the slug
+// gregswindle/github-resource-converter
+// 1. Has a README, and
+// 2. Score the README for quality.
+
+const info = await readmeInspector.check(
   'gregswindle',
   'github-resource-converter'
 )
-// => Formatted and stringified
+
+// Display the resulting readmeInfo as a
+// JSON string.
+
+const WHITESPACE = 2
+console.log(JSON.stringify(results, null, WHITESPACE))
+// =>
 /*
 {
   "err": null,
   "isPresent": true,
   "scoreData": {
-    "score": 100,
-    "url": "https://github.com/gregswindle/github-resource-converter",
     "breakdown": {
-      "cumulative_code_block_length": 10,
-      "has_lists?": 10,
-      "low_code_block_penalty": 0,
-      "number_of_code_blocks": 40,
-      "number_of_gifs": 0,
-      "number_of_images": 15,
-      "number_of_non_code_sections": 30
-    }
+      "cumulativeCodeBlockLength": 0,
+      "hasLists": 0,
+      "lowCodeBlockPenalty": 0,
+      "numberOfCodeBlocks": 0,
+      "numberOfGifs": 0,
+      "numberOfImages": 0,
+      "numberOfNonCodeSections": 0
+    },
+    "err": null,
+    "score": 0,
+    "url": null
   },
   "value": {
     "name": "README.md",
     "path": "README.md",
-    "sha": "c4e2170a790916adefbb378f0fbb4ac458314d0e",
-    "size": 61697,
-    "url": "https://api.github.com/repos/gregswindle/github-resource-converter/contents/README.md?ref=master",
-    "html_url": "https://github.com/gregswindle/github-resource-converter/blob/master/README.md",
-    "git_url": "https://api.github.com/repos/gregswindle/github-resource-converter/git/blobs/c4e2170a790916adefbb378f0fbb4ac458314d0e",
-    "download_url": "https://raw.githubusercontent.com/gregswindle/github-resource-converter/master/README.md",
+    "sha": "4769744aad57ff3e9aac2df603795c4d10fcdc31",
+    "size": 36877,
+    "url": "https://api.github.com/repos/commonality/readme-inspector/contents/README.md?ref=master",
+    "html_url": "https://github.com/commonality/readme-inspector/blob/master/README.md",
+    "git_url": "https://api.github.com/repos/commonality/readme-inspector/git/blobs/4769744aad57ff3e9aac2df603795c4d10fcdc31",
+    "download_url": "https://raw.githubusercontent.com/commonality/readme-inspector/master/README.md",
     "type": "file",
-    "content": "...",
+    "content": "{base64-encoding-of-readme-markdown}",
     "encoding": "base64",
     "_links": {
-      "self": "https://api.github.com/repos/gregswindle/github-resource-converter/contents/README.md?ref=master",
-      "git": "https://api.github.com/repos/gregswindle/github-resource-converter/git/blobs/c4e2170a790916adefbb378f0fbb4ac458314d0e",
-      "html": "https://github.com/gregswindle/github-resource-converter/blob/master/README.md"
+      "self": "https://api.github.com/repos/commonality/readme-inspector/contents/README.md?ref=master",
+      "git": "https://api.github.com/repos/commonality/readme-inspector/git/blobs/4769744aad57ff3e9aac2df603795c4d10fcdc31",
+      "html": "https://github.com/commonality/readme-inspector/blob/master/README.md"
     }
   }
 }
 */
 ```
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 ## 3. API
 
@@ -487,7 +509,7 @@ Evaluate the README at the root of a GitHub repository.
 
 [![NPM version][npm-image]][npm-url]
 
-View the [Change Log](CHANGELOG.md) and [Releases](https://github.com/gregswindle/github-resource-converter/releases) for details.
+View the [Change Log](CHANGELOG.md) and [Releases](https://github.com/commonality/readme-inspector/releases) for details.
 
 ## 5. Contributing
 
