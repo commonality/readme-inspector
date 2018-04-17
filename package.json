@@ -93,7 +93,7 @@
   "engines": {
     "npm": ">= 4.0.0"
   },
-  "eslintIgnore": ["lib/__tests__/coverage/**"],
+  "eslintIgnore": ["lib/__tests__/coverage/**", "docs/"],
   "files": ["lib"],
   "homepage": "https://github.com/commonality/readme-inspector/#readme",
   "jest": {

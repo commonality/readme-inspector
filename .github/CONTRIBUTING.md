@@ -74,7 +74,7 @@
 
 ## 1. Issues
 
-![Issues][icon-issue-image]
+<img align="bottom" alt="issues" height="80" width="80" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/issue-opened.svg">
 
 * **Collaboration starts with _Issues_. Changes happen through _Pull Requests_.**
 
@@ -594,7 +594,7 @@
  | [bunyan@1.8.12](https://github.com/trentm/node-bunyan#readme) | a JSON logging library for node.js services | 1.8.12 | MIT | production | 
  | [bunyan-format@0.2.1](https://github.com/thlorenz/bunyan-format) | Writable stream that formats bunyan records that are piped into it. | 0.2.1 | [object Object] | production | 
  | [dotenv@5.0.1](https://github.com/motdotla/dotenv#readme) | Loads environment variables from .env file | 5.0.1 | BSD-2-Clause | production | 
- | [dotenv-extended@2.0.1](https://github.com/keithmorris/node-dotenv-extended#readme) | A module for loading .env files and optionally loading defaults and a schema for validating all values are present. | 2.0.1 | MIT | production | 
+ | [dotenv-extended@2.0.2](https://github.com/keithmorris/node-dotenv-extended#readme) | A module for loading .env files and optionally loading defaults and a schema for validating all values are present. | 2.0.1 | MIT | production | 
  | [got@8.3.0](https://github.com/sindresorhus/got#readme) | Simplified HTTP requests | 8.3.0 | MIT | production | 
  | [insight@0.10.1](https://github.com/yeoman/insight#readme) | Understand how your tool is being used by anonymously reporting usage metrics to Google Analytics or Yandex.Metrica | 0.10.1 | BSD-2-Clause | production | 
  | [lodash.camelcase@4.3.0](https://lodash.com/) | The lodash method `_.camelCase` exported as a module. | 4.3.0 | MIT | production | 
