@@ -157,6 +157,8 @@
     "lint:md": "prettier ./**/*.md -prose-wrap always --write",
     "posttest:ci:coverage:codacy":
       "cat ./lib/__tests__/coverage/lcov.info | codacy-coverage -l javascript -t $CODACY_PROJECT_TOKEN_README_INSPECTOR",
+    "posttest:ci:coverage:coveralls":
+      "cat ./lib/__tests__/coverage/lcov.info | coveralls",
     "precommit": "lint-staged",
     "prepare": "npm run lint && npm run security",
     "prepublish": "npm run security",

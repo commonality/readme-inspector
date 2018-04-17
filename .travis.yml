@@ -26,6 +26,9 @@ git:
   depth: 1
 before_install:
 - "[[ $(node -v) =~ ^v9.*$ ]] || npm install -g npm@latest"
+install:
+- npm i
+- npm i --save-dev coveralls
 before_script:
 - npm dedupe
 script:
@@ -33,6 +36,7 @@ script:
 - npm test
 after_script:
 - npm run posttest:ci:coverage:codacy
+- npm run posttest:ci:coverage:coveralls
 - sonar-scanner -Dproject.settings=./.github/config/sonar-project.properties -Dsonar.organization=$SONAR_ORGANIZATION
   -Dsonar.login=$SONAR_COMMONALITY_TOKEN -X
 jobs:
