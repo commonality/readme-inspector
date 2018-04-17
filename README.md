@@ -107,8 +107,8 @@ GITHUB_ACCESS_TOKEN=
 
 ## 2. Usage
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=./docs/examples/usage.js) -->
-<!-- The below code snippet is automatically added from ./docs/examples/usage.js -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=./.github/assets/examples/usage.js) -->
+<!-- The below code snippet is automatically added from ./.github/assets/examples/usage.js -->
 ```js
 // Load all .env variables before anything else.
 
