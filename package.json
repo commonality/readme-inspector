@@ -36,13 +36,15 @@
     "@octokit/rest": "15.2.6",
     "bunyan": "1.8.12",
     "bunyan-format": "0.2.1",
+    "camelcase-keys": "4.2.0",
     "dotenv": "5.0.1",
     "dotenv-extended": "2.0.2",
     "got": "8.3.0",
     "insight": "0.10.1",
     "lodash.camelcase": "4.3.0",
     "lodash.isstring": "4.0.1",
-    "lodash.transform": "4.6.0",
+    "lodash.mapkeys": "4.6.0",
+    "lodash.noop": "3.0.1",
     "meow": "4.0.0"
   },
   "devDependencies": {

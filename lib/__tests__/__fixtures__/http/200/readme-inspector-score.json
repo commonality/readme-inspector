@@ -1,0 +1,14 @@
+{
+  "breakdown": {
+    "cumulativeCodeBlockLength": 10,
+    "hasLists": 10,
+    "lowCodeBlockPenalty": 0,
+    "numberOfCodeBlocks": 40,
+    "numberOfGifs": 0,
+    "numberOfImages": 15,
+    "numberOfNonCodeSections": 30
+  },
+  "error": null,
+  "score": 100,
+  "url": "commonality/readme-inspector"
+}

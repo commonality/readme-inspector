@@ -1,6 +1,4 @@
 {
-  "score": 100,
-  "url": "gregswindle/github-resource-converter",
   "breakdown": {
     "cumulative_code_block_length": 10,
     "has_lists?": 10,
@@ -9,5 +7,8 @@
     "number_of_gifs": 0,
     "number_of_images": 15,
     "number_of_non_code_sections": 30
-  }
+  },
+  "error": null,
+  "score": 100,
+  "url": "gregswindle/github-resource-converter"
 }

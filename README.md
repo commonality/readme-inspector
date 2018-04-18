@@ -18,6 +18,7 @@
 
 <!-- ⛔️ AUTO-GENERATED-CONTENT:START (TOC:excludeText=Table of contents) -->
 - [1. Installation](#1-installation)
+- [2. Configuration](#2-configuration)
 - [2. Usage](#2-usage)
 - [3. API](#3-api)
   * [3.1. `authenticate({token, type, key})`](#31-authenticatetoken-type-key)
@@ -51,24 +52,16 @@
 $ npm install --save readme-inspector
 ```
 
-> ![light-bulb][octicon-light-bulb] **Recommendation:** To avoid rate-limiting, you should [create a personal access token ![External link][octicon-link-external]](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/) and save your personal access token in an environment variable called `GH_TOKEN`.
->
-> * **MacOS and Unix**
->
->   ```bash
->   $ mkdir -p /usr/local/etc/readme-inspector/envvars/
->   $ touch /usr/local/etc/readme-inspector/envvars/.env
->   $ echo "GH_TOKEN={your-personal-access-token-value}" > \
->     /usr/local/etc/readme-inspector/envvars/.env
->   ```
->
-> * **Windows**
->
->   ```shell
->    md -p C:\usr\local\etc\readme-inspector\envvars\
->    touch C:\usr\local\etc\readme-inspector\envvars\.env
->    echo "GH_TOKEN="{your-personal-access-token-value}" > C:\usr\local\etc\readme-inspector\envvars\.env
->   ```
+## 2. Configuration
+
+The `commonality/readme-inspector` module combines the mediator, proxy, and factory design patterns to simplify:
+
+* README detection with the `readmeInfo` object, and
+* Quality assessment with the `readmeInfo.appraisal` object.
+
+[design-pattern-mediator-url]: https://refactoring.guru/design-patterns/mediator
+
+> ![light-bulb][octicon-light-bulb] \*\*Avoid rate-limiting, you should [create a personal access token ![External link][octicon-link-external]](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/) and save your personal access token in an environment variable called `GH_TOKEN`.
 
 ---
 
@@ -98,6 +91,29 @@ GA_README_INSPECTOR=
 # 🔸 RECOMMENDED vars (to extend GitHub API rate limits)
 GH_TOKEN=
 GITHUB_ACCESS_TOKEN=
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=./lib/.env.defaults&syntax=properties) -->
+<!-- The below code snippet is automatically added from ./lib/.env.defaults -->
+```properties
+# .env.defaults, committed to repo
+
+## See https://github.com/keithmorris/node-dotenv-extended/#readme
+## ⛔️
+## 🚫  DO NOT COMMIT YOUR ACTUAL .env file to version control.
+## 🚫  It should only include environment-specific values such
+## 🚫  as database passwords or API keys.
+## 🚫  Your production database should have a different password
+## 🚫  than your development database.
+
+# ENV VARS defaults for readme-inspector:
+
+## Google Analytics trackingCode
+GA_README_INSPECTOR="UA-117338111-1"
+
+# ReadmeScore
+API_ENDPOINT_README_SCORE="http://readme-score-api.herokuapp.com/score.json?url=&human_breakdown=false&force=false"
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -144,9 +160,7 @@ console.log(JSON.stringify(results, null, WHITESPACE))
 // =>
 /*
 {
-  "err": null,
-  "isPresent": true,
-  "scoreData": {
+  "appraisal": {
     "breakdown": {
       "cumulativeCodeBlockLength": 0,
       "hasLists": 0,
@@ -156,10 +170,12 @@ console.log(JSON.stringify(results, null, WHITESPACE))
       "numberOfImages": 0,
       "numberOfNonCodeSections": 0
     },
-    "err": null,
+    "error": null,
     "score": 0,
     "url": null
   },
+  "error": null,
+  "isPresent": true,
   "value": {
     "name": "README.md",
     "path": "README.md",
@@ -283,7 +299,7 @@ A convenience method that
 {
   'err': null,
   'isPresent': null,
-  'scoreData': {
+  'appraisal': {
     'breakdown': {
       'cumulativeCodeBlockLength': 0,
       'hasLists': 0,
@@ -328,7 +344,7 @@ A convenience method that
 
 ### 3.3. `getReadmeInfo(owner, repo, ref)`
 
-Retrieves README information _without_ any `ScoreData`.
+Retrieves README information _without_ any `AppraisalData`.
 
 ![GET][rest-get-img]
 
@@ -379,7 +395,7 @@ Retrieves README information _without_ any `ScoreData`.
 {
   'err': null,
   'isPresent': null,
-  'scoreData': {
+  'appraisal': {
     'breakdown': {
       'cumulativeCodeBlockLength': 0,
       'hasLists': 0,
@@ -436,7 +452,7 @@ A convenience wrapper that calls the `ReadmeScore.for` method.
 >
 > ScoreMe. (2018). Clayallsopp.github.io. Retrieved 10 April 2018, from <http://clayallsopp.github.io/readme-score/>
 
-#### 3.5.1. `for(url: String): Promise<ScoreData>`
+#### 3.5.1. `for(url: String): Promise<AppraisalData>`
 
 Evaluate the README at the root of a GitHub repository.
 
@@ -446,9 +462,9 @@ Evaluate the README at the root of a GitHub repository.
 | :--- | :----- | :--------------------------------------------------------------- |
 | url  | String | The URL, or slug of the repository to be evaluated for a README. |
 
-##### 3.5.1.2. Returns `Promise<ScoreData>`
+##### 3.5.1.2. Returns `Promise<AppraisalData>`
 
-* `ScoreData` as a `NullObject` (see <samp>[lib/score-data](lib/score-data.js)</samp>):<br>
+* `AppraisalData` as a `NullObject` (see <samp>[lib/appraisal-data](lib/appraisal-data.js)</samp>):<br>
 
   > ```js
   > {
@@ -476,7 +492,7 @@ Evaluate the README at the root of a GitHub repository.
   >
   > const url = 'https://github.com/gregswindle/github-resource-converter'
   >
-  > const result = inspector.readmeScore.for(url)
+  > const result = inspector.readmeAppraisal.for(url)
   > /** =>
   >  * {
   >  *   breakdown: {
@@ -502,7 +518,7 @@ Evaluate the README at the root of a GitHub repository.
   >
   > const slug = 'gregswindle/github-resource-converter'
   >
-  > const result = inspector.readmeScore.for(slug)
+  > const result = inspector.readmeAppraisal.for(slug)
   > ```
 
 ## 4. Version
