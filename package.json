@@ -36,7 +36,6 @@
     "@octokit/rest": "15.2.6",
     "bunyan": "1.8.12",
     "bunyan-format": "0.2.1",
-    "camelcase-keys": "4.2.0",
     "dotenv": "5.0.1",
     "dotenv-extended": "2.0.2",
     "got": "8.3.0",
@@ -45,6 +44,7 @@
     "lodash.isstring": "4.0.1",
     "lodash.mapkeys": "4.6.0",
     "lodash.noop": "3.0.1",
+    "lodash.pickby": "4.6.0",
     "meow": "4.0.0"
   },
   "devDependencies": {
@@ -124,10 +124,18 @@
     "watchman": false
   },
   "keywords": [
-    "Score",
     "readme",
+    "readme appraisal",
+    "readme quality",
+    "readme score",
+    "readme-appraisal",
     "readme-score",
-    "recommended community standards"
+    "recommended community standards",
+    "repo quality",
+    "repo-quality",
+    "repository quality",
+    "repository-quality",
+    "score"
   ],
   "license": "MIT",
   "lint-staged": {
@@ -146,7 +154,8 @@
   },
   "scripts": {
     "docs": "npm run docs:toc && npm run docs:api",
-    "docs:api": "jsdoc --configure .github/config/.jsdoc.json --verbose",
+    "docs:api":
+      "jsdoc --package ./package.json --configure .github/config/.jsdoc.json --verbose",
     "docs:changelog": "standard-version --commit-all",
     "docs:toc":
       "md-magic --config '.github/config/markdown.config.js' --ignore 'node_modules'",

@@ -11,6 +11,7 @@
 [![Windows build status][appveyor-image]][appveyor-url]
 [![Coverage percentage][codacy-coverage-image]][codacy-url]
 [![Codacy code quality][codacy-image]][codacy-url]
+![Maintenance](https://img.shields.io/maintenance/readme-inspector/2018.svg?style=flat-square)<br>
 [![NPMS score][npms-image]][npms-url]
 [![NPM downloads per month][npm-downloads-month]][npm-url]
 
@@ -29,12 +30,12 @@
     + [3.2.1. Parameters](#321-parameters)
     + [3.2.2. Returns `Promise`](#322-returns-promise)
     + [3.2.3. Examples](#323-examples)
-  * [3.3. `getReadmeInfo(owner, repo, ref)`](#33-getreadmeinfoowner-repo-ref)
+  * [3.3. `getInfo(owner, repo, ref)`](#33-getinfoowner-repo-ref)
     + [3.3.1. Parameters](#331-parameters)
     + [3.3.2. Returns `Promise`](#332-returns-promise)
     + [3.3.3. Examples](#333-examples)
-  * [3.4. `getReadmeScore(url)`](#34-getreadmescoreurl)
-  * [3.5. `ReadmeScore`](#35-readmescore)
+  * [3.4. `getAppraisal(url)`](#34-getappraisalurl)
+  * [3.5. `ReadmeAppraisal`](#35-readmeappraisal)
     + [3.5.1. `for(url: String): Promise`](#351-forurl-string-promise)
       - [3.5.1.1. Parameters](#3511-parameters)
       - [3.5.1.2. Returns `Promise`](#3512-returns-promise)
@@ -112,7 +113,7 @@ GITHUB_ACCESS_TOKEN=
 ## Google Analytics trackingCode
 GA_README_INSPECTOR="UA-117338111-1"
 
-# ReadmeScore
+# ReadmeAppraisal
 API_ENDPOINT_README_SCORE="http://readme-score-api.herokuapp.com/score.json?url=&human_breakdown=false&force=false"
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -342,7 +343,7 @@ A convenience method that
   >   .catch(err => {})
   > ```
 
-### 3.3. `getReadmeInfo(owner, repo, ref)`
+### 3.3. `getInfo(owner, repo, ref)`
 
 Retrieves README information _without_ any `AppraisalData`.
 
@@ -418,7 +419,7 @@ Retrieves README information _without_ any `AppraisalData`.
 * _async/await:_
 
   > ```js
-  > const readmeInfo = await readmeInspector.getReadmeInfo({
+  > const readmeInfo = await readmeInspector.getInfo({
   >   owner: 'commonality',
   >   ref: 'GH-1-feat-inspect-readmes',
   >   repo: 'readme-inspector'
@@ -429,7 +430,7 @@ Retrieves README information _without_ any `AppraisalData`.
 
   > ```js
   > readmeInspector
-  >   .getReadmeInfo({
+  >   .getInfo({
   >     owner: 'commonality',
   >     ref: 'GH-1-feat-inspect-readmes',
   >     repo: 'readme-inspector'
@@ -438,13 +439,13 @@ Retrieves README information _without_ any `AppraisalData`.
   >   .catch(err => {})
   > ```
 
-### 3.4. `getReadmeScore(url)`
+### 3.4. `getAppraisal(url)`
 
-A convenience wrapper that calls the `ReadmeScore.for` method.
+A convenience wrapper that calls the `ReadmeAppraisal.for` method.
 
-### 3.5. `ReadmeScore`
+### 3.5. `ReadmeAppraisal`
 
-`ReadmeScore` is an API proxy for [@clayallsopp ![External link][octicon-link-external]](https://github.com/clayallsopp)'s [`readme-score-api` ![External link][octicon-link-external]](https://github.com/clayallsopp/readme-score-api).
+`ReadmeAppraisal` is an API proxy for [@clayallsopp ![External link][octicon-link-external]](https://github.com/clayallsopp)'s [`readme-score-api` ![External link][octicon-link-external]](https://github.com/clayallsopp/readme-score-api).
 
 > ![quote][octicon-quote] ScoreMe gives you a numerical score from 0 to 100 for your Github-style README. The intention is to measure complexity, which is a generally correlated with quality.
 >
@@ -571,7 +572,7 @@ Before embarking on a significant change, please follow these guidelines:
 ---
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/commonality/readme-inspector.svg)](https://greenkeeper.io/)
-[![Readme ReadmeScore](http://readme-score-api.herokuapp.com/score.svg?url=https://github.com/commonality/readme-inspector)](http://clayallsopp.github.io/readme-score?url=https://github.com/commonality/readme-inspector)
+[![Readme ReadmeAppraisal](http://readme-score-api.herokuapp.com/score.svg?url=https://github.com/commonality/readme-inspector)](http://clayallsopp.github.io/readme-score?url=https://github.com/commonality/readme-inspector)
 
 <!-- ⛔️ Link References ⛔️  -->
 

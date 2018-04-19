@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>github-rest-api-options.js - Documentation</title>
+    <title>readme-appraisal.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">github-rest-api-options.js</h1>
+    <h1 class="page-title">readme-appraisal.js</h1>
     
 
     
@@ -39,60 +39,72 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const {name, version} = require('../package')
+            <pre class="prettyprint source linenums"><code>const dotenvExtended = require('dotenv-extended')
+const envConfig = dotenvExtended.config()
 
-const acceptHeaders = [
-  'application/vnd.github.mercy-preview+json',
-  'application/vnd.github.scarlet-witch-preview+json',
-  'application/vnd.github.symmetra-preview+json',
-  'application/vnd.github.v3+json'
-]
+const {URL} = require('url')
+const appraisalData = require('./appraisal-data')
+const camelCase = require('lodash.camelcase')
+const got = require('got')
+const mapKeys = require('lodash.mapkeys')
 
-/**
- * All available @octokit/rest.js client options, with default values.
- *
- * @name githubRestApiOptions
- * @memberOf readme-inspector
- *
- * @prop [string='https://api.github.com'] baseUrl - A serialzied URL origin
- *  followed by an _optional_ pathname. Change this value for
- *  GitHub Enterprise requests.
- * @see https://nodejs.org/api/url.html#url_url_origin
- * @see https://nodejs.org/api/url.html#url_url_pathname
- *
- * @example
- * $ const response = await readmeInspector.api.issues.getForRepo({
- *     baseUrl: 'https://github.evilcorp.com:666/api/v3'
- *   })
- *
- * @prop {HTTPHeaders} headers -
- * {@link Headers https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers}
- * applying to both requests and responses but with no relation to the data
- * eventually transmitted in the body.
- *
- * @prop {string} owner - The GitHub (Enterprise) organization or account name.
- * @prop {string} repo - The name of a GitHub (Enterprise) repository.
- * @prop [string] {@link requestMedia https://developer.github.com/v3/media/} -
- * Custom media types to let you choose the format of the data you wish to receive.
- * @prop [number=0] {@link timeout https://tools.ietf.org/id/draft-thomson-hybi-http-timeout-01.html#rfc.section.2.1} -
- * HTTP Header that sets the number of _seconds_ an
- *  idle connection should remain open before it's closed. The default value--0
- *  seconds--means "no timeout."
- */
-
-const githubRestApiOptions = {
-  'baseUrl': 'https://api.github.com',
-  'headers': {
-    'Accept': acceptHeaders.join(','),
-    'User-Agent': `commonality/${name} v${version}`
-  },
-  'owner': null,
-  'repo': null,
-  'requestMedia': 'application/vnd.github.v3+json',
-  'timeout': 0
+const adapt = (appraisal) => {
+  appraisal.breakdown = mapKeys(appraisal.breakdown, (val, key) => camelCase(key))
+  return appraisal
 }
 
-module.exports = githubRestApiOptions
+/**
+ *
+ * @module readme-inspector/readme-appraisal
+ *
+ * @class ReadmeAppraisal
+ * @classdesc
+ * An API proxy/wrapper that invokes the readme-score-api
+ * in order to assess and grade the quality of a README file.
+ *
+ * @param {string} [serviceEndpointUrl=http://readme-score-api.herokuapp.com/score.json?url=&amp;human_breakdown=false&amp;force=false] - The URL of the
+ *  readme-score-api service you want to consume.
+ */
+
+class ReadmeAppraisal {
+  constructor (serviceEndpointUrl = envConfig.API_ENDPOINT_README_SCORE) {
+    this.apiEndpoint = new URL(serviceEndpointUrl)
+  }
+
+  /**
+   * Evalutate the root-level README in a repository (if present).
+   *
+   * @method for
+   * @param {string} url - A URL or repository slug.
+   * @param {URL} [apiEndpoint=http://readme-score-api.herokuapp.com/score.json?url=] - The API endpoint.
+   * @returns {Promise&lt;AppraisalData>} AppraisalData for a README.
+   * @memberof ReadmeAppraisal#
+   * @example
+   * const ReadmeAppraisal = require('./readme-appraisal')
+   *
+   * // Parameters: url|slug|string&lt;html>
+   * const readmeAppraisal = new ReadmeAppraisal()
+   * const result = await readmeAppraisal.for('commonality/readme-inspector')
+   */
+
+  async for (url) {
+    this.apiEndpoint.searchParams.set('url', url)
+    const serviceUrl = this.apiEndpoint.toString()
+    let result = null
+    try {
+      const {body} = await got(serviceUrl)
+      result = Object.assign({
+      }, appraisalData, JSON.parse(body))
+    } catch (err) {
+      /* istanbul ignore next */
+      result.err = err.response.body
+    }
+
+    return adapt(result)
+  }
+}
+
+module.exports = ReadmeAppraisal
 </code></pre>
         </article>
     </section>

@@ -1,123 +1,117 @@
-# Contributing<br>to `readme-inspector`
+# Building and testing readme-inspector
 
-[![PRs Welcome][makeapullrequest-image]][makeapullrequest-url] We welcome contributors, issues, and pull requests.
-
-<blockquote>
-<dfn><strong>Contributions</strong> start with <strong>community conversations</strong> that lead to <strong>positive change.</strong></dfn> <code>readme-inspector's</code> open source collaboration model has five steps:
-
-<dl>
-  <dt>1. <dfn>Issues</dfn></dt>
-  <dd>Start community conversations that determine whether proposed changes add value and should be made.</dd>
-  <dt>2. <dfn>Pull Requests (PRs)</dfn></dt>
-  <dd>Inform and manage community code reviews for approved changes in-progress.</dd>
-  <dt>3. <dfn>Merges</dfn></dt>
-  <dd>Incorporate approved PR changes into the product.</dd>
-  <dt>4. <dfn>Releases</dfn></dt>
-  <dd>Make changes available for community consumption.</dd>
-  <dt>5. <dfn>Support</dfn></dt>
-  <dd>Improves the product with refactorings and defect fixes.</dd>
-</dl>
-</blockquote>
+> <img align="bottom" alt="code" height="50" width="50" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/code.svg"> This document describes how to set up your development environment to build and test readme-inspector. It also explains the basic mechanics of using `git`, `node`, and `npm` from a Terminal/CLI (command-line interface).
+>
+> [![Request a feature][issues-new-feat-image]][issues-new-feat-url] > [![Report a defect][issues-new-defect-image]][issues-new-defect-url]
 
 ## Table of contents
 
-<!-- ⛔️ AUTO-GENERATED-CONTENT:START (TOC:excludeText=Table of contents) -->
-- [1. Issues](#1-issues)
-  * [1.1. Create Issues for feature requests and defects.](#11-create-issues-for-feature-requests-and-defects)
-  * [1.2. Format titles with **`type(scope): subject`**.](#12-format-titles-with-typescope-subject)
-  * [1.3. Fill out the issue template.](#13-fill-out-the-issue-template)
-  * [1.4. Label the issue (optional).](#14-label-the-issue-optional)
-  * [1.5. Monitor your issue for questions.](#15-monitor-your-issue-for-questions)
-  * [1.6. Your issue will be either accepted for work, or declined.](#16-your-issue-will-be-either-accepted-for-work-or-declined)
-- [2. **Git**](#2-git)
-  * [2.1. **Rules**](#21-rules)
-    + [2.1.1. Makes changes in a topic branch.](#211-makes-changes-in-a-topic-branch)
-    + [2.1.2. Favor the topic branch naming convention `GH-{ISSUE_NUMBER}-type-scope`.](#212-favor-the-topic-branch-naming-convention-gh-issue_number-type-scope)
-    + [2.1.3. Branch out from `master`.](#213-branch-out-from-master)
-    + [2.1.4. **_Never_** push into the `master` branch. **_Always_** submit a Pull Request.](#214-_never_-push-into-the-master-branch-_always_-submit-a-pull-request)
-    + [2.1.5. Submit a Pull Request as soon as possible.](#215-submit-a-pull-request-as-soon-as-possible)
-    + [2.1.6. Rebase your local `master` branch before you ask for PR approvals.](#216-rebase-your-local-master-branch-before-you-ask-for-pr-approvals)
-    + [2.1.7. Resolve rebase conflicts before Pull Request reviews.](#217-resolve-rebase-conflicts-before-pull-request-reviews)
-    + [2.1.8. Add reviewers and the label `Status: Needs Review` when the topic branch is ready.](#218-add-reviewers-and-the-label-status-needs-review-when-the-topic-branch-is-ready)
-    + [2.1.9. Delete local and remote topic branches after merging.](#219-delete-local-and-remote-topic-branches-after-merging)
-    + [2.1.10. Protect your `master` branch.](#2110-protect-your-master-branch)
-  * [2.2. **Feature-branch-workflow**](#22-feature-branch-workflow)
-    + [2.2.1. Initialize a Git repository in the product directory (_for new repositories only_).](#221-initialize-a-git-repository-in-the-product-directory-_for-new-repositories-only_)
-    + [2.2.2. Checkout a new `feat`ure or `fix` branch.](#222-checkout-a-new-feature-or-fix-branch)
-    + [2.2.3. Make Changes.](#223-make-changes)
-    + [2.2.4. Follow the Conventional Commits Specification for commit messages.](#224-follow-the-conventional-commits-specification-for-commit-messages)
-    + [2.2.5. Sync with remote to get changes you’ve missed.](#225-sync-with-remote-to-get-changes-youve-missed)
-    + [2.2.6. Update your topic branch with the latest changes from `master` by interactive rebase.](#226-update-your-topic-branch-with-the-latest-changes-from-master-by-interactive-rebase)
-    + [2.2.7. Resolve conflicts (if any occur), and continue rebase.](#227-resolve-conflicts-if-any-occur-and-continue-rebase)
-    + [2.2.8. Push your branch with the `-f` flag (if necessary).](#228-push-your-branch-with-the--f-flag-if-necessary)
-    + [2.2.9. Submit a Pull Request.](#229-submit-a-pull-request)
-    + [2.2.10. Once accepted, the Pull request will be merged, closed, and deleted by an administrator.](#2210-once-accepted-the-pull-request-will-be-merged-closed-and-deleted-by-an-administrator)
-    + [2.2.11. Remove your local topic branch if you're done.](#2211-remove-your-local-topic-branch-if-youre-done)
-- [3. **Code standards**](#3-code-standards)
-  * [3.1. Use the Standard JS Style.](#31-use-the-standard-js-style)
-  * [3.2. Use ESLint to analyze source code.](#32-use-eslint-to-analyze-source-code)
-- [4. **Unit testing**](#4-unit-testing)
-  * [4.1. Write Jest tests.](#41-write-jest-tests)
-  * [4.2. Reach 100% code coverage.](#42-reach-100%25-code-coverage)
-- [5. **Directory structure**](#5-directory-structure)
-- [6. **Logging**](#6-logging)
-- [7. **Dependencies**](#7-dependencies)
-  * [7.1. Production](#71-production)
-  * [7.2. Development](#72-development)
-  * [7.3. Optional](#73-optional)
-- [8. **APIs**](#8-apis)
-  * [8.1 **API design**](#81-api-design)
-  * [8.2 **API security**](#82-api-security)
-  * [8.3 **API documentation**](#83-api-documentation)
-- [9. **Licensing**](#9-licensing)
-<!-- ⛔️ AUTO-GENERATED-CONTENT:END -->
+<!-- ⛔️ AUTO-GENERATED-CONTENT:START (TOC:excludeText=Table of contents) ⛔️ -->
 
-## 1. Issues
+<!-- ⛔️ AUTO-GENERATED-CONTENT:END ⛔️ -->
 
-<img align="bottom" alt="issues" height="80" width="80" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/issue-opened.svg">
+## 1. Prerequisite software
 
-* **Collaboration starts with _Issues_. Changes happen through _Pull Requests_.**
+Before you can build and test readme-inspector, you must install and configure the
+following products on your development machine:
 
-  View `readme-inspector's` collaboration and contribution flowcharts:
+* [Git](http://git-scm.com) and/or the **GitHub app** (for [Mac](http://mac.github.com) or
+  [Windows](http://windows.github.com)); [GitHub's Guide to Installing
+  Git](https://help.github.com/articles/set-up-git) is a good source of information.
 
-  ---
+* [Node.js](http://nodejs.org), (version specified in the engines field of [`package.json`](../package.json)) which is used to run a development web server,
+  run tests, and generate distributable files.
 
-  <details>
+* [NPM](https://yarnpkg.com) (version specified in the engines field of [`package.json`](../package.json)) which is used to install dependencies.
 
-    <summary><img src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/question.svg" alt="Help" align="middle" height="48" width="48"> Toggle view of the <strong>Issue workflow</strong> flowchart.</summary>
+## 2. Getting the source code
 
-  ![Issue flowchart][contribution-lifecycle-issues-image]
+Fork and clone the readme-inspector repository:
 
-  </details>
+1.  [**Sign in**](https://github.com/login) to your GitHub account or [sign up for a (free) GitHub account](https://github.com/join).
+2.  [**Fork**](http://help.github.com/forking) the [main readme-inspector repository](https://github.com/commonality/readme-inspector) (aka, "`origin`").
+3.  **Clone your fork** of the readme-inspector repository and define an `upstream` remote pointing back to the readme-inspector repository that you forked in the first place.
 
-  ---
+```shell
+# Clone your GitHub repository:
+git clone git@github.com:<github username>/readme-inspector.git
 
-  <details>
+# Go to the readme-inspector directory:
+cd readme-inspector
 
-    <summary><img src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/question.svg" alt="Help" align="middle" height="48" width="48"> Toggle view of the <strong>Pull Request workflow</strong> flowchart.</summary>
+# Add the main readme-inspector repository as an upstream remote to your repository:
+git remote add upstream https://github.com/commonality/readme-inspector.git
+```
 
-  ![Pull Request flowchart][contribution-lifecycle-pr-image]
+## 3. Installing dependencies
 
-  </details>
+Next, install the JavaScript modules needed to build and test readme-inspector:
 
-  ---
+```shell
+# Install readme-inspector project dependencies (package.json)
+npm install
+```
 
-* ### 1.1. Create Issues for feature requests and defects.
+## 4. Building
 
-  _Why:_
+![info][octicon-info] There are no build tasks for versions <samp>1.x.x</samp> of readme-inspector.
 
-  > ⌦ `readme-inspector` follows an issue-driven product delivery model.
-  > Before any work is done, create an Issue, first. This starts a
-  > conversation about features, defects ("bugs"), refactoring, product
-  > delivery improvements, etc.
+## 5. Running tests
 
-  Go ahead! Get started now:
+> Your test suites must pass within coverage thresholds before you submit a PR to GitHub.
 
-  * [![Request a feature][issues-new-feat-image]][issues-new-feat-url]
+To run tests:
 
-  * [![Report a defect][issues-new-defect-image]][issues-new-defect-url]
+```shell
+$ npm test
+# => Run all readme-inspector tests on node
 
-  * [Review all open issues][issues-url]
+$ npm run test:watch
+# => Run tests whenever a file changes
+```
+
+> <h3><img align="bottom" alt="bug" height="30" width="30" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/bug.svg"> Debugging your source code</h3>
+>
+> See [DEBUG.md](DEBUG.md) for information on debugging the code while running the unit tests.
+
+All the tests are executed on our Continuous Integration infrastructure and a PR could only be merged once the tests pass.
+
+* CircleCI fails if your code is not formatted properly,
+* Travis CI fails if any of the test suites described above fails.
+
+## 5. Formatting and verifying your sources
+
+readme-inspector uses
+
+* [ESLint](http://clang.llvm.org/docs/ClangFormat.html) to evaluate and format source code;
+* [Fixpack]() to order all `package.json` properties in alphabetical order; and
+* [Prettier]() to format JSON, Markdown, and YAML.
+
+You can both evaluate and format your all sources by running:
+
+```shell
+$ npm run lint
+# => Formats and lints all JavaScript, JSON, Markdown, and
+#    package.json.
+```
+
+You can also format sources by type:
+
+```shell
+# Evaluate and format JavaScript:
+npm run lint:js
+
+# Format JSON:
+npm run lint:json
+
+# Clean up the product manifest (package.json):
+npm run lint:manifest
+
+# Format all markdown files:
+npm run lint:md
+```
+
+> ![alert][octicon-alert] If the source code does not pass linting, the CI will fail and the PR can not be merged.
 
 * ### 1.2. Format titles with **`type(scope): subject`**.
 
@@ -134,36 +128,6 @@
   > * `refactor`: Source code design improvements that don't affect product behavior.
   > * `style`: Changes involving graphics, typography, etc., as well as source code beautification.
   > * `test`: Tests added to increase code coverage, or corrected due to errors.
-
-* ### 1.3. Fill out the issue template.
-
-  _Why:_
-
-  > ⌦It keeps communication consistent and unambiguous.
-
-* ### 1.4. Label the issue (optional).
-
-  _Why:_
-
-  > ⌦ We use [`git-labelmaker`][gh-git-labelmaker-url] to categorize Issues (and Pull Requests) consistently. There are four label categories:
-  >
-  > * `type`: the "kind" of product change.
-  > * `status`: the state of a change.
-  > * `priority`: the importance and value of a change.
-
-* ### 1.5. Monitor your issue for questions.
-
-  _Why:_
-
-  > ⌦ The team might need more clarification.
-
-* ### 1.6. Your issue will be either accepted for work, or declined.
-
-  _Why:_
-
-  > ⌦ It's up to the Product Owner to agree to proposed changes. If they believe your issue add value, the issue will be approved, and we'll ask someone to volunteer to do the work.
-  >
-  > Otherwise, your issue will be politely declined.
 
 ## 2. **Git**
 
@@ -588,21 +552,23 @@
 `readme-inspector` requires the following dependencies to operate.
 
 <!-- AUTO-GENERATED-CONTENT:START (DEPENDENCYTABLE:production=true) -->
-| **Dependency** | **Description** | **Version** | **License** | **Type** |
-| -------------- | --------------- | ----------- | ----------- | -------- |
- | [@octokit/rest@15.2.6](https://github.com/octokit/rest.js#readme) | GitHub REST API client for Node.js | 15.2.6 | MIT | production | 
- | [bunyan@1.8.12](https://github.com/trentm/node-bunyan#readme) | a JSON logging library for node.js services | 1.8.12 | MIT | production | 
- | [bunyan-format@0.2.1](https://github.com/thlorenz/bunyan-format) | Writable stream that formats bunyan records that are piped into it. | 0.2.1 | [object Object] | production | 
- | [dotenv@5.0.1](https://github.com/motdotla/dotenv#readme) | Loads environment variables from .env file | 5.0.1 | BSD-2-Clause | production | 
- | [dotenv-extended@2.0.2](https://github.com/keithmorris/node-dotenv-extended#readme) | A module for loading .env files and optionally loading defaults and a schema for validating all values are present. | 2.0.2 | MIT | production | 
- | [got@8.3.0](https://github.com/sindresorhus/got#readme) | Simplified HTTP requests | 8.3.0 | MIT | production | 
- | [insight@0.10.1](https://github.com/yeoman/insight#readme) | Understand how your tool is being used by anonymously reporting usage metrics to Google Analytics or Yandex.Metrica | 0.10.1 | BSD-2-Clause | production | 
- | [lodash.camelcase@4.3.0](https://lodash.com/) | The lodash method `_.camelCase` exported as a module. | 4.3.0 | MIT | production | 
- | [lodash.isstring@4.0.1](https://lodash.com/) | The lodash method `_.isString` exported as a module. | 4.0.1 | MIT | production | 
- | [lodash.mapkeys@4.6.0](https://lodash.com/) | The lodash method `_.mapKeys` exported as a module. | 4.6.0 | MIT | production | 
- | [lodash.noop@3.0.1](https://lodash.com/) | The lodash method `_.noop` exported as a module. | 3.0.1 | MIT | production | 
- | [lodash.pickby@4.6.0](https://lodash.com/) | The lodash method `_.pickBy` exported as a module. | 4.6.0 | MIT | production | 
- | [meow@4.0.0](https://github.com/sindresorhus/meow#readme) | CLI app helper | 4.0.0 | MIT | production | 
+
+| **Dependency**                                                                      | **Description**                                                                                                     | **Version** | **License**     | **Type**   |
+| ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ----------- | --------------- | ---------- |
+| [@octokit/rest@15.2.6](https://github.com/octokit/rest.js#readme)                   | GitHub REST API client for Node.js                                                                                  | 15.2.6      | MIT             | production |
+| [bunyan@1.8.12](https://github.com/trentm/node-bunyan#readme)                       | a JSON logging library for node.js services                                                                         | 1.8.12      | MIT             | production |
+| [bunyan-format@0.2.1](https://github.com/thlorenz/bunyan-format)                    | Writable stream that formats bunyan records that are piped into it.                                                 | 0.2.1       | [object Object] | production |
+| [camelcase-keys@4.2.0](https://github.com/sindresorhus/camelcase-keys#readme)       | Convert object keys to camelCase                                                                                    | 4.2.0       | MIT             | production |
+| [dotenv@5.0.1](https://github.com/motdotla/dotenv#readme)                           | Loads environment variables from .env file                                                                          | 5.0.1       | BSD-2-Clause    | production |
+| [dotenv-extended@2.0.2](https://github.com/keithmorris/node-dotenv-extended#readme) | A module for loading .env files and optionally loading defaults and a schema for validating all values are present. | 2.0.2       | MIT             | production |
+| [got@8.3.0](https://github.com/sindresorhus/got#readme)                             | Simplified HTTP requests                                                                                            | 8.3.0       | MIT             | production |
+| [insight@0.10.1](https://github.com/yeoman/insight#readme)                          | Understand how your tool is being used by anonymously reporting usage metrics to Google Analytics or Yandex.Metrica | 0.10.1      | BSD-2-Clause    | production |
+| [lodash.camelcase@4.3.0](https://lodash.com/)                                       | The lodash method `_.camelCase` exported as a module.                                                               | 4.3.0       | MIT             | production |
+| [lodash.isstring@4.0.1](https://lodash.com/)                                        | The lodash method `_.isString` exported as a module.                                                                | 4.0.1       | MIT             | production |
+| [lodash.mapkeys@4.6.0](https://lodash.com/)                                         | The lodash method `_.mapKeys` exported as a module.                                                                 | 4.6.0       | MIT             | production |
+| [lodash.noop@3.0.1](https://lodash.com/)                                            | The lodash method `_.noop` exported as a module.                                                                    | 3.0.1       | MIT             | production |
+| [meow@4.0.0](https://github.com/sindresorhus/meow#readme)                           | CLI app helper                                                                                                      | 4.0.0       | MIT             | production |
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ### 7.2. Development
@@ -610,58 +576,63 @@
 `readme-inspector` uses the the following dependencies to build, test, or deploy:
 
 <!-- AUTO-GENERATED-CONTENT:START (DEPENDENCYTABLE:dev=true) -->
-| **Dependency** | **Description** | **Version** | **License** | **Type** |
-| -------------- | --------------- | ----------- | ----------- | -------- |
- | [@semantic-release/changelog@2.0.1](https://github.com/semantic-release/changelog#readme) | Set of semantic-release plugins for creating or updating a changelog file | 2.0.1 | MIT | dev | 
- | [@semantic-release/git@4.0.1](https://github.com/semantic-release/git#readme) | Set of semantic-release plugins to publish to a git repository | 4.0.1 | MIT | dev | 
- | [@semantic-release/npm@3.2.4](https://github.com/semantic-release/npm#readme) | Set of semantic-release plugins to publish to a npm registry | 3.2.4 | MIT | dev | 
- | [ajv@6.4.0](https://github.com/epoberezkin/ajv) | Another JSON Schema Validator | 6.4.0 | MIT | dev | 
- | [ajv-keywords@3.1.0](https://github.com/epoberezkin/ajv-keywords#readme) | Custom JSON-Schema keywords for Ajv validator | 3.1.0 | MIT | dev | 
- | [codacy-coverage@2.1.1](https://github.com/codacy/node-codacy-coverage) | Code Coverage reporter for Codacy.com | 2.1.1 | MIT | dev | 
- | [commitplease@3.2.0](https://github.com/jzaefferer/commitplease#readme) | Validates strings as commit messages | 3.2.0 | MIT | dev | 
- | [coveralls@3.0.0](https://github.com/nickmerwin/node-coveralls#readme) | takes json-cov output into stdin and POSTs to coveralls.io | 3.0.0 | BSD-2-Clause | dev | 
- | [eslint@4.19.1](https://eslint.org) | An AST-based pattern checker for JavaScript. | 4.19.1 | MIT | dev | 
- | [eslint-config-prettier@^2.4.0](https://github.com/prettier/eslint-config-prettier#readme) | Turns off all rules that are unnecessary or might conflict with Prettier. | 2.9.0 | MIT | dev | 
- | [eslint-config-scanjs@1.0.0-beta4](https://github.com/mozfreddyb/eslint-config-scanjs#readme) | umbrella config to get scanjs-like functionality from eslint | 1.0.0-beta4 | MPL-2.0 | dev | 
- | [eslint-config-standard@11.0.0](https://github.com/standard/eslint-config-standard) | JavaScript Standard Style - ESLint Shareable Config | 11.0.0 | MIT | dev | 
- | [eslint-config-xo@0.20.1](https://github.com/xojs/eslint-config-xo#readme) | ESLint shareable config for XO | 0.20.1 | MIT | dev | 
- | [eslint-plugin-import@2.11.0](https://github.com/benmosher/eslint-plugin-import) | Import with sanity. | 2.11.0 | MIT | dev | 
- | [eslint-plugin-jsdoc@3.6.3](https://github.com/gajus/eslint-plugin-jsdoc#readme) | JSDoc linting rules for ESLint. | 3.6.3 | BSD-3-Clause | dev | 
- | [eslint-plugin-json@1.2.0](https://github.com/azeemba/eslint-plugin-json#readme) | Lint JSON files | 1.2.0 | ISC | dev | 
- | [eslint-plugin-no-unsafe-innerhtml@1.0.16](https://github.com/mozfreddyb/eslint-plugin-no-unsafe-innerhtml/) | custom ESLint rule to disallows unsafe innerHTML, outerHTML and insertAdjacentHTML | 1.0.16 | MPL-2.0 | dev | 
- | [eslint-plugin-node@6.0.1](https://github.com/mysticatea/eslint-plugin-node#readme) | Additional ESLint's rules for Node.js | 6.0.1 | MIT | dev | 
- | [eslint-plugin-prettier@^2.2.0](https://github.com/prettier/eslint-plugin-prettier#readme) | Runs prettier as an eslint rule | 2.6.0 | MIT | dev | 
- | [eslint-plugin-promise@3.7.0](https://github.com/xjamundx/eslint-plugin-promise#readme) | Enforce best practices for JavaScript promises | 3.7.0 | ISC | dev | 
- | [eslint-plugin-security@1.4.0](https://github.com/nodesecurity/eslint-plugin-security#readme) | Security rules for eslint | 1.4.0 | Apache-2.0 | dev | 
- | [eslint-plugin-standard@3.0.1](https://github.com/xjamundx/eslint-plugin-standard#readme) | ESlint Plugin for the Standard Linter | 3.0.1 | MIT | dev | 
- | [eslint-plugin-unicorn@4.0.3](https://github.com/sindresorhus/eslint-plugin-unicorn#readme) | Various awesome ESLint rules | 4.0.3 | MIT | dev | 
- | [eslint-plugin-xss@0.1.9](https://github.com/Rantanen/eslint-plugin-xss#readme) | Validates XSS related issues of mixing HTML and non-HTML content in variables. | 0.1.9 | ISC | dev | 
- | [fixpack@2.3.1](https://github.com/henrikjoreteg/fixpack) | cli tool that cleans up package.json files. | 2.3.1 | MIT | dev | 
- | [husky@^0.14.3](https://github.com/typicode/husky) | Prevents bad commit or push (git hooks, pre-commit/precommit, pre-push/prepush, post-merge/postmerge and all that stuff...) | 0.14.3 | MIT | dev | 
- | [jest@22.4.3](http://facebook.github.io/jest/) | Delightful JavaScript Testing. | 22.4.3 | MIT | dev | 
- | [jest-runner-eslint@0.4.0](https://github.com/jest-community/jest-runner-eslint) | An experimental ESLint runner for Jest | 0.4.0 | MIT | dev | 
- | [jsdoc@3.5.5](https://github.com/jsdoc3/jsdoc#readme) | An API documentation generator for JavaScript. | 3.5.5 | Apache-2.0 | dev | 
- | [lec@^1.0.1](https://github.com/iShafayet/lec) | Command Line Wrapper for Line Ending Corrector (An utility that makes sure your files have consistent line endings) | 1.0.1 | MIT | dev | 
- | [lint-staged@7.0.4](https://github.com/okonet/lint-staged#readme) | Lint files staged by git | 7.0.4 | MIT | dev | 
- | [lodash.isundefined@3.0.1](https://lodash.com/) | The modern build of lodash’s `_.isUndefined` as a module. | 3.0.1 | MIT | dev | 
- | [lodash.set@4.3.2](https://lodash.com/) | The lodash method `_.set` exported as a module. | 4.3.2 | MIT | dev | 
- | [markdown-magic@0.1.21](https://github.com/DavidWells/markdown-magic#readme) | Automatically update markdown files with content from external sources | 0.1.21 | MIT | dev | 
- | [markdown-magic-dependency-table@1.3.2](https://github.com/camacho/markdown-magic-dependency-table#readme) | Generate table of information about dependencies automatically in markdown | 1.3.2 | MIT | dev | 
- | [markdown-magic-install-command@1.3.1](https://github.com/camacho/markdown-magic-install-command#readme) | Print install command for markdown file | 1.3.1 | MIT | dev | 
- | [markdown-magic-package-scripts@1.2.1](https://github.com/camacho/markdown-magic-package-scripts#readme) | Print list of scripts in package.json with descriptions | 1.2.1 | MIT | dev | 
- | [minami@1.2.3](https://github.com/Nijikokun/minami) | Clean and minimal JSDoc 3 Template / Theme | 1.2.3 | UNLICENSED | dev | 
- | [nsp@^3.2.1](https://github.com/nodesecurity/nsp#readme) | The Node Security (nodesecurity.io) command line interface | 3.2.1 | Apache-2.0 | dev | 
- | [prettier@1.12.1](https://prettier.io) | Prettier is an opinionated code formatter | 1.12.1 | MIT | dev | 
- | [semantic-release@15.1.7](https://github.com/semantic-release/semantic-release#readme) | Automated semver compliant package publishing | 15.1.7 | MIT | dev | 
- | [standard-markdown@4.0.2](https://github.com/zeke/standard-markdown#readme) | Test your Markdown files for Standard JavaScript Style™ | 4.0.2 | MIT | dev | 
- | [standard-version@4.3.0](https://github.com/conventional-changelog/standard-version#readme) | replacement for `npm version` with automatic CHANGELOG generation | 4.3.0 | ISC | dev | 
+
+| **Dependency**                                                                                               | **Description**                                                                                                             | **Version** | **License**  | **Type** |
+| ------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- | ----------- | ------------ | -------- |
+| [@semantic-release/changelog@2.0.1](https://github.com/semantic-release/changelog#readme)                    | Set of semantic-release plugins for creating or updating a changelog file                                                   | 2.0.1       | MIT          | dev      |
+| [@semantic-release/git@4.0.1](https://github.com/semantic-release/git#readme)                                | Set of semantic-release plugins to publish to a git repository                                                              | 4.0.1       | MIT          | dev      |
+| [@semantic-release/npm@3.2.4](https://github.com/semantic-release/npm#readme)                                | Set of semantic-release plugins to publish to a npm registry                                                                | 3.2.4       | MIT          | dev      |
+| [ajv@6.4.0](https://github.com/epoberezkin/ajv)                                                              | Another JSON Schema Validator                                                                                               | 6.4.0       | MIT          | dev      |
+| [ajv-keywords@3.1.0](https://github.com/epoberezkin/ajv-keywords#readme)                                     | Custom JSON-Schema keywords for Ajv validator                                                                               | 3.1.0       | MIT          | dev      |
+| [codacy-coverage@2.1.1](https://github.com/codacy/node-codacy-coverage)                                      | Code Coverage reporter for Codacy.com                                                                                       | 2.1.1       | MIT          | dev      |
+| [commitplease@3.2.0](https://github.com/jzaefferer/commitplease#readme)                                      | Validates strings as commit messages                                                                                        | 3.2.0       | MIT          | dev      |
+| [coveralls@3.0.0](https://github.com/nickmerwin/node-coveralls#readme)                                       | takes json-cov output into stdin and POSTs to coveralls.io                                                                  | 3.0.0       | BSD-2-Clause | dev      |
+| [eslint@4.19.1](https://eslint.org)                                                                          | An AST-based pattern checker for JavaScript.                                                                                | 4.19.1      | MIT          | dev      |
+| [eslint-config-prettier@^2.4.0](https://github.com/prettier/eslint-config-prettier#readme)                   | Turns off all rules that are unnecessary or might conflict with Prettier.                                                   | 2.9.0       | MIT          | dev      |
+| [eslint-config-scanjs@1.0.0-beta4](https://github.com/mozfreddyb/eslint-config-scanjs#readme)                | umbrella config to get scanjs-like functionality from eslint                                                                | 1.0.0-beta4 | MPL-2.0      | dev      |
+| [eslint-config-standard@11.0.0](https://github.com/standard/eslint-config-standard)                          | JavaScript Standard Style - ESLint Shareable Config                                                                         | 11.0.0      | MIT          | dev      |
+| [eslint-config-xo@0.20.1](https://github.com/xojs/eslint-config-xo#readme)                                   | ESLint shareable config for XO                                                                                              | 0.20.1      | MIT          | dev      |
+| [eslint-plugin-import@2.11.0](https://github.com/benmosher/eslint-plugin-import)                             | Import with sanity.                                                                                                         | 2.11.0      | MIT          | dev      |
+| [eslint-plugin-jsdoc@3.6.3](https://github.com/gajus/eslint-plugin-jsdoc#readme)                             | JSDoc linting rules for ESLint.                                                                                             | 3.6.3       | BSD-3-Clause | dev      |
+| [eslint-plugin-json@1.2.0](https://github.com/azeemba/eslint-plugin-json#readme)                             | Lint JSON files                                                                                                             | 1.2.0       | ISC          | dev      |
+| [eslint-plugin-no-unsafe-innerhtml@1.0.16](https://github.com/mozfreddyb/eslint-plugin-no-unsafe-innerhtml/) | custom ESLint rule to disallows unsafe innerHTML, outerHTML and insertAdjacentHTML                                          | 1.0.16      | MPL-2.0      | dev      |
+| [eslint-plugin-node@6.0.1](https://github.com/mysticatea/eslint-plugin-node#readme)                          | Additional ESLint's rules for Node.js                                                                                       | 6.0.1       | MIT          | dev      |
+| [eslint-plugin-prettier@^2.2.0](https://github.com/prettier/eslint-plugin-prettier#readme)                   | Runs prettier as an eslint rule                                                                                             | 2.6.0       | MIT          | dev      |
+| [eslint-plugin-promise@3.7.0](https://github.com/xjamundx/eslint-plugin-promise#readme)                      | Enforce best practices for JavaScript promises                                                                              | 3.7.0       | ISC          | dev      |
+| [eslint-plugin-security@1.4.0](https://github.com/nodesecurity/eslint-plugin-security#readme)                | Security rules for eslint                                                                                                   | 1.4.0       | Apache-2.0   | dev      |
+| [eslint-plugin-standard@3.0.1](https://github.com/xjamundx/eslint-plugin-standard#readme)                    | ESlint Plugin for the Standard Linter                                                                                       | 3.0.1       | MIT          | dev      |
+| [eslint-plugin-unicorn@4.0.3](https://github.com/sindresorhus/eslint-plugin-unicorn#readme)                  | Various awesome ESLint rules                                                                                                | 4.0.3       | MIT          | dev      |
+| [eslint-plugin-xss@0.1.9](https://github.com/Rantanen/eslint-plugin-xss#readme)                              | Validates XSS related issues of mixing HTML and non-HTML content in variables.                                              | 0.1.9       | ISC          | dev      |
+| [fixpack@2.3.1](https://github.com/henrikjoreteg/fixpack)                                                    | cli tool that cleans up package.json files.                                                                                 | 2.3.1       | MIT          | dev      |
+| [husky@^0.14.3](https://github.com/typicode/husky)                                                           | Prevents bad commit or push (git hooks, pre-commit/precommit, pre-push/prepush, post-merge/postmerge and all that stuff...) | 0.14.3      | MIT          | dev      |
+| [jest@22.4.3](http://facebook.github.io/jest/)                                                               | Delightful JavaScript Testing.                                                                                              | 22.4.3      | MIT          | dev      |
+| [jest-runner-eslint@0.4.0](https://github.com/jest-community/jest-runner-eslint)                             | An experimental ESLint runner for Jest                                                                                      | 0.4.0       | MIT          | dev      |
+| [jsdoc@3.5.5](https://github.com/jsdoc3/jsdoc#readme)                                                        | An API documentation generator for JavaScript.                                                                              | 3.5.5       | Apache-2.0   | dev      |
+| [lec@^1.0.1](https://github.com/iShafayet/lec)                                                               | Command Line Wrapper for Line Ending Corrector (An utility that makes sure your files have consistent line endings)         | 1.0.1       | MIT          | dev      |
+| [lint-staged@7.0.4](https://github.com/okonet/lint-staged#readme)                                            | Lint files staged by git                                                                                                    | 7.0.4       | MIT          | dev      |
+| [lodash.isundefined@3.0.1](https://lodash.com/)                                                              | The modern build of lodash’s `_.isUndefined` as a module.                                                                   | 3.0.1       | MIT          | dev      |
+| [lodash.set@4.3.2](https://lodash.com/)                                                                      | The lodash method `_.set` exported as a module.                                                                             | 4.3.2       | MIT          | dev      |
+| [markdown-magic@0.1.21](https://github.com/DavidWells/markdown-magic#readme)                                 | Automatically update markdown files with content from external sources                                                      | 0.1.21      | MIT          | dev      |
+| [markdown-magic-dependency-table@1.3.2](https://github.com/camacho/markdown-magic-dependency-table#readme)   | Generate table of information about dependencies automatically in markdown                                                  | 1.3.2       | MIT          | dev      |
+| [markdown-magic-install-command@1.3.1](https://github.com/camacho/markdown-magic-install-command#readme)     | Print install command for markdown file                                                                                     | 1.3.1       | MIT          | dev      |
+| [markdown-magic-package-scripts@1.2.1](https://github.com/camacho/markdown-magic-package-scripts#readme)     | Print list of scripts in package.json with descriptions                                                                     | 1.2.1       | MIT          | dev      |
+| [minami@1.2.3](https://github.com/Nijikokun/minami)                                                          | Clean and minimal JSDoc 3 Template / Theme                                                                                  | 1.2.3       | UNLICENSED   | dev      |
+| [nsp@^3.2.1](https://github.com/nodesecurity/nsp#readme)                                                     | The Node Security (nodesecurity.io) command line interface                                                                  | 3.2.1       | Apache-2.0   | dev      |
+| [prettier@1.12.1](https://prettier.io)                                                                       | Prettier is an opinionated code formatter                                                                                   | 1.12.1      | MIT          | dev      |
+| [semantic-release@15.1.7](https://github.com/semantic-release/semantic-release#readme)                       | Automated semver compliant package publishing                                                                               | 15.1.7      | MIT          | dev      |
+| [standard-markdown@4.0.2](https://github.com/zeke/standard-markdown#readme)                                  | Test your Markdown files for Standard JavaScript Style™                                                                     | 4.0.2       | MIT          | dev      |
+| [standard-version@4.3.0](https://github.com/conventional-changelog/standard-version#readme)                  | replacement for `npm version` with automatic CHANGELOG generation                                                           | 4.3.0       | ISC          | dev      |
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ### 7.3. Optional
 
 <!-- AUTO-GENERATED-CONTENT:START (DEPENDENCYTABLE:optional=true) -->
+
 | **Dependency** | **Description** | **Version** | **License** | **Type** |
 | -------------- | --------------- | ----------- | ----------- | -------- |
+
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ## 8. **APIs**
@@ -1008,7 +979,7 @@ Make sure you use resources that you have the rights to use. If you use librarie
 [gh-create-account-url]: https://github.com/signup/free
 [gh-git-labelmaker-url]: https://github.com/himynameisdave/git-labelmaker
 [gh-try-github-url]: https://try.github.io/levels/1/challenges/1
-[git-commit-guidelines-url]: https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#commit
+[git-commit-guidelines-url]: https://github.com/commonality/readme-inspector.js/blob/master/CONTRIBUTING.md#commit
 [git-resolve-conflicts-url]: https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/
 [icon-bitbucket-20-image]: ./assets/img/icons8/icon-bitbucket-20.png
 [icon-git-logo-image]: ./assets/img/icons8/git-logo.png
@@ -1017,10 +988,10 @@ Make sure you use resources that you have the rights to use. If you use librarie
 [icon-issue-image]: ./assets/img/icons8/icon-issues.png
 [icon-pr-image]: ./assets/img/icons8/icon-pr.png
 [icon-rest-api-image]: ./assets/img/icons8/icon-rest-api.png
-[issues-new-defect-image]: https://img.shields.io/badge/report---defect---lightgrey.svg?style=for-the-badge&label=report+a
+[issues-new-defect-image]: https://img.shields.io/badge/report-defect-lightgrey.svg?style=for-the-badge&label=report+a
 [issues-new-defect-url]: /commonality/readme-inspector.git/issues/new?title=defect%28scope%29%3A+summary-of-change&labels=priority%3A+medium%2Cstatus%3A+review+needed%2Ctype%3A+defect&body=%2A%2A%F0%9F%92%A1+TIP%3A%2A%2A+Select+the+%E2%86%96%EF%B8%8E%E2%8E%BE+Preview+%E2%8F%8B+Tab+above+help+read+these+instructions.%0D%0A%0D%0A%23%23+1.+Issue+type%0D%0A%3E%E2%8C%A6+Type+the+letter+%22x%22+in+the+%22checkbox%22+the+best+describe+this+issue.%0D%0A%0D%0A-+%5Bx%5D+**Feature%3A**+I%27m+requesting+a+product+enhancement.%0D%0A%0D%0A%23%23+2.+User+story+summary%0D%0A%3E%E2%8C%A6+Describe+what+you+want+to+accomplish%2C+in+what+role%2Fcapacity%2C+and+why+it%27s+important+to+you.%0D%0A%0D%0A%3E+**EXAMPLE%3A**%0D%0A%3E+As+a+Applicant%2C%0D%0A%3E+I+want+to+submit+my+resume%0D%0A%3E+In+order+to+be+considered+for+a+job+opening.%0D%0A%0D%0AAs+a+%7Brole%7D%2C%0D%0AI+must%2Fneed%2Fwant%2Fshould+%7Bdo+something%7D%0D%0AIn+order+to+%7Bachieve+value%7D.%0D%0A%0D%0A%23%23+3.+Acceptance+criteria%0D%0A%3E%E2%8C%A6+Replace+the+examples+below+with+your+own+imperative%2C+%22true%2Ffalse%22+statements+for+the+**behavior+you+expect**+to+see%2C+or+the+behavior+that+**would**+be+true+if+there+were+no+errors+%28for+defects%29.%0D%0A%0D%0A-+%5B+%5D+1.+Job+Applicants+receive+a+confirmation+email+after+they+submit+their+resumes.%0D%0A-+%5B+%5D+2.+An+Applicant%27s+resume+information+isn%27t+lost+when+errors+occur.%0D%0A-+%5B+%5D+3.+%7Bcriterion-three%7D%0D%0A-+%5B+%5D+4.+%7Bcriterion-four%7D%0D%0A%0D%0A%3C%21--+%E2%9B%94%EF%B8%8F++Do+not+remove+anything+below+this+comment.+%E2%9B%94%EF%B8%8F++--%3E%0D%0A%5Bicon-info-image%5D%3A+..%2Fdocs%2Fimg%2Ficons8%2Ficon-info-50.png%0D%0A
 [issues-new-defect-url]: https://github.com/commonality/readme-inspector/issues/new?title=defect%28scope%29%3A+summary-of-problem&labels=priority%3A+medium%2Cstatus%3A+review+needed%2Ctype%3A+defect&body=%2A%2A%F0%9F%92%A1+TIP%3A%2A%2A+Select+the+%E2%86%96%EF%B8%8E%E2%8E%BE+Preview+%E2%8F%8B+Tab+above+help+read+these+instructions.%0D%0A%0D%0A%23%23+1.+Issue+type%0D%0A%3E%E2%8C%A6+Type+the+letter+%22x%22+in+the+%22checkbox%22+the+best+describe+this+issue.%0D%0A%0D%0A-+%5Bx%5D+**Feature%3A**+I%27m+requesting+a+product+enhancement.%0D%0A%0D%0A%23%23+2.+User+story+summary%0D%0A%3E%E2%8C%A6+Describe+what+you+want+to+accomplish%2C+in+what+role%2Fcapacity%2C+and+why+it%27s+important+to+you.%0D%0A%0D%0A%3E+**EXAMPLE%3A**%0D%0A%3E+As+a+Applicant%2C%0D%0A%3E+I+want+to+submit+my+resume%0D%0A%3E+In+order+to+be+considered+for+a+job+opening.%0D%0A%0D%0AAs+a+%7Brole%7D%2C%0D%0AI+must%2Fneed%2Fwant%2Fshould+%7Bdo+something%7D%0D%0AIn+order+to+%7Bachieve+value%7D.%0D%0A%0D%0A%23%23+3.+Acceptance+criteria%0D%0A%3E%E2%8C%A6+Replace+the+examples+below+with+your+own+imperative%2C+%22true%2Ffalse%22+statements+for+the+**behavior+you+expect**+to+see%2C+or+the+behavior+that+**would**+be+true+if+there+were+no+errors+%28for+defects%29.%0D%0A%0D%0A-+%5B+%5D+1.+Job+Applicants+receive+a+confirmation+email+after+they+submit+their+resumes.%0D%0A-+%5B+%5D+2.+An+Applicant%27s+resume+information+isn%27t+lost+when+errors+occur.%0D%0A-+%5B+%5D+3.+%7Bcriterion-three%7D%0D%0A-+%5B+%5D+4.+%7Bcriterion-four%7D%0D%0A%0D%0A%3C%21--+%E2%9B%94%EF%B8%8F++Do+not+remove+anything+below+this+comment.+%E2%9B%94%EF%B8%8F++--%3E%0D%0A%5Bicon-info-image%5D%3A+..%2Fdocs%2Fimg%2Ficons8%2Ficon-info-50.png%0D%0A
-[issues-new-feat-image]: https://img.shields.io/badge/request---feature---blue.svg?style=for-the-badge&label=request+a
+[issues-new-feat-image]: https://img.shields.io/badge/request-feature-blue.svg?style=for-the-badge&label=request+a
 [issues-new-feat-url]: /commonality/readme-inspector.git/issues/new?title=feat%28scope%29%3A+summary-of-change&labels=priority%3A+medium%2Cstatus%3A+review+needed%2Ctype%3A+feature&body=%2A%2A%F0%9F%92%A1+TIP%3A%2A%2A+Select+the+%E2%86%96%EF%B8%8E%E2%8E%BE+Preview+%E2%8F%8B+Tab+above+help+read+these+instructions.%0D%0A%0D%0A%23%23+1.+Issue+type%0D%0A%3E%E2%8C%A6+Type+the+letter+%22x%22+in+the+%22checkbox%22+the+best+describe+this+issue.%0D%0A%0D%0A-+%5Bx%5D+**Feature%3A**+I%27m+requesting+a+product+enhancement.%0D%0A%0D%0A%23%23+2.+User+story+summary%0D%0A%3E%E2%8C%A6+Describe+what+you+want+to+accomplish%2C+in+what+role%2Fcapacity%2C+and+why+it%27s+important+to+you.%0D%0A%0D%0A%3E+**EXAMPLE%3A**%0D%0A%3E+As+a+Applicant%2C%0D%0A%3E+I+want+to+submit+my+resume%0D%0A%3E+In+order+to+be+considered+for+a+job+opening.%0D%0A%0D%0AAs+a+%7Brole%7D%2C%0D%0AI+must%2Fneed%2Fwant%2Fshould+%7Bdo+something%7D%0D%0AIn+order+to+%7Bachieve+value%7D.%0D%0A%0D%0A%23%23+3.+Acceptance+criteria%0D%0A%3E%E2%8C%A6+Replace+the+examples+below+with+your+own+imperative%2C+%22true%2Ffalse%22+statements+for+the+**behavior+you+expect**+to+see%2C+or+the+behavior+that+**would**+be+true+if+there+were+no+errors+%28for+defects%29.%0D%0A%0D%0A-+%5B+%5D+1.+Job+Applicants+receive+a+confirmation+email+after+they+submit+their+resumes.%0D%0A-+%5B+%5D+2.+An+Applicant%27s+resume+information+isn%27t+lost+when+errors+occur.%0D%0A-+%5B+%5D+3.+%7Bcriterion-three%7D%0D%0A-+%5B+%5D+4.+%7Bcriterion-four%7D%0D%0A%0D%0A%3C%21--+%E2%9B%94%EF%B8%8F++Do+not+remove+anything+below+this+comment.+%E2%9B%94%EF%B8%8F++--%3E%0D%0A%5Bicon-info-image%5D%3A+..%2Fdocs%2Fimg%2Ficons8%2Ficon-info-50.png%0D%0A
 [issues-new-feat-url]: https://github.com/commonality/readme-inspector/issues/new?title=feat%28scope%29%3A+summary-of-change&labels=priority%3A+medium%2Cstatus%3A+review+needed%2Ctype%3A+feature&body=%2A%2A%F0%9F%92%A1+TIP%3A%2A%2A+Select+the+%E2%86%96%EF%B8%8E%E2%8E%BE+Preview+%E2%8F%8B+Tab+above+help+read+these+instructions.%0D%0A%0D%0A%23%23+1.+Issue+type%0D%0A%3E%E2%8C%A6+Type+the+letter+%22x%22+in+the+%22checkbox%22+the+best+describe+this+issue.%0D%0A%0D%0A-+%5Bx%5D+**Feature%3A**+I%27m+requesting+a+product+enhancement.%0D%0A%0D%0A%23%23+2.+User+story+summary%0D%0A%3E%E2%8C%A6+Describe+what+you+want+to+accomplish%2C+in+what+role%2Fcapacity%2C+and+why+it%27s+important+to+you.%0D%0A%0D%0A%3E+**EXAMPLE%3A**%0D%0A%3E+As+a+Applicant%2C%0D%0A%3E+I+want+to+submit+my+resume%0D%0A%3E+In+order+to+be+considered+for+a+job+opening.%0D%0A%0D%0AAs+a+%7Brole%7D%2C%0D%0AI+must%2Fneed%2Fwant%2Fshould+%7Bdo+something%7D%0D%0AIn+order+to+%7Bachieve+value%7D.%0D%0A%0D%0A%23%23+3.+Acceptance+criteria%0D%0A%3E%E2%8C%A6+Replace+the+examples+below+with+your+own+imperative%2C+%22true%2Ffalse%22+statements+for+the+**behavior+you+expect**+to+see%2C+or+the+behavior+that+**would**+be+true+if+there+were+no+errors+%28for+defects%29.%0D%0A%0D%0A-+%5B+%5D+1.+Job+Applicants+receive+a+confirmation+email+after+they+submit+their+resumes.%0D%0A-+%5B+%5D+2.+An+Applicant%27s+resume+information+isn%27t+lost+when+errors+occur.%0D%0A-+%5B+%5D+3.+%7Bcriterion-three%7D%0D%0A-+%5B+%5D+4.+%7Bcriterion-four%7D%0D%0A%0D%0A%3C%21--+%E2%9B%94%EF%B8%8F++Do+not+remove+anything+below+this+comment.+%E2%9B%94%EF%B8%8F++--%3E%0D%0A%5Bicon-info-image%5D%3A+..%2Fdocs%2Fimg%2Ficons8%2Ficon-info-50.png%0D%0A
 [issues-url]: /commonality/readme-inspector/issues
@@ -1042,7 +1013,7 @@ Make sure you use resources that you have the rights to use. If you use librarie
 [standard-version-url]: https://github.com/conventional-changelog/standard-version
 [tech-stack-image]: ./assets/img/icons8/icon-package-filled.png
 
-<!-- ⛔️ Octicon img references ⛔️  -->
+<!-- ⛔️ LINK REFERENCES(Begin) ⛔️  -->
 
 [octicon-alert]: https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/alert.svg
 [octicon-arrow-down]: https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/arrow-down.svg
@@ -1215,3 +1186,4 @@ Make sure you use resources that you have the rights to use. If you use librarie
 [octicon-versions]: https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/versions.svg
 [octicon-watch]: https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/watch.svg
 [octicon-x]: https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/x.svg
+[toc]: #table-of-contents
