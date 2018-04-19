@@ -26,17 +26,17 @@
     + [3.1.1. Parameters](#311-parameters)
     + [3.1.2. Returns `void`](#312-returns-void)
     + [3.1.3. Example](#313-example)
-  * [3.2. `check(ower, repo, ref)`](#32-checkower-repo-ref)
+  * [3.2. `check({ower, repo, ref})`](#32-checkower-repo-ref)
     + [3.2.1. Parameters](#321-parameters)
     + [3.2.2. Returns `Promise`](#322-returns-promise)
     + [3.2.3. Examples](#323-examples)
-  * [3.3. `getInfo(owner, repo, ref)`](#33-getinfoowner-repo-ref)
+  * [3.3. `getInfo({owner, repo, ref})`](#33-getinfoowner-repo-ref)
     + [3.3.1. Parameters](#331-parameters)
     + [3.3.2. Returns `Promise`](#332-returns-promise)
     + [3.3.3. Examples](#333-examples)
   * [3.4. `getAppraisal(url)`](#34-getappraisalurl)
   * [3.5. `ReadmeAppraisal`](#35-readmeappraisal)
-    + [3.5.1. `for(url: String): Promise`](#351-forurl-string-promise)
+    + [3.5.1. `for(url): Promise`](#351-forurl-promise)
       - [3.5.1.1. Parameters](#3511-parameters)
       - [3.5.1.2. Returns `Promise`](#3512-returns-promise)
       - [3.5.1.3. Examples](#3513-examples)
@@ -203,6 +203,8 @@ console.log(JSON.stringify(results, null, WHITESPACE))
 ## 3. API
 
 > [![beaker][octicon-beaker] Test `readme-inspector` in your Web browser ![link-external][octicon-link-external]][runkit-readme-inspector-url].
+>
+> [![gear][octicon-gear] View the full API docs for details](docs/readme-inspector/1.0.2/ReadmeAppraisal.html).
 
 The `readmeInspector` module detects whether or not a README document exists at the root of a GitHub or GitHub Enterprise repository. If a README exists, it can evaluate the README's quality and provide a numerical score from 0 to 100, where 0 is the lowest quality and 100 is the highest.
 
@@ -244,7 +246,7 @@ The `readmeInspector` module detects whether or not a README document exists at 
 > })
 > ```
 
-### 3.2. `check(ower, repo, ref)`
+### 3.2. `check({ower, repo, ref})`
 
 A convenience method that
 
@@ -343,7 +345,7 @@ A convenience method that
   >   .catch(err => {})
   > ```
 
-### 3.3. `getInfo(owner, repo, ref)`
+### 3.3. `getInfo({owner, repo, ref})`
 
 Retrieves README information _without_ any `AppraisalData`.
 
@@ -441,7 +443,7 @@ Retrieves README information _without_ any `AppraisalData`.
 
 ### 3.4. `getAppraisal(url)`
 
-A convenience wrapper that calls the `ReadmeAppraisal.for` method.
+A convenience wrapper that calls the `ReadmeAppraisal.prototype.for` method.
 
 ### 3.5. `ReadmeAppraisal`
 
@@ -453,7 +455,7 @@ A convenience wrapper that calls the `ReadmeAppraisal.for` method.
 >
 > ScoreMe. (2018). Clayallsopp.github.io. Retrieved 10 April 2018, from <http://clayallsopp.github.io/readme-score/>
 
-#### 3.5.1. `for(url: String): Promise<AppraisalData>`
+#### 3.5.1. `for(url): Promise<AppraisalData>`
 
 Evaluate the README at the root of a GitHub repository.
 
@@ -489,11 +491,11 @@ Evaluate the README at the root of a GitHub repository.
 * _URL:_
 
   > ```js
-  > const inspector = require('readme-inspector')
-  >
+  > const { ReadmeAppraisal } = require('readme-inspector')
+  > const readmeAppraisal = new ReadmeAppraisal()
   > const url = 'https://github.com/gregswindle/github-resource-converter'
   >
-  > const result = inspector.readmeAppraisal.for(url)
+  > const appraisal = readmeAppraisal.for(url)
   > /** =>
   >  * {
   >  *   breakdown: {
@@ -515,11 +517,11 @@ Evaluate the README at the root of a GitHub repository.
 * _Repository slug:_
 
   > ```js
-  > const inspector = require('readme-inspector')
+  > const { ReadmeAppraisal } = require('readme-inspector')
+  > const readmeAppraisal = new ReadmeAppraisal()
+  > const url = 'gregswindle/github-resource-converter'
   >
-  > const slug = 'gregswindle/github-resource-converter'
-  >
-  > const result = inspector.readmeAppraisal.for(slug)
+  > const appraisal = readmeAppraisal.for(url)
   > ```
 
 ## 4. Version
