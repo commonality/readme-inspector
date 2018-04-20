@@ -1,10 +1,11 @@
-# readme-inspector [![NPM version][npm-image]][npm-url]
+# readme-inspector [![NPM version][npm-image]][npm-url] [![GitHub release][github-release-image]][github-release-url]
 
 > <img align="middle" alt="markdown" height="50" width="50"  src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/markdown.svg"> Inspect GitHub (and GitHub Enterprise) repositories for the presence and quality of READMEs.
 
 [![The MIT License][license-image]][license-url]
 [![FOSSA Status][fossa-image]][fossa-url]<br>
 [![NSP Status][nsp-image]][nsp-url]
+[![Known Vulnerabilities][vulnerabilities-image]][vulnerabilities-url]
 [![Dependency Status][daviddm-image]][daviddm-url]
 [![Development Dependency Status][daviddm-dev-image]][daviddm-dev-url]<br>
 [![MacOS and Ubuntu build statuses][travis-image]][travis-url]
@@ -600,6 +601,8 @@ Before embarking on a significant change, please follow these guidelines:
 [daviddm-url]: https://david-dm.org/commonality/readme-inspector
 [fossa-image]: https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcommonality%2Freadme-inspector.svg?type=shield&style=flat-square
 [fossa-url]: https://app.fossa.io/projects/git%2Bgithub.com%2Fcommonality%2Freadme-inspector?ref=badge_shield
+[github-release-image]: https://img.shields.io/github/release/commonality/readme-inspector.svg?style=flat-square
+[github-release-url]: https://github.com/commonality/readme-inspector/releases/latest
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
 [license-url]: http://opensource.org/licenses/MIT
 [notice-url]: https://app.fossa.io/reports/07123904-7d26-40a6-b6af-c74e82a53789
@@ -612,15 +615,17 @@ Before embarking on a significant change, please follow these guidelines:
 [nsp-url]: https://nodesecurity.io/orgs/commonality/projects/a2aa0184-ae94-4307-8b87-f0e12324368a
 [travis-image]: https://img.shields.io/travis/commonality/readme-inspector.svg?branch=master&style=flat-square&label=macOS%20%7C%20ubuntu%20builds&logo=travis
 [travis-url]: https://travis-ci.org/commonality/readme-inspector
+[vulnerabilities-image]: https://snyk.io/test/github/commonality/readme-inspector/badge.svg?style=flat-square&targetFile=package.json
+[vulnerabilities-url]: https://snyk.io/test/github/commonality/readme-inspector?targetFile=package.json
 
 <!-- ⛔️ Contributing ⛔️  -->
 
 [code-of-conduct-url]: https://github.com/commonality/readme-inspector/blob/master/.github/CODE_OF_CONDUCT.md
 [contributing-image]: https://img.shields.io/badge/read-CONTRIBUTING%20Guidelines-yellow.svg?style=for-the-badge&label=read+the
 [contributing-url]: https://github.com/commonality/readme-inspector/blob/master/.github/CONTRIBUTING.md
-[issues-new-defect-image]: https://img.shields.io/badge/report-defect-lightgrey.svg?style=for-the-badge&label=report+a
+[issues-new-defect-image]: https://img.shields.io/badge/report-defect-F5CB5C.svg?style=for-the-badge&label=report+a
 [issues-new-defect-url]: https://github.com/commonality/readme-inspector/issues/new?title=defect%28scope%29%3A+defect-summary&labels=priority%3a+medium%2cstatus%3a+review+needed%2ctype%3a+defect&template=defect-report.md
-[issues-new-feat-image]: https://img.shields.io/badge/request-feature-blue.svg?style=for-the-badge&label=request+a
+[issues-new-feat-image]: https://img.shields.io/badge/request-feature-c1ccc6.svg?style=for-the-badge&label=request+a
 [issues-new-feat-url]: https://github.com/commonality/readme-inspector/issues/new?title=feat%28scope%29%3A+change-proposal-summary&labels=priority%3a+medium%2cstatus%3a+review+needed%2ctype%3a+feature&template=feature-request.md
 [issues-url]: https://github.com/commonality/readme-inspector/issues
 [makeapullrequest-image]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square

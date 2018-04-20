@@ -1,58 +1,41 @@
-# Contributing<br>to `readme-inspector`
+# Building and testing readme-inspector
 
-[![PRs Welcome][makeapullrequest-image]][makeapullrequest-url] We welcome contributors, issues, and pull requests.
-
-<blockquote>
-<dfn><strong>Contributions</strong> start with <strong>community conversations</strong> that lead to <strong>positive change.</strong></dfn> <code>readme-inspector's</code> open source collaboration model has five steps:
-
-<dl>
-  <dt>1. <dfn>Issues</dfn></dt>
-  <dd>Start community conversations that determine whether proposed changes add value and should be made.</dd>
-  <dt>2. <dfn>Pull Requests (PRs)</dfn></dt>
-  <dd>Inform and manage community code reviews for approved changes in-progress.</dd>
-  <dt>3. <dfn>Merges</dfn></dt>
-  <dd>Incorporate approved PR changes into the product.</dd>
-  <dt>4. <dfn>Releases</dfn></dt>
-  <dd>Make changes available for community consumption.</dd>
-  <dt>5. <dfn>Support</dfn></dt>
-  <dd>Improves the product with refactorings and defect fixes.</dd>
-</dl>
-</blockquote>
+> <img align="bottom" alt="code" height="50" width="50" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/code.svg"> This document describes how to set up your development environment to build and test readme-inspector. It also explains the basic mechanics of using `git`, `node`, and `npm` from a Terminal/CLI (command-line interface).
+>
+> [![Request a feature][issues-new-feat-image]][issues-new-feat-url] [![Report a defect][issues-new-defect-image]][issues-new-defect-url]
 
 ## Table of contents
 
-<!-- ⛔️ AUTO-GENERATED-CONTENT:START (TOC:excludeText=Table of contents) -->
-- [1. Issues](#1-issues)
-  * [1.1. Create Issues for feature requests and defects.](#11-create-issues-for-feature-requests-and-defects)
-  * [1.2. Format titles with **`type(scope): subject`**.](#12-format-titles-with-typescope-subject)
-  * [1.3. Fill out the issue template.](#13-fill-out-the-issue-template)
-  * [1.4. Label the issue (optional).](#14-label-the-issue-optional)
-  * [1.5. Monitor your issue for questions.](#15-monitor-your-issue-for-questions)
-  * [1.6. Your issue will be either accepted for work, or declined.](#16-your-issue-will-be-either-accepted-for-work-or-declined)
-- [2. **Git**](#2-git)
-  * [2.1. **Rules**](#21-rules)
-    + [2.1.1. Makes changes in a topic branch.](#211-makes-changes-in-a-topic-branch)
-    + [2.1.2. Favor the topic branch naming convention `GH-{ISSUE_NUMBER}-type-scope`.](#212-favor-the-topic-branch-naming-convention-gh-issue_number-type-scope)
-    + [2.1.3. Branch out from `master`.](#213-branch-out-from-master)
-    + [2.1.4. **_Never_** push into the `master` branch. **_Always_** submit a Pull Request.](#214-_never_-push-into-the-master-branch-_always_-submit-a-pull-request)
-    + [2.1.5. Submit a Pull Request as soon as possible.](#215-submit-a-pull-request-as-soon-as-possible)
-    + [2.1.6. Rebase your local `master` branch before you ask for PR approvals.](#216-rebase-your-local-master-branch-before-you-ask-for-pr-approvals)
-    + [2.1.7. Resolve rebase conflicts before Pull Request reviews.](#217-resolve-rebase-conflicts-before-pull-request-reviews)
-    + [2.1.8. Add reviewers and the label `Status: Needs Review` when the topic branch is ready.](#218-add-reviewers-and-the-label-status-needs-review-when-the-topic-branch-is-ready)
-    + [2.1.9. Delete local and remote topic branches after merging.](#219-delete-local-and-remote-topic-branches-after-merging)
-    + [2.1.10. Protect your `master` branch.](#2110-protect-your-master-branch)
-  * [2.2. **Feature-branch-workflow**](#22-feature-branch-workflow)
-    + [2.2.1. Initialize a Git repository in the product directory (_for new repositories only_).](#221-initialize-a-git-repository-in-the-product-directory-_for-new-repositories-only_)
-    + [2.2.2. Checkout a new `feat`ure or `fix` branch.](#222-checkout-a-new-feature-or-fix-branch)
-    + [2.2.3. Make Changes.](#223-make-changes)
-    + [2.2.4. Follow the Conventional Commits Specification for commit messages.](#224-follow-the-conventional-commits-specification-for-commit-messages)
-    + [2.2.5. Sync with remote to get changes you’ve missed.](#225-sync-with-remote-to-get-changes-youve-missed)
-    + [2.2.6. Update your topic branch with the latest changes from `master` by interactive rebase.](#226-update-your-topic-branch-with-the-latest-changes-from-master-by-interactive-rebase)
-    + [2.2.7. Resolve conflicts (if any occur), and continue rebase.](#227-resolve-conflicts-if-any-occur-and-continue-rebase)
-    + [2.2.8. Push your branch with the `-f` flag (if necessary).](#228-push-your-branch-with-the--f-flag-if-necessary)
-    + [2.2.9. Submit a Pull Request.](#229-submit-a-pull-request)
-    + [2.2.10. Once accepted, the Pull request will be merged, closed, and deleted by an administrator.](#2210-once-accepted-the-pull-request-will-be-merged-closed-and-deleted-by-an-administrator)
-    + [2.2.11. Remove your local topic branch if you're done.](#2211-remove-your-local-topic-branch-if-youre-done)
+<!-- ⛔️ AUTO-GENERATED-CONTENT:START (TOC:excludeText=Table of contents) ⛔️ -->
+- [1. Prerequisite software](#1-prerequisite-software)
+- [2. Getting the source code](#2-getting-the-source-code)
+- [3. Installing dependencies](#3-installing-dependencies)
+- [4. Building](#4-building)
+- [5. Running tests](#5-running-tests)
+- [5. Formatting and verifying your sources](#5-formatting-and-verifying-your-sources)
+- [6. Git guidelines](#6-git-guidelines)
+  * [6.1. Makes changes in a topic branch](#61-makes-changes-in-a-topic-branch)
+  * [6..2. Favor the topic branch naming convention `GH-{ISSUE_NUMBER}-type-scope`](#62-favor-the-topic-branch-naming-convention-gh-issue_number-type-scope)
+  * [6.3. Branch out from `master`.](#63-branch-out-from-master)
+  * [6.4. **_Never_**. push into the `master` branch. **_Always_** submit a Pull Request](#64-_never_-push-into-the-master-branch-_always_-submit-a-pull-request)
+  * [6.5. Submit a Pull Request as soon as possible.](#65-submit-a-pull-request-as-soon-as-possible)
+  * [6.6. Rebase your local `master` branch before you ask for PR approvals.](#66-rebase-your-local-master-branch-before-you-ask-for-pr-approvals)
+  * [6.7. Resolve rebase conflicts before Pull Request reviews.](#67-resolve-rebase-conflicts-before-pull-request-reviews)
+  * [6.8. Add reviewers and the label `Status: Needs Review` when the topic branch is ready.](#68-add-reviewers-and-the-label-status-needs-review-when-the-topic-branch-is-ready)
+  * [6.9. Delete local and remote topic branches after merging.](#69-delete-local-and-remote-topic-branches-after-merging)
+  * [6.10. Protect your `master` branch.](#610-protect-your-master-branch)
+  * [6.2. **Feature-branch-workflow**](#62-feature-branch-workflow)
+  * [6.2.1. Initialize a Git repository in the product directory (_for new repositories only_).](#621-initialize-a-git-repository-in-the-product-directory-_for-new-repositories-only_)
+  * [6.2.2. Checkout a new `feat`ure or `fix` branch.](#622-checkout-a-new-feature-or-fix-branch)
+  * [6.2.3. Make Changes.](#623-make-changes)
+  * [6.2.4. Follow the Conventional Commits Specification for commit messages.](#624-follow-the-conventional-commits-specification-for-commit-messages)
+  * [6.2.5. Sync with remote to get changes you’ve missed.](#625-sync-with-remote-to-get-changes-youve-missed)
+  * [6.2.6. Update your topic branch with the latest changes from `master` by interactive rebase.](#626-update-your-topic-branch-with-the-latest-changes-from-master-by-interactive-rebase)
+  * [6.2.7. Resolve conflicts (if any occur), and continue rebase.](#627-resolve-conflicts-if-any-occur-and-continue-rebase)
+  * [6.2.8. Push your branch with the `-f` flag (if necessary).](#628-push-your-branch-with-the--f-flag-if-necessary)
+  * [6.2.9. Submit a Pull Request.](#629-submit-a-pull-request)
+  * [6.2.10. Once accepted, the Pull request will be merged, closed, and deleted by an administrator.](#6210-once-accepted-the-pull-request-will-be-merged-closed-and-deleted-by-an-administrator)
+  * [6.2.11. Remove your local topic branch if you're done.](#6211-remove-your-local-topic-branch-if-youre-done)
 - [3. **Code standards**](#3-code-standards)
   * [3.1. Use the Standard JS Style.](#31-use-the-standard-js-style)
   * [3.2. Use ESLint to analyze source code.](#32-use-eslint-to-analyze-source-code)
@@ -70,242 +53,250 @@
   * [8.2 **API security**](#82-api-security)
   * [8.3 **API documentation**](#83-api-documentation)
 - [9. **Licensing**](#9-licensing)
-<!-- ⛔️ AUTO-GENERATED-CONTENT:END -->
+<!-- ⛔️ AUTO-GENERATED-CONTENT:END ⛔️ -->
 
-## 1. Issues
+## 1. Prerequisite software
 
-<img align="bottom" alt="issues" height="80" width="80" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/issue-opened.svg">
+Before you can build and test readme-inspector, you must install and configure the
+following products on your development machine:
 
-* **Collaboration starts with _Issues_. Changes happen through _Pull Requests_.**
+1.  [Git](http://git-scm.com) and/or the \**GitHub app*1. (for [Mac](http://mac.github.com) or
+    [Windows](http://windows.github.com)); [GitHub's Guide to Installing
+    Git](https://help.github.com/articles/set-up-git) is a good source of information.
 
-  View `readme-inspector's` collaboration and contribution flowcharts:
+1.  [Node.js](http://nodejs.org), (version specified in the engines field of [`package.json`](../package.json)) which is used to run a development web server,
+    run tests, and generate distributable files.
 
-  ---
+1.  [NPM](https://yarnpkg.com) (version specified in the engines field of [`package.json`](../package.json)) which is used to install dependencies.
 
-  <details>
+## 2. Getting the source code
 
-    <summary><img src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/question.svg" alt="Help" align="middle" height="48" width="48"> Toggle view of the <strong>Issue workflow</strong> flowchart.</summary>
+Fork and clone the readme-inspector repository:
 
-  ![Issue flowchart][contribution-lifecycle-issues-image]
+1.  [**Sign in**](https://github.com/login) to your GitHub account or [sign up for a (free) GitHub account](https://github.com/join).
+2.  [**Fork**](http://help.github.com/forking) the [main readme-inspector repository](https://github.com/commonality/readme-inspector) (aka, "`origin`").
+3.  \**Clone your fork*1. of the readme-inspector repository and define an `upstream` remote pointing back to the readme-inspector repository that you forked in the first place.
 
-  </details>
+```shell
+# Clone your GitHub repository:
+git clone git@github.com:<github username>/readme-inspector.git
 
-  ---
+# Go to the readme-inspector directory:
+cd readme-inspector
 
-  <details>
+# Add the main readme-inspector repository as an upstream remote to your repository:
+git remote add upstream https://github.com/commonality/readme-inspector.git
+```
 
-    <summary><img src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/question.svg" alt="Help" align="middle" height="48" width="48"> Toggle view of the <strong>Pull Request workflow</strong> flowchart.</summary>
+## 3. Installing dependencies
 
-  ![Pull Request flowchart][contribution-lifecycle-pr-image]
+Next, install the JavaScript modules needed to build and test readme-inspector:
 
-  </details>
+```shell
+# Install readme-inspector project dependencies (package.json)
+npm install
+```
 
-  ---
+## 4. Building
 
-* ### 1.1. Create Issues for feature requests and defects.
+![info][octicon-info] There are no build tasks for versions <samp>1.x.x</samp> of readme-inspector.
 
-  _Why:_
+## 5. Running tests
 
-  > ⌦ `readme-inspector` follows an issue-driven product delivery model.
-  > Before any work is done, create an Issue, first. This starts a
-  > conversation about features, defects ("bugs"), refactoring, product
-  > delivery improvements, etc.
+> ![check][octicon-check] Your test suites must pass within coverage thresholds before you submit a PR to GitHub.
 
-  Go ahead! Get started now:
+To run tests:
 
-  * [![Request a feature][issues-new-feat-image]][issues-new-feat-url]
+```shell
+$ npm test
+# => Run all readme-inspector tests on node
 
-  * [![Report a defect][issues-new-defect-image]][issues-new-defect-url]
+$ npm run test:watch
+# => Run tests whenever a file changes
+```
 
-  * [Review all open issues][issues-url]
+> <h3>Debugging your source code</h3>
+>
+> ![bug][octicon-bug] See [DEBUG.md](DEBUG.md) for information on debugging the code while running the unit tests.
 
-* ### 1.2. Format titles with **`type(scope): subject`**.
+All the tests are executed on our Continuous Integration infrastructure and a PR could only be merged once the tests pass.
 
-  _Why:_
+1.  CircleCI fails if your code is not formatted properly,
+1.  Travis CI fails if any of the test suites described above fails.
 
-  > ⌦`type` categorizes product changes. Valid types are:
-  >
-  > * `build`: Changes that affect the build system or external dependencies.
-  > * `ci`: Changes related to continuous integration, delivery, and deployment tasks.
-  > * `docs`: Documentation changes.
-  > * `feat`: A new feature.
-  > * `fix`: Defect (bug) repair.
-  > * `perf`: Performance enhancements.
-  > * `refactor`: Source code design improvements that don't affect product behavior.
-  > * `style`: Changes involving graphics, typography, etc., as well as source code beautification.
-  > * `test`: Tests added to increase code coverage, or corrected due to errors.
+## 5. Formatting and verifying your sources
 
-* ### 1.3. Fill out the issue template.
+![verified][octicon-verified] readme-inspector uses
 
-  _Why:_
+1.  [ESLint](http://clang.llvm.org/docs/ClangFormat.html) to evaluate and format source code;
+1.  [Fixpack]() to order all `package.json` properties in alphabetical order; and
+1.  [Prettier]() to format JSON, Markdown, and YAML.
 
-  > ⌦It keeps communication consistent and unambiguous.
+You can both evaluate and format your all sources by running:
 
-* ### 1.4. Label the issue (optional).
+```shell
+$ npm run lint
+# => Formats and lints all JavaScript, JSON, Markdown, and
+#    package.json.
+```
 
-  _Why:_
+You can also format sources by type:
 
-  > ⌦ We use [`git-labelmaker`][gh-git-labelmaker-url] to categorize Issues (and Pull Requests) consistently. There are four label categories:
-  >
-  > * `type`: the "kind" of product change.
-  > * `status`: the state of a change.
-  > * `priority`: the importance and value of a change.
+```shell
+# Evaluate and format JavaScript:
+npm run lint:js
 
-* ### 1.5. Monitor your issue for questions.
+# Format JSON:
+npm run lint:json
 
-  _Why:_
+# Clean up the product manifest (package.json):
+npm run lint:manifest
 
-  > ⌦ The team might need more clarification.
+# Format all markdown files:
+npm run lint:md
+```
 
-* ### 1.6. Your issue will be either accepted for work, or declined.
+> ![alert][octicon-alert] If the source code does not pass linting, the CI will fail and the PR can not be merged.
 
-  _Why:_
-
-  > ⌦ It's up to the Product Owner to agree to proposed changes. If they believe your issue add value, the issue will be approved, and we'll ask someone to volunteer to do the work.
-  >
-  > Otherwise, your issue will be politely declined.
-
-## 2. **Git**
+## 6. Git guidelines
 
 ![Git Logo][icon-git-logo-image]
 
-* ### 2.1. **Rules**
+`readme-inspector` manages contributions with the [feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow).
 
-  `readme-inspector` manages contributions with the [feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow).
+### 6.1. Makes changes in a topic branch
 
-* #### 2.1.1. Makes changes in a topic branch.
+_Why:_
 
-  _Why:_
+> ⌦ Use an isolated topic branch for parallel product development. Topic branches allow you to submit multiple pull requests without confusion. You can iterate without polluting the master branch with potentially unstable, unfinished code. The `readme-inspector` team uses:
+>
+> 1.  [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) for small-ish codebases, or
+> 1.  [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) for large applications and monoliths
 
-  > ⌦ Use an isolated topic branch for parallel product development. Topic branches allow you to submit multiple pull requests without confusion. You can iterate without polluting the master branch with potentially unstable, unfinished code. The `readme-inspector` team uses:
-  >
-  > * [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) for small-ish codebases, or
-  > * [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) for large applications and monoliths
+### 6..2. Favor the topic branch naming convention `GH-{ISSUE_NUMBER}-type-scope`
 
-* #### 2.1.2. Favor the topic branch naming convention `GH-{ISSUE_NUMBER}-type-scope`.
+_Why:_
 
-  _Why:_
+> ⌦ Although not required, our team prefixes branches with the GitHub issue number, followed by the type of change being introduced, followed by the scope of changes.
+>
+> **Examples:**
+>
+> 1.  **feat**: a new feature, e.g., `GH-1-feat-cli-add-authz`.
+> 1.  **fix**: a defect/bug repair, e.g., `GH-2-fix-api-logging-error`.
+> 1.  **build**: changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm), e.g., `GH-8-build-add-markdown-toc`.
+> 1.  **chore**: changes that don't modify src or test files, e.g., `GH-10-remove-unused-files`.
+> 1.  **ci**: changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs), e.g., `GH-9-ci-travis-deploy-semantic-release`.
+> 1.  **docs**: documentation changes, e.g., `GH-3-docs-readme-revise-api`.
+> 1.  **perf**: change that improves performance `GH-6-perf-quicksort`.
+> 1.  **refactor**: code changes that improve design, but neither fixes a bug nor adds a feature, e.g., `GH-5-refactor-extract-class`.
+> 1.  **revert**: reverts a previous commit, e.g., `GH-11-revert-7f87cc2`.
+> 1.  **style**: changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc), e.g., `GH-4-style-lint`.
+> 1.  **test**: add missing tests or correct existing tests, e.g., `GH-7-test-complete-coverage`.
 
-  > ⌦ Although not required, our team prefixes branches with the GitHub issue number, followed by the type of change being introduced, followed by the scope of changes.
-  >
-  > **Examples:**
-  >
-  > * **feat**: a new feature, e.g., `GH-1-feat-cli-add-authz`.
-  > * **fix**: a defect/bug repair, e.g., `GH-2-fix-api-logging-error`.
-  > * **build**: changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm), e.g., `GH-8-build-add-markdown-toc`.
-  > * **chore**: changes that don't modify src or test files, e.g., `GH-10-remove-unused-files`.
-  > * **ci**: changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs), e.g., `GH-9-ci-travis-deploy-semantic-release`.
-  > * **docs**: documentation changes, e.g., `GH-3-docs-readme-revise-api`.
-  > * **perf**: change that improves performance `GH-6-perf-quicksort`.
-  > * **refactor**: code changes that improve design, but neither fixes a bug nor adds a feature, e.g., `GH-5-refactor-extract-class`.
-  > * **revert**: reverts a previous commit, e.g., `GH-11-revert-7f87cc2`.
-  > * **style**: changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc), e.g., `GH-4-style-lint`.
-  > * **test**: add missing tests or correct existing tests, e.g., `GH-7-test-complete-coverage`.
+### 6.3. Branch out from `master`.
 
-* #### 2.1.3. Branch out from `master`.
+_Why:_
 
-  _Why:_
+> ⌦ `readme-inspector` follows the feature-branch-workflow.
 
-  > ⌦ `readme-inspector` follows the feature-branch-workflow.
+### 6.4. **_Never_**. push into the `master` branch. **_Always_** submit a Pull Request
 
-* #### 2.1.4. **_Never_** push into the `master` branch. **_Always_** submit a Pull Request.
+_Why:_
 
-  _Why:_
+> ⌦ It notifies team members whenever changes occur and allows the community to review your changes at any time..
+>
+> It also enables easy peer-review of the code and dedicates forum for discussing the proposed feature.
 
-  > ⌦ It notifies team members whenever changes occur and allows the community to review your changes at any time..
-  >
-  > It also enables easy peer-review of the code and dedicates forum for discussing the proposed feature.
+### 6.5. Submit a Pull Request as soon as possible.
 
-* #### 2.1.5. Submit a Pull Request as soon as possible.
+_Why:_
 
-  _Why:_
+> ⌦ Pull Requests declare work in progress. Frequent pushes to a Pull Request notify your team members about change, and gives them the opportunity to provide feedback more often.
+>
+> Pull Request pushes also trigger automated CI-services, which help you fail fast and assess quality.
 
-  > ⌦ Pull Requests declare work in progress. Frequent pushes to a Pull Request notify your team members about change, and gives them the opportunity to provide feedback more often.
-  >
-  > Pull Request pushes also trigger automated CI-services, which help you fail fast and assess quality.
+### 6.6. Rebase your local `master` branch before you ask for PR approvals.
 
-* #### 2.1.6. Rebase your local `master` branch before you ask for PR approvals.
+_Why:_
 
-  _Why:_
+> ⌦ Rebasing will merge in the requested branch (`master` or `develop`) and apply the commits that you have made locally to the top of the history without creating a merge commit (assuming there were no conflicts). This results in a nice and clean history.
 
-  > ⌦ Rebasing will merge in the requested branch (`master` or `develop`) and apply the commits that you have made locally to the top of the history without creating a merge commit (assuming there were no conflicts). This results in a nice and clean history.
+### 6.7. Resolve rebase conflicts before Pull Request reviews.
 
-* #### 2.1.7. Resolve rebase conflicts before Pull Request reviews.
+_Why:_
 
-  _Why:_
+> ⌦ Rebasing will merge in the `master` branch and apply the commits that you have made locally to the top of it.
 
-  > ⌦ Rebasing will merge in the `master` branch and apply the commits that you have made locally to the top of it.
+### 6.8. Add reviewers and the label `Status: Needs Review` when the topic branch is ready.
 
-* #### 2.1.8. Add reviewers and the label `Status: Needs Review` when the topic branch is ready.
+_Why:_
 
-  _Why:_
+> ⌦ When you add a Reviewer, GitHub (or Bitbucket) notifies teammates that your topic branch meets all Acceptance Criteria and is ready to be merged into `master`.
+>
+> Add the label "Status: Review Needed" formally declares the status of your topic branch, and helps teams filter through issues.
 
-  > ⌦ When you add a Reviewer, GitHub (or Bitbucket) notifies teammates that your topic branch meets all Acceptance Criteria and is ready to be merged into `master`.
-  >
-  > Add the label "Status: Review Needed" formally declares the status of your topic branch, and helps teams filter through issues.
+### 6.9. Delete local and remote topic branches after merging.
 
-* #### 2.1.9. Delete local and remote topic branches after merging.
+_Why:_
 
-  _Why:_
+> ⌦ Topic branches should only exist while work is in-progress. Merged topic branches clutter up your list of branches with dead branches. Topic branch deletion also insures that you only ever merge back into `master`.
 
-  > ⌦ Topic branches should only exist while work is in-progress. Merged topic branches clutter up your list of branches with dead branches. Topic branch deletion also insures that you only ever merge back into `master`.
+### 6.10. Protect your `master` branch.
 
-* #### 2.1.10. Protect your `master` branch.
+_Why:_
 
-  _Why:_
+> ⌦ Branch protection prevents production-ready branches from incorporating unexpected and irreversible changes. Learn more about
+>
+> 1.  [GitHub protected branches](https://help.github.com/articles/about-protected-branches/) and
+> 1.  [Bitbucket protected branches](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html).
 
-  > ⌦ Branch protection prevents production-ready branches from incorporating unexpected and irreversible changes. Learn more about
-  >
-  > * [GitHub protected branches](https://help.github.com/articles/about-protected-branches/) and
-  > * [Bitbucket protected branches](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html).
+### 6.2. **Feature-branch-workflow**
 
-* ### 2.2. **Feature-branch-workflow**
+We use the [feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow). We _recommend_ [interactive rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing), too, but that's not required.
 
-  We use the [feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow). We _recommend_ [interactive rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing), too, but that's not required.
+### 6.2.1. Initialize a Git repository in the product directory (_for new repositories only_).
 
-- #### 2.2.1. Initialize a Git repository in the product directory (_for new repositories only_).
+For subsequent features and changes, this step should be ignored.
 
-  For subsequent features and changes, this step should be ignored.
+```sh
+cd <product-repo-directory>
+git init
+```
 
-  ```sh
-  cd <product-repo-directory>
-  git init
-  ```
+### 6.2.2. Checkout a new `feat`ure or `fix` branch.
 
-- #### 2.2.2. Checkout a new `feat`ure or `fix` branch.
+```sh
+# For a new feature branch:
+git checkout -b GH-<issueId>-feat-scope-of-change
 
-  ```sh
-  # For a new feature branch:
-  git checkout -b GH-<issueId>-feat-scope-of-change
+# For branches that address defects:
+git checkout -b GH-<issueId>-fix-scope-of-change
+```
 
-  # For branches that address defects:
-  git checkout -b GH-<issueId>-fix-scope-of-change
-  ```
+### 6.2.3. Make Changes.
 
-- #### 2.2.3. Make Changes.
+```sh
+git add
+git commit -a
+```
 
-  ```sh
-  git add
-  git commit -a
-  ```
+_Why:_
 
-  _Why:_
+> ⌦ `git commit -a` will start an editor which lets you separate the subject from the body. Read more about it in _section 1.3_.
 
-  > ⌦ `git commit -a` will start an editor which lets you separate the subject from the body. Read more about it in _section 1.3_.
+### 6.2.4. Follow the Conventional Commits Specification for commit messages.
 
-- #### 2.2.4. Follow the Conventional Commits Specification for commit messages.
+This project enforces [AngularJS Git Commit Guidelines][git-commit-guidelines-url] (which is now an extension of the [Conventional Commits Specfication][conventional-commits-url]) with [`commitplease`][commitplease-url] pre-commit hooks.
 
-  This project enforces [AngularJS Git Commit Guidelines][git-commit-guidelines-url] (which is now an extension of the [Conventional Commits Specfication][conventional-commits-url]) with [`commitplease`][commitplease-url] pre-commit hooks.
+_Why:_
 
-  _Why:_
+> Consistent, legible Git logs not only facilitate communication, but also enable automated `CHANGELOG` generation and semantic versioning with [`standard-version`][standard-version-url].
 
-  > Consistent, legible Git logs not only facilitate communication, but also enable automated `CHANGELOG` generation and semantic versioning with [`standard-version`][standard-version-url].
-
-  * **`build` commit messages**
+1.  **`build` commit messages**
 
     Issues related to product builds.
 
-    ```
+    ```shell
     build(<scope>): <subject>
     <BLANK LINE>
     <[body]>
@@ -313,11 +304,11 @@
     <footer>
     ```
 
-  * **`chore` commit messages**
+1.  **`chore` commit messages**
 
     Issues related to miscellaneous non-functional changes (usually "maintenance" changes).
 
-    ```
+    ```shell
     chore(<scope>): <subject>
     <BLANK LINE>
     <[body]>
@@ -325,11 +316,11 @@
     <footer>
     ```
 
-  * **`ci` commit messages**
+1.  **`ci` commit messages**
 
     Issues related to continuous integration, delivery, and deployment tasks.
 
-    ```
+    ```shell
     ci(<scope>): <subject>
     <BLANK LINE>
     <[body]>
@@ -337,11 +328,11 @@
     <footer>
     ```
 
-  * **`docs` commit messages**
+1.  **`docs` commit messages**
 
     Issues related to documentation.
 
-    ```
+    ```shell
     docs(<scope>): <subject>
     <BLANK LINE>
     <[body]>
@@ -349,11 +340,11 @@
     <footer>
     ```
 
-  * **`feat` (feature) commit messages**
+1.  **`feat` (feature) commit messages**
 
     New feature or enhancement requests.
 
-    ```
+    ```shell
     feat(<scope>): <subject>
     <BLANK LINE>
     <[body]>
@@ -361,11 +352,11 @@
     <footer>
     ```
 
-  * **`fix` commit messages**
+1.  **`fix` commit messages**
 
     Defect (bug) repair issues.
 
-    ```
+    ```shell
     fix(<scope>): <subject>
     <BLANK LINE>
     <[body]>
@@ -373,11 +364,11 @@
     <footer>
     ```
 
-  * **`perf` (performance) commit messages**
+1.  **`perf` (performance) commit messages**
 
     Performance improvement issues.
 
-    ```
+    ```shell
     perf(<scope>): <subject>
     <BLANK LINE>
     <[body]>
@@ -385,11 +376,11 @@
     <footer>
     ```
 
-  * **`refactor` commit messages**
+1.  **`refactor` commit messages**
 
     Source code design **improvements that do not affect product behavior**.
 
-    ```
+    ```shell
     refactor(<scope>): <subject>
     <BLANK LINE>
     <[body]>
@@ -397,13 +388,13 @@
     <footer>
     ```
 
-  * **`revert` commit messages**
+1.  **`revert` commit messages**
 
     Tasks that revert to a previous commit hash. Your message should begin with `revert:`, followed by the header of the reverted commit.
 
     In the body it should say: `This reverts commit <hash>.`, where the hash is the SHA of the commit being reverted.
 
-    ```
+    ```shell
     revert: <hash>
     <BLANK LINE>
     This reverts commit <hash>.
@@ -411,11 +402,11 @@
     <footer>
     ```
 
-  * **`style` commit messages**
+1.  **`style` commit messages**
 
     Issues related to style guideline compliance, especially `ESLint` errors and warnings.
 
-    ```
+    ```shell
     style(<scope>): <subject>
     <BLANK LINE>
     <[body]>
@@ -423,11 +414,11 @@
     <footer>
     ```
 
-  * **`test` commit messages**
+1.  **`test` commit messages**
 
     Test coverage tasks.
 
-    ```
+    ```shell
     test(<scope>): <subject>
     <BLANK LINE>
     <[body]>
@@ -435,115 +426,116 @@
     <footer>
     ```
 
-- #### 2.2.5. Sync with remote to get changes you’ve missed.
+### 6.2.5. Sync with remote to get changes you’ve missed.
 
-  ```sh
-  git checkout master
-  git pull
-  ```
+```shell
+git checkout master
+git pull
+```
 
-  _Why:_
+_Why:_
 
-  > ⌦ This will give you a chance to deal with conflicts on your machine while rebasing(later) rather than creating a Pull Request that contains conflicts.
+> ⌦ This will give you a chance to deal with conflicts on your machine while rebasing(later) rather than creating a Pull Request that contains conflicts.
 
-- #### 2.2.6. Update your topic branch with the latest changes from `master` by interactive rebase.
+### 6.2.6. Update your topic branch with the latest changes from `master` by interactive rebase.
 
-  ```sh
-  git checkout <branchname>
-  git rebase -i --autosquash master
-  ```
+```sh
+git checkout <branchname>
+git rebase -i --autosquash master
+```
 
-  _Why:_
+_Why:_
 
-  > ⌦ You can use `--autosquash` to squash all your commits to a single commit. Nobody wants many commits for a single feature in develop branch.
-  >
-  > [Learn more about autosquashing Git commits][autosquashing-git-commits-url].
+> ⌦ You can use `--autosquash` to squash all your commits to a single commit. Nobody wants many commits for a single feature in develop branch.
+>
+> [Learn more about autosquashing Git commits][autosquashing-git-commits-url].
 
-- #### 2.2.7. Resolve conflicts (if any occur), and continue rebase.
+### 6.2.7. Resolve conflicts (if any occur), and continue rebase.
 
-  ```sh
-  git add <file1> <file2> ...
-  git rebase --continue
-  ```
+```sh
+git add <file1> <file2> ...
+git rebase --continue
+```
 
-  [Learn more about resolving conflicts][git-resolve-conflicts-url].
+[Learn more about resolving conflicts][git-resolve-conflicts-url].
 
-- #### 2.2.8. Push your branch with the `-f` flag (if necessary).
+### 6.2.8. Push your branch with the `-f` flag (if necessary).
 
-  Rebase changes history, so you might need to force changes into the `remote` branch with the `-f` flag. If someone else is working on your branch, use the less destructive `--force-with-lease`.
+Rebase changes history, so you might need to force changes into the `remote` branch with the `-f` flag. If someone else is working on your branch, use the less destructive `--force-with-lease`.
 
-  ```sh
-  git push -f
-  ```
+```sh
+git push -f
+```
 
-  _Why:_
+_Why:_
 
-  > ⌦ When you do a rebase, you are changing the history on your topic branch. As a result, Git will reject normal `git push`. Instead, you'll need to use the -f or --force flag.
-  >
-  > [Learn more about `--force-with-lease`][force-with-lease-url].
+> ⌦ When you do a rebase, you are changing the history on your topic branch. As a result, Git will reject normal `git push`. Instead, you'll need to use the -f or --force flag.
+>
+> [Learn more about `--force-with-lease`][force-with-lease-url].
 
-- #### 2.2.9. Submit a Pull Request.
+### 6.2.9. Submit a Pull Request.
 
-- #### 2.2.10. Once accepted, the Pull request will be merged, closed, and deleted by an administrator.
+### 6.2.10. Once accepted, the Pull request will be merged, closed, and deleted by an administrator.
 
-- #### 2.2.11. Remove your local topic branch if you're done.
+### 6.2.11. Remove your local topic branch if you're done.
 
-  ```sh
-  git branch -d <branchname>
-  ```
+```sh
+git branch -d <branchname>
+```
 
-  to remove all branches which are no longer on remote
+to remove all branches which are no longer on remote
 
-  ```sh
-  git fetch -p && \
-    for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; \
-      do git branch -D $branch; \
-    done
-  ```
+```sh
+git fetch -p && \
+  for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; \
+    do git branch -D $branch; \
+  done
+```
 
 ## 3. **Code standards**
 
 [![JavaScript Style Guide][standard-js-badge-image]][standard-js-url] [![ESLint logo][eslint-logo-image]][eslint-url]
 
-* ### 3.1. Use the Standard JS Style.
+### 3.1. Use the Standard JS Style.
 
-  `readme-inspector` follows the [Standard JS Style][standard-js-url].
+`readme-inspector` follows the [Standard JS Style][standard-js-url].
 
-* ### 3.2. Use ESLint to analyze source code.
+### 3.2. Use ESLint to analyze source code.
 
-  _Why:_
+_Why:_
 
-  > ⌦ [ESLint][eslint-url] evaluates JavaScript code (and `--fix`es what it can) whenever `npm test` runs. You can run ESLint directly with:
+> ⌦ [ESLint][eslint-url] evaluates JavaScript code (and `--fix`es what it can) whenever `npm test` runs. You can run ESLint directly with:
 
-  ```shell
-  npm run lint:js
-  ```
+```shell
+npm run lint:js
+```
 
-  >
+>
 
-  View [`readme-inspector's` ESLint rules][eslint-rules-table-url] and their enforcement.
+View [`readme-inspector's` ESLint rules][eslint-rules-table-url] and their enforcement.
 
 ## 4. **Unit testing**
 
 [![Jest JavaScript Testing][jest-logo-image]][jest-url]
 
-* ### 4.1. Write Jest tests.
+### 4.1. Write Jest tests.
 
-  _Why:_
+_Why:_
 
-  > ⌦ Behavior-driven development specifications are executable documentation.
+> ⌦ Behavior-driven development specifications are executable documentation.
 
-  * **Put test files in the \*\*test\*\* directory.**
+1.  **Put test files in the \*\*test\*\1. directory.**
 
-  * **Use the `.spec.js` suffix for all tests.**
+1.  **Use the `.spec.js` suffix for all tests.**
 
-* ### 4.2. Reach 100% code coverage.
+### 4.2. Reach 100% code coverage.
 
-  _Why:_
+_Why:_
 
-  > ⌦ Full coverage makes automated dependency drift updates safer.
+> ⌦ Full coverage makes automated dependency drift updates safer.
 
-  * View a test coverage summary in the Terminal:
+1.  View a test coverage summary in the Terminal:
+
 
     ```shell
     npm test
@@ -567,7 +559,7 @@
     ----------|----------|----------|----------|----------|----------------|
     ```
 
-  * Open `/coverage/lcov-report/index.html` in a Web browser to view detailed coverage reports.
+1.  Open `/coverage/lcov-report/index.html` in a Web browser to view detailed coverage reports.
 
 ## 5. **Directory structure**
 
@@ -666,316 +658,318 @@
 
 ![APIs][icon-rest-api-image]
 
-* ### 8.1 **API design**
+### 8.1 **API design**
 
-  _Why:_
+We try to enforce development of sanely constructed RESTful interfaces, which team members and clients can consume simply and consistently.
 
-  > ⌦ Because we try to enforce development of sanely constructed RESTful interfaces, which team members and clients can consume simply and consistently.
+Lack of consistency and simplicity can massively increase integration and maintenance costs, which is why `API design` is included in this document.
 
-  _Why:_
+1.  We mostly follow resource-oriented design. It has three main factors: resources, collection, and URLs.
 
-  > ⌦ Lack of consistency and simplicity can massively increase integration and maintenance costs. Which is why `API design` is included in this document.
+1.  A resource has data, gets nested, and there are methods that operate against it.
+1.  A group of resources is called a collection.
+1.  URL identifies the online location of resource or collection.
 
-- We mostly follow resource-oriented design. It has three main factors: resources, collection, and URLs.
+    _Why:_
 
-  * A resource has data, gets nested, and there are methods that operate against it.
-  * A group of resources is called a collection.
-  * URL identifies the online location of resource or collection.
+    > ⌦ This is a very well-known design to developers (your main API consumers). Apart from readability and ease of use, it allows us to write generic libraries and connectors without even knowing what the API is about.
 
-  _Why:_
+1.  Use kebab-case for URLs.
+1.  Use camelCase for parameters in the query string or resource fields.
+1.  Use plural kebab-case for resource names in URLs.
 
-  > ⌦ This is a very well-known design to developers (your main API consumers). Apart from readability and ease of use, it allows us to write generic libraries and connectors without even knowing what the API is about.
+1.  Always use a plural nouns for naming a url pointing to a collection: `/users`.
 
-- Use kebab-case for URLs.
-- Use camelCase for parameters in the query string or resource fields.
-- Use plural kebab-case for resource names in URLs.
+    _Why:_
 
-- Always use a plural nouns for naming a url pointing to a collection: `/users`.
+    > ⌦ Basically, it reads better and keeps URLs consistent. [read more...](https://apigee.com/about/blog/technology/restful-api-design-plural-nouns-and-concrete-names)
 
-  _Why:_
+1.  In the source code convert plurals to variables and properties with a List suffix.
 
-  > ⌦ Basically, it reads better and keeps URLs consistent. [read more...](https://apigee.com/about/blog/technology/restful-api-design-plural-nouns-and-concrete-names)
+    _Why_:
 
-- In the source code convert plurals to variables and properties with a List suffix.
+    > ⌦ Plural is nice in the URL but in the source code, it’s just too subtle and error-prone.
 
-  _Why_:
+1.  Always use a singular concept that starts with a collection and ends to an identifier:
 
-  > ⌦ Plural is nice in the URL but in the source code, it’s just too subtle and error-prone.
+    ```http
+    /students/245743
+    /airports/kjfk
+    ```
 
-- Always use a singular concept that starts with a collection and ends to an identifier:
+1.  Avoid URLs like this:
 
-  ```
-  /students/245743
-  /airports/kjfk
-  ```
+    ```http
+    GET /blogs/:blogId/posts/:postId/summary
+    ```
 
-- Avoid URLs like this:
+    _Why:_
 
-  ```
-  GET /blogs/:blogId/posts/:postId/summary
-  ```
+    > ⌦ This is not pointing to a resource but to a property instead. You can pass the property as a parameter to trim your response.
 
-  _Why:_
+1.  Keep verbs out of your resource URLs.
 
-  > ⌦ This is not pointing to a resource but to a property instead. You can pass the property as a parameter to trim your response.
+    _Why:_
 
-- Keep verbs out of your resource URLs.
+    > ⌦ Because if you use a verb for each resource operation you soon will have a huge list of URLs and no consistent pattern which makes it difficult for developers to learn. Plus we use verbs for something else.
 
-  _Why:_
+1.  Use verbs for non-resources. In this case, your API doesn't return any resources. Instead, you execute an operation and return the result. These \**are not*1. CRUD (create, retrieve, update, and delete) operations:
 
-  > ⌦ Because if you use a verb for each resource operation you soon will have a huge list of URLs and no consistent pattern which makes it difficult for developers to learn. Plus we use verbs for something else.
+    ```http
+    /translate?text=Hallo
+    ```
 
-- Use verbs for non-resources. In this case, your API doesn't return any resources. Instead, you execute an operation and return the result. These **are not** CRUD (create, retrieve, update, and delete) operations:
+    _Why:_
 
-  ```
-  /translate?text=Hallo
-  ```
+    > ⌦ Because for CRUD we use HTTP methods on `resource` or `collection` URLs. The verbs we were talking about are actually `Controllers`. You usually don't develop many of these. [read more...](https://byrondover.github.io/post/restful-api-guidelines/#controller)
 
-  _Why:_
+1.  The request body or response type is JSON then please follow `camelCase` for `JSON` property names to maintain the consistency.
 
-  > ⌦ Because for CRUD we use HTTP methods on `resource` or `collection` URLs. The verbs we were talking about are actually `Controllers`. You usually don't develop many of these. [read more...](https://byrondover.github.io/post/restful-api-guidelines/#controller)
+    _Why:_
 
-- The request body or response type is JSON then please follow `camelCase` for `JSON` property names to maintain the consistency.
+    > ⌦ This is a JavaScript project guideline, Where Programming language for generating JSON as well as Programming language for parsing JSON are assumed to be JavaScript.
 
-  _Why:_
+1.  Even though a resource is a singular concept that is similar to an object instance or database record, you should not use your `table_name` for a resource name and `column_name` resource property.
 
-  > ⌦ This is a JavaScript project guideline, Where Programming language for generating JSON as well as Programming language for parsing JSON are assumed to be JavaScript.
+    _Why:_
 
-- Even though a resource is a singular concept that is similar to an object instance or database record, you should not use your `table_name` for a resource name and `column_name` resource property.
+    > ⌦ Because your intention is to expose Resources, not your database schema details.
 
-  _Why:_
+1.  Again, only use nouns in your URL when naming your resources and don’t try to explain their functionality.
 
-  > ⌦ Because your intention is to expose Resources, not your database schema details.
+    _Why:_
 
-- Again, only use nouns in your URL when naming your resources and don’t try to explain their functionality.
+    > ⌦ Only use nouns in your resource URLs, avoid endpoints like `/addNewUser` or `/updateUser` . Also avoid sending resource operations as a parameter.
 
-  _Why:_
+1.  Explain the CRUD functionalities using HTTP methods:
 
-  > ⌦ Only use nouns in your resource URLs, avoid endpoints like `/addNewUser` or `/updateUser` . Also avoid sending resource operations as a parameter.
+    _How:_
 
-- Explain the CRUD functionalities using HTTP methods:
+    > `GET`: Retrieve a representation of a resource.
+    >
+    > `POST`: Create new resources and sub-resources.
+    >
+    > `PUT`: Replace existing resources.
+    >
+    > `PATCH`: Update existing resources. It only updates the fields that were supplied, leaving the others alone.
+    >
+    > `DELETE`: Delete existing resources.
 
-  _How:_
+1.  For nested resources, use the relation between them in the URL. For instance, using `id` to relate an employee to a company.
 
-  > `GET`: Retrieve a representation of a resource.
+    _Why:_
 
-  > `POST`: Create new resources and sub-resources.
-
-  > `PUT`: Replace existing resources.
-
-  > `PATCH`: Update existing resources. It only updates the fields that were supplied, leaving the others alone.
-
-  > `DELETE`: Delete existing resources.
-
-* For nested resources, use the relation between them in the URL. For instance, using `id` to relate an employee to a company.
-
-  _Why:_
-
-  > ⌦ This is a natural way to make resources explorable.
-
-  _How:_
-
-  > `GET /schools/2/students` , should get the list of all students from school 2.
-
-  > `GET /schools/2/students/31` , should get the details of student 31, which belongs to school 2.
-
-  > `DELETE /schools/2/students/31` , should delete student 31, which belongs to school 2.
-
-  > `PUT /schools/2/students/31` , should update info of student 31, Use PUT on resource-URL only, not collection.
-
-  > `POST /schools` , should create a new school and return the details of the new school created. Use POST on collection-URLs.
-
-* Use a simple ordinal number for a version with a `v` prefix (v1, v2). Move it all the way to the left in the URL so that it has the highest scope:
-
-  ```
-  http://api.domain.com/v1/schools/3/students
-  ```
-
-  _Why:_
-
-  > ⌦ When your APIs are public for other third parties, upgrading the APIs with some breaking change would also lead to breaking the existing products or services using your APIs. Using versions in your URL can prevent that from happening. [read more...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
-
-* Response messages must be self-descriptive. A good error message response might look something like this:
-
-  ```json
-  {
-    "code": 404,
-    "level": "ERROR",
-    "logger": "[http-logger]",
-    "message":
-      "No resource found at URL /archetypes/v1/locales/iso-country-codes/BS",
-    "timestamp": 1504878062000
-  }
-  ```
-
-  or for validation errors:
-
-  ```json
-  {
-    "code": 400,
-    "logger": "[registration-form-logger]",
-    "level": "ERROR",
-    "timestamp": 1504878062000,
-    "message": "Validation Failed",
-    "stack": [
-      {
-        "code": 1233,
-        "field": "email",
-        "message": "Invalid email"
-      },
-      {
-        "code": 1234,
-        "field": "password",
-        "message": "No password provided"
-      }
-    ]
-  }
-  ```
-
-  _Why:_
-
-  > ⌦ Developers depend on well-designed errors at the critical times when they are troubleshooting and resolving issues after the applications they've built using your APIs are in the hands of their users.
-
-  _Note: Keep security exception messages as generic as possible. For instance, Instead of saying ‘incorrect password’, you can reply back saying ‘invalid username or password’ so that we don’t unknowingly inform user that username was indeed correct and only the password was incorrect._
-
-* Use only these 8 status codes to send with you response to describe whether **everything worked**,
-  The **client app did something wrong** or The **API did something wrong**.
-
-  _Which ones:_
-
-  > `200 OK` response represents success for `GET`, `PUT` or `POST` requests.
-  >
-  > `201 Created` for when new instance is created. Creating a new instance, using `POST` method returns `201` status code.
-  >
-  > `304 Not Modified` response is to minimize information transfer when the recipient already has cached representations.
-  >
-  > `400 Bad Request` for when the request was not processed, as the server could not understand what the client is asking for.
-  >
-  > `401 Unauthorized` for when the request lacks valid credentials and it should re-request with the required credentials.
-  >
-  > `403 Forbidden` means the server understood the request but refuses to authorize it.
-  >
-  > `404 Not Found` indicates that the requested resource was not found.
-  >
-  > `500 Internal Server Error` indicates that the request is valid, but the server could not fulfill it due to some unexpected condition.
-
-  _Why:_
-
-  > ⌦ Most API providers use a small subset HTTP status codes. For example, the Google GData API uses only 10 status codes, Netflix uses 9, and Digg, only 8. Of course, these responses contain a body with additional information.There are over 70 HTTP status codes. However, most developers don't have all 70 memorized. So if you choose status codes that are not very common you will force application developers away from building their apps and over to wikipedia to figure out what you're trying to tell them. [read more...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
-
-- Provide total numbers of resources in your response.
-- Accept `limit` and `offset` parameters.
-
-- The amount of data the resource exposes should also be taken into account. The API consumer doesn't always need the full representation of a resource.Use a fields query parameter that takes a comma separated list of fields to include:
-  ```
-  GET /student?fields=id,name,age,class
-  ```
-- Pagination, filtering, and sorting don’t need to be supported from start for all resources. Document those resources that offer filtering and sorting.
-
-- ### 8.2 **API security**
-
-  These are some basic security best practices:
-
-  * Don't use basic authentication unless over a secure connection (HTTPS). Authentication tokens must not be transmitted in the URL: `GET /users/123?token=asdf....`
+    > ⌦ This is a natural way to make resources explorable.
+    >
+    > _How:_
+    >
+    > `GET /schools/2/students` , should get the list of all students from school 2.
+    >
+    > `GET /schools/2/students/31` , should get the details of student 31, which belongs to school 2.
+    >
+    > `DELETE /schools/2/students/31` , should delete student 31, which belongs to school 2.
+    >
+    > `PUT /schools/2/students/31` , should update info of student 31, Use PUT on resource-URL only, not collection.
+    >
+    > `POST /schools` , should create a new school and return the details of the new school created. Use POST on collection-URLs.
+
+1.  Use a simple ordinal number for a version with a `v` prefix (v1, v2). Move it all the way to the left in the URL so that it has the highest scope:
+
+    ```http
+    http://api.domain.com/v1/schools/3/students
+    ```
+
+    _Why:_
+
+    > ⌦ When your APIs are public for other third parties, upgrading the APIs with some breaking change would also lead to breaking the existing products or services using your APIs. Using versions in your URL can prevent that from happening. [read more...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
+
+1.  Response messages must be self-descriptive. A good error message response might look something like this:
+
+    ```json
+    {
+      "code": 404,
+      "level": "ERROR",
+      "logger": "[http-logger]",
+      "message":
+        "No resource found at URL /archetypes/v1/locales/iso-country-codes/BS",
+      "timestamp": 1504878062000
+    }
+    ```
+
+    or for validation errors:
+
+    ```json
+    {
+      "code": 400,
+      "logger": "[registration-form-logger]",
+      "level": "ERROR",
+      "timestamp": 1504878062000,
+      "message": "Validation Failed",
+      "stack": [
+        {
+          "code": 1233,
+          "field": "email",
+          "message": "Invalid email"
+        },
+        {
+          "code": 1234,
+          "field": "password",
+          "message": "No password provided"
+        }
+      ]
+    }
+    ```
+
+    _Why:_
+
+    > ⌦ Developers depend on well-designed errors at the critical times when they are troubleshooting and resolving issues after the applications they've built using your APIs are in the hands of their users.
+
+    ---
+
+    _![alert][octicon-alert] **Keep security exception messages as generic as possible.**_ For instance, instead of saying ‘incorrect password’, you can reply back saying ‘invalid username or password’ so that we don’t unknowingly inform user that username was indeed correct and only the password was incorrect.
+
+    ---
+
+1.  Use only these 8 status codes to send with you response to describe whether **everything worked**,
+    The **client app did something wrong\*1. or The **API did something wrong\*\*.
+
+    _Which ones:_
+
+    > `200 OK` response represents success for `GET`, `PUT` or `POST` requests.
+    >
+    > `201 Created` for when new instance is created. Creating a new instance, using `POST` method returns `201` status code.
+    >
+    > `304 Not Modified` response is to minimize information transfer when the recipient already has cached representations.
+    >
+    > `400 Bad Request` for when the request was not processed, as the server could not understand what the client is asking for.
+    >
+    > `401 Unauthorized` for when the request lacks valid credentials and it should re-request with the required credentials.
+    >
+    > `403 Forbidden` means the server understood the request but refuses to authorize it.
+    >
+    > `404 Not Found` indicates that the requested resource was not found.
+    >
+    > `500 Internal Server Error` indicates that the request is valid, but the server could not fulfill it due to some unexpected condition.
+
+    _Why:_
+
+    > ⌦ Most API providers use a small subset HTTP status codes. For example, the Google GData API uses only 10 status codes, Netflix uses 9, and Digg, only 8. Of course, these responses contain a body with additional information.There are over 70 HTTP status codes. However, most developers don't have all 70 memorized. So if you choose status codes that are not very common you will force application developers away from building their apps and over to wikipedia to figure out what you're trying to tell them. [read more...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
+
+1.  Provide total numbers of resources in your response.
+1.  Accept `limit` and `offset` parameters.
+
+1.  The amount of data the resource exposes should also be taken into account. The API consumer doesn't always need the full representation of a resource.Use a fields query parameter that takes a comma separated list of fields to include:
+
+    ```http
+    GET /student?fields=id,name,age,class
+    ```
+
+1.  Pagination, filtering, and sorting don’t need to be supported from start for all resources. Document those resources that offer filtering and sorting.
+
+### 8.2 **API security**
+
+These are some basic security best practices:
+
+1.  Don't use basic authentication unless over a secure connection (HTTPS). Authentication tokens must not be transmitted in the URL: `GET /users/123?token=asdf....`
 
     _Why:_
 
     > ⌦ Because Token, or user ID and password are passed over the network as clear text (it is base64 encoded, but base64 is a reversible encoding), the basic authentication scheme is not secure. [read more...](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
 
-  * Tokens must be transmitted using the Authorization header on every request: `Authorization: Bearer xxxxxx, Extra yyyyy`.
+1.  Tokens must be transmitted using the Authorization header on every request: `Authorization: Bearer xxxxxx, Extra yyyyy`.
 
-  * Authorization Code should be short-lived.
+1.  Authorization Code should be short-lived.
 
-  * Reject any non-TLS requests by not responding to any HTTP request to avoid any insecure data exchange. Respond to HTTP requests by `403 Forbidden`.
+1.  Reject any non-TLS requests by not responding to any HTTP request to avoid any insecure data exchange. Respond to HTTP requests by `403 Forbidden`.
 
-  * Consider using Rate Limiting.
+1.  Consider using Rate Limiting.
 
     _Why:_
 
     > ⌦ To protect your APIs from bot threats that call your API thousands of times per hour. You should consider implementing rate limit early on.
 
-  * Setting HTTP headers appropriately can help to lock down and secure your web application. [read more...](https://github.com/helmetjs/helmet)
+1.  Setting HTTP headers appropriately can help to lock down and secure your web application. [read more...](https://github.com/helmetjs/helmet)
 
-  * Your API should convert the received data to their canonical form or reject them. Return 400 Bad Request with details about any errors from bad or missing data.
+1.  Your API should convert the received data to their canonical form or reject them. Return 400 Bad Request with details about any errors from bad or missing data.
 
-  * All the data exchanged with the ReST API must be validated by the API.
+1.  All the data exchanged with the ReST API must be validated by the API.
 
-  * Serialize your JSON.
+1.  Serialize your JSON.
 
     _Why:_
 
     > ⌦ A key concern with JSON encoders is preventing arbitrary JavaScript remote code execution within the browser... or, if you're using node.js, on the server. It's vital that you use a proper JSON serializer to encode user-supplied data properly to prevent the execution of user-supplied input on the browser.
 
-  * Validate the content-type and mostly use `application/*json` (Content-Type header).
+1.  Validate the content-type and mostly use `application/*json` (Content-Type header).
 
     _Why:_
 
     > ⌦ For instance, accepting the `application/x-www-form-urlencoded` mime type allows the attacker to create a form and trigger a simple POST request. The server should never assume the Content-Type. A lack of Content-Type header or an unexpected Content-Type header should result in the server rejecting the content with a `4XX` response.
 
-- ### 8.3 **API documentation**
+### 8.3 **API documentation**
 
-  * Fill the `API Reference` section in [README.md template](./README.sample.md) for API.
-  * Describe API authentication methods with a code sample.
-  * Explaining The URL Structure (path only, no root URL) including The request type (Method).
+1.  Fill the \**API*1. section in the README for API.
+1.  Describe API authentication methods with a code sample.
+1.  Explaining The URL Structure (path only, no root URL) including The request type (Method). For each endpoint explain:
 
-  For each endpoint explain:
+1.  URL Params If URL Params exist, specify them in accordance with name mentioned in URL section:
 
-  * URL Params If URL Params exist, specify them in accordance with name mentioned in URL section:
-
-    ```
+    ```http
     Required: id=[integer]
     Optional: photo_id=[alphanumeric]
     ```
 
-  * If the request type is POST, provide working examples. URL Params rules apply here too. Separate the section into Optional and Required.
+1.  If the request type is POST, provide working examples. URL Params rules apply here too. Separate the section into Optional and Required.
 
-  * **Success Responses.** What should be the status code and is there any return data? This is useful when people need to know what their callbacks should expect:
+1.  \**Success Responses.*1. What should be the status code and is there any return data? This is useful when people need to know what their callbacks should expect:
 
-    ```
+    ```http
     Code: 200
     Content: { id : 12 }
     ```
 
-  * **Error Responses.** Most endpoints have many ways to fail. From unauthorized access to wrongful parameters etc. All of those should be listed here. It might seem repetitive, but it helps prevent assumptions from being made. For example:
+1.  \**Error Responses.*1. Most endpoints have many ways to fail. From unauthorized access to wrongful parameters etc. All of those should be listed here. It might seem repetitive, but it helps prevent assumptions from being made. For example:
 
-    * **HTTP status code**
 
-      ```
-      404 Not Found
-      ```
+    1. **HTTP status code**
 
-    * **Response body**
+        ```http
+        404 Not Found
+        ```
 
-      ```json
-      {
-        "code": 404,
-        "level": "ERROR",
-        "logger": "[http-logger]",
-        "message":
-          "No resource found at URL /archetypes/v1/locales/iso-country-codes/BS",
-        "timestamp": 1504878062000
-      }
-      ```
+    1. **Response body**
 
-    * **Response headers**
-      ```
-      accept-ranges: bytes
-      access-control-allow-headers: Authorization
-      access-control-allow-methods: GET, HEAD, OPTIONS
-      access-control-allow-origin: *
-      cache-control: public, no-transform, must-revalidate
-      connection: keep-alive
-      content-encoding: gzip
-      content-language: en-US
-      content-length: 149
-      content-type: application/json
-      date: Fri, 08 Sep 2017 06:41:02 GMT
-      last-modified: Tue, 1 Oct 2014 10:10:10 GMT
-      server: nginx/1.12.1
-      vary: Accept-Encoding
-      ```
+        ```json
+        {
+          "code": 404,
+          "level": "ERROR",
+          "logger": "[http-logger]",
+          "message":
+            "No resource found at URL /archetypes/v1/locales/iso-country-codes/BS",
+          "timestamp": 1504878062000
+        }
+        ```
 
-  * Use API design tools, There are lots of open source tools for good documentation such as [API Blueprint](https://apiblueprint.org/) and [Swagger](https://swagger.io/).
+    1. **Response headers**
+
+        ```http
+        accept-ranges: bytes
+        access-control-allow-headers: Authorization
+        access-control-allow-methods: GET, HEAD, OPTIONS
+        access-control-allow-origin: *
+        cache-control: public, no-transform, must-revalidate
+        connection: keep-alive
+        content-encoding: gzip
+        content-language: en-US
+        content-length: 149
+        content-type: application/json
+        date: Fri, 08 Sep 2017 06:41:02 GMT
+        last-modified: Tue, 1 Oct 2014 10:10:10 GMT
+        server: nginx/1.12.1
+        vary: Accept-Encoding
+        ```
+
+1.  Use API design tools, There are lots of open source tools for good documentation such as [API Blueprint](https://apiblueprint.org/) and [Swagger](https://swagger.io/).
 
 ## 9. **Licensing**
 
@@ -1006,7 +1000,7 @@ Make sure you use resources that you have the rights to use. If you use librarie
 [gh-create-account-url]: https://github.com/signup/free
 [gh-git-labelmaker-url]: https://github.com/himynameisdave/git-labelmaker
 [gh-try-github-url]: https://try.github.io/levels/1/challenges/1
-[git-commit-guidelines-url]: https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#commit
+[git-commit-guidelines-url]: https://github.com/commonality/readme-inspector.js/blob/master/CONTRIBUTING.md#commit
 [git-resolve-conflicts-url]: https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/
 [icon-bitbucket-20-image]: ./assets/img/icons8/icon-bitbucket-20.png
 [icon-git-logo-image]: ./assets/img/icons8/git-logo.png
@@ -1015,10 +1009,10 @@ Make sure you use resources that you have the rights to use. If you use librarie
 [icon-issue-image]: ./assets/img/icons8/icon-issues.png
 [icon-pr-image]: ./assets/img/icons8/icon-pr.png
 [icon-rest-api-image]: ./assets/img/icons8/icon-rest-api.png
-[issues-new-defect-image]: https://img.shields.io/badge/report---defect---lightgrey.svg?style=for-the-badge&label=report+a
+[issues-new-defect-image]: https://img.shields.io/badge/report-defect-F5CB5C.svg?style=for-the-badge&label=report+a
 [issues-new-defect-url]: /commonality/readme-inspector.git/issues/new?title=defect%28scope%29%3A+summary-of-change&labels=priority%3A+medium%2Cstatus%3A+review+needed%2Ctype%3A+defect&body=%2A%2A%F0%9F%92%A1+TIP%3A%2A%2A+Select+the+%E2%86%96%EF%B8%8E%E2%8E%BE+Preview+%E2%8F%8B+Tab+above+help+read+these+instructions.%0D%0A%0D%0A%23%23+1.+Issue+type%0D%0A%3E%E2%8C%A6+Type+the+letter+%22x%22+in+the+%22checkbox%22+the+best+describe+this+issue.%0D%0A%0D%0A-+%5Bx%5D+**Feature%3A**+I%27m+requesting+a+product+enhancement.%0D%0A%0D%0A%23%23+2.+User+story+summary%0D%0A%3E%E2%8C%A6+Describe+what+you+want+to+accomplish%2C+in+what+role%2Fcapacity%2C+and+why+it%27s+important+to+you.%0D%0A%0D%0A%3E+**EXAMPLE%3A**%0D%0A%3E+As+a+Applicant%2C%0D%0A%3E+I+want+to+submit+my+resume%0D%0A%3E+In+order+to+be+considered+for+a+job+opening.%0D%0A%0D%0AAs+a+%7Brole%7D%2C%0D%0AI+must%2Fneed%2Fwant%2Fshould+%7Bdo+something%7D%0D%0AIn+order+to+%7Bachieve+value%7D.%0D%0A%0D%0A%23%23+3.+Acceptance+criteria%0D%0A%3E%E2%8C%A6+Replace+the+examples+below+with+your+own+imperative%2C+%22true%2Ffalse%22+statements+for+the+**behavior+you+expect**+to+see%2C+or+the+behavior+that+**would**+be+true+if+there+were+no+errors+%28for+defects%29.%0D%0A%0D%0A-+%5B+%5D+1.+Job+Applicants+receive+a+confirmation+email+after+they+submit+their+resumes.%0D%0A-+%5B+%5D+2.+An+Applicant%27s+resume+information+isn%27t+lost+when+errors+occur.%0D%0A-+%5B+%5D+3.+%7Bcriterion-three%7D%0D%0A-+%5B+%5D+4.+%7Bcriterion-four%7D%0D%0A%0D%0A%3C%21--+%E2%9B%94%EF%B8%8F++Do+not+remove+anything+below+this+comment.+%E2%9B%94%EF%B8%8F++--%3E%0D%0A%5Bicon-info-image%5D%3A+..%2Fdocs%2Fimg%2Ficons8%2Ficon-info-50.png%0D%0A
 [issues-new-defect-url]: https://github.com/commonality/readme-inspector/issues/new?title=defect%28scope%29%3A+summary-of-problem&labels=priority%3A+medium%2Cstatus%3A+review+needed%2Ctype%3A+defect&body=%2A%2A%F0%9F%92%A1+TIP%3A%2A%2A+Select+the+%E2%86%96%EF%B8%8E%E2%8E%BE+Preview+%E2%8F%8B+Tab+above+help+read+these+instructions.%0D%0A%0D%0A%23%23+1.+Issue+type%0D%0A%3E%E2%8C%A6+Type+the+letter+%22x%22+in+the+%22checkbox%22+the+best+describe+this+issue.%0D%0A%0D%0A-+%5Bx%5D+**Feature%3A**+I%27m+requesting+a+product+enhancement.%0D%0A%0D%0A%23%23+2.+User+story+summary%0D%0A%3E%E2%8C%A6+Describe+what+you+want+to+accomplish%2C+in+what+role%2Fcapacity%2C+and+why+it%27s+important+to+you.%0D%0A%0D%0A%3E+**EXAMPLE%3A**%0D%0A%3E+As+a+Applicant%2C%0D%0A%3E+I+want+to+submit+my+resume%0D%0A%3E+In+order+to+be+considered+for+a+job+opening.%0D%0A%0D%0AAs+a+%7Brole%7D%2C%0D%0AI+must%2Fneed%2Fwant%2Fshould+%7Bdo+something%7D%0D%0AIn+order+to+%7Bachieve+value%7D.%0D%0A%0D%0A%23%23+3.+Acceptance+criteria%0D%0A%3E%E2%8C%A6+Replace+the+examples+below+with+your+own+imperative%2C+%22true%2Ffalse%22+statements+for+the+**behavior+you+expect**+to+see%2C+or+the+behavior+that+**would**+be+true+if+there+were+no+errors+%28for+defects%29.%0D%0A%0D%0A-+%5B+%5D+1.+Job+Applicants+receive+a+confirmation+email+after+they+submit+their+resumes.%0D%0A-+%5B+%5D+2.+An+Applicant%27s+resume+information+isn%27t+lost+when+errors+occur.%0D%0A-+%5B+%5D+3.+%7Bcriterion-three%7D%0D%0A-+%5B+%5D+4.+%7Bcriterion-four%7D%0D%0A%0D%0A%3C%21--+%E2%9B%94%EF%B8%8F++Do+not+remove+anything+below+this+comment.+%E2%9B%94%EF%B8%8F++--%3E%0D%0A%5Bicon-info-image%5D%3A+..%2Fdocs%2Fimg%2Ficons8%2Ficon-info-50.png%0D%0A
-[issues-new-feat-image]: https://img.shields.io/badge/request---feature---blue.svg?style=for-the-badge&label=request+a
+[issues-new-feat-image]: https://img.shields.io/badge/request-feature-c1ccc6.svg?style=for-the-badge&label=request+a
 [issues-new-feat-url]: /commonality/readme-inspector.git/issues/new?title=feat%28scope%29%3A+summary-of-change&labels=priority%3A+medium%2Cstatus%3A+review+needed%2Ctype%3A+feature&body=%2A%2A%F0%9F%92%A1+TIP%3A%2A%2A+Select+the+%E2%86%96%EF%B8%8E%E2%8E%BE+Preview+%E2%8F%8B+Tab+above+help+read+these+instructions.%0D%0A%0D%0A%23%23+1.+Issue+type%0D%0A%3E%E2%8C%A6+Type+the+letter+%22x%22+in+the+%22checkbox%22+the+best+describe+this+issue.%0D%0A%0D%0A-+%5Bx%5D+**Feature%3A**+I%27m+requesting+a+product+enhancement.%0D%0A%0D%0A%23%23+2.+User+story+summary%0D%0A%3E%E2%8C%A6+Describe+what+you+want+to+accomplish%2C+in+what+role%2Fcapacity%2C+and+why+it%27s+important+to+you.%0D%0A%0D%0A%3E+**EXAMPLE%3A**%0D%0A%3E+As+a+Applicant%2C%0D%0A%3E+I+want+to+submit+my+resume%0D%0A%3E+In+order+to+be+considered+for+a+job+opening.%0D%0A%0D%0AAs+a+%7Brole%7D%2C%0D%0AI+must%2Fneed%2Fwant%2Fshould+%7Bdo+something%7D%0D%0AIn+order+to+%7Bachieve+value%7D.%0D%0A%0D%0A%23%23+3.+Acceptance+criteria%0D%0A%3E%E2%8C%A6+Replace+the+examples+below+with+your+own+imperative%2C+%22true%2Ffalse%22+statements+for+the+**behavior+you+expect**+to+see%2C+or+the+behavior+that+**would**+be+true+if+there+were+no+errors+%28for+defects%29.%0D%0A%0D%0A-+%5B+%5D+1.+Job+Applicants+receive+a+confirmation+email+after+they+submit+their+resumes.%0D%0A-+%5B+%5D+2.+An+Applicant%27s+resume+information+isn%27t+lost+when+errors+occur.%0D%0A-+%5B+%5D+3.+%7Bcriterion-three%7D%0D%0A-+%5B+%5D+4.+%7Bcriterion-four%7D%0D%0A%0D%0A%3C%21--+%E2%9B%94%EF%B8%8F++Do+not+remove+anything+below+this+comment.+%E2%9B%94%EF%B8%8F++--%3E%0D%0A%5Bicon-info-image%5D%3A+..%2Fdocs%2Fimg%2Ficons8%2Ficon-info-50.png%0D%0A
 [issues-new-feat-url]: https://github.com/commonality/readme-inspector/issues/new?title=feat%28scope%29%3A+summary-of-change&labels=priority%3A+medium%2Cstatus%3A+review+needed%2Ctype%3A+feature&body=%2A%2A%F0%9F%92%A1+TIP%3A%2A%2A+Select+the+%E2%86%96%EF%B8%8E%E2%8E%BE+Preview+%E2%8F%8B+Tab+above+help+read+these+instructions.%0D%0A%0D%0A%23%23+1.+Issue+type%0D%0A%3E%E2%8C%A6+Type+the+letter+%22x%22+in+the+%22checkbox%22+the+best+describe+this+issue.%0D%0A%0D%0A-+%5Bx%5D+**Feature%3A**+I%27m+requesting+a+product+enhancement.%0D%0A%0D%0A%23%23+2.+User+story+summary%0D%0A%3E%E2%8C%A6+Describe+what+you+want+to+accomplish%2C+in+what+role%2Fcapacity%2C+and+why+it%27s+important+to+you.%0D%0A%0D%0A%3E+**EXAMPLE%3A**%0D%0A%3E+As+a+Applicant%2C%0D%0A%3E+I+want+to+submit+my+resume%0D%0A%3E+In+order+to+be+considered+for+a+job+opening.%0D%0A%0D%0AAs+a+%7Brole%7D%2C%0D%0AI+must%2Fneed%2Fwant%2Fshould+%7Bdo+something%7D%0D%0AIn+order+to+%7Bachieve+value%7D.%0D%0A%0D%0A%23%23+3.+Acceptance+criteria%0D%0A%3E%E2%8C%A6+Replace+the+examples+below+with+your+own+imperative%2C+%22true%2Ffalse%22+statements+for+the+**behavior+you+expect**+to+see%2C+or+the+behavior+that+**would**+be+true+if+there+were+no+errors+%28for+defects%29.%0D%0A%0D%0A-+%5B+%5D+1.+Job+Applicants+receive+a+confirmation+email+after+they+submit+their+resumes.%0D%0A-+%5B+%5D+2.+An+Applicant%27s+resume+information+isn%27t+lost+when+errors+occur.%0D%0A-+%5B+%5D+3.+%7Bcriterion-three%7D%0D%0A-+%5B+%5D+4.+%7Bcriterion-four%7D%0D%0A%0D%0A%3C%21--+%E2%9B%94%EF%B8%8F++Do+not+remove+anything+below+this+comment.+%E2%9B%94%EF%B8%8F++--%3E%0D%0A%5Bicon-info-image%5D%3A+..%2Fdocs%2Fimg%2Ficons8%2Ficon-info-50.png%0D%0A
 [issues-url]: /commonality/readme-inspector/issues
@@ -1040,7 +1034,7 @@ Make sure you use resources that you have the rights to use. If you use librarie
 [standard-version-url]: https://github.com/conventional-changelog/standard-version
 [tech-stack-image]: ./assets/img/icons8/icon-package-filled.png
 
-<!-- ⛔️ Octicon img references ⛔️  -->
+<!-- ⛔️ LINK REFERENCES(Begin) ⛔️  -->
 
 [octicon-alert]: https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/alert.svg
 [octicon-arrow-down]: https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/arrow-down.svg
@@ -1213,3 +1207,4 @@ Make sure you use resources that you have the rights to use. If you use librarie
 [octicon-versions]: https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/versions.svg
 [octicon-watch]: https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/watch.svg
 [octicon-x]: https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/x.svg
+[toc]: #table-of-contents

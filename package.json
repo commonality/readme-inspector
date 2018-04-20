@@ -41,15 +41,13 @@
     "got": "8.3.0",
     "insight": "0.10.1",
     "lodash.camelcase": "4.3.0",
-    "lodash.isstring": "4.0.1",
     "lodash.mapkeys": "4.6.0",
     "lodash.noop": "3.0.1",
-    "lodash.pickby": "4.6.0",
     "meow": "4.0.0"
   },
   "devDependencies": {
     "@semantic-release/changelog": "2.0.1",
-    "@semantic-release/git": "4.0.1",
+    "@semantic-release/git": "4.0.2",
     "@semantic-release/npm": "3.2.4",
     "ajv": "6.4.0",
     "ajv-keywords": "3.1.0",
@@ -97,6 +95,17 @@
   },
   "eslintIgnore": ["lib/__tests__/coverage/**", "docs/"],
   "files": ["lib"],
+  "greenkeeper": {
+    "commitMessages": {
+      "dependencyPin": "fix(${dependency}): pin to ${oldVersion}",
+      "dependencyUpdate": "fix(${dependency}): update to version ${version}",
+      "devDependencyPin": "fix(${dependency}): pin to ${oldVersion}",
+      "devDependencyUpdate": "fix(${dependency}): update to version ${version}",
+      "initialBadge": "docs(greenkeeper): add greenkeeper badge",
+      "initialBranches": "build(dependencies): whitelist greenkeeper branches",
+      "initialDependencies": "fix(pkg): update dependencies"
+    }
+  },
   "homepage": "https://github.com/commonality/readme-inspector/#readme",
   "jest": {
     "automock": false,
