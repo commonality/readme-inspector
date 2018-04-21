@@ -15,11 +15,13 @@ const config = {
 
 const main = () => {
   let markdownPath = path.join(__dirname, '**/*.md')
-  markdownMagic(markdownPath, config)
+  let index = 0
+  let paths = ['**/*.md', '../CONTRIBUTING.md', '../../docs/**/*.md']
 
-  markdownPath = path.join(__dirname, '..', 'CONTRIBUTING.md')
-  console.log(markdownPath)
-  markdownMagic(markdownPath, config)
+  paths.forEach(filePath => {
+    markdownPath = path.join(__dirname, filePath)
+    markdownMagic(markdownPath, config)
+  })
 }
 
 main()

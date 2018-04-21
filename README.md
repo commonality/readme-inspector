@@ -1,78 +1,96 @@
-# readme-inspector [![NPM version][npm-image]][npm-url]
+# readme-inspector [![NPM version][npm-image]][npm-url] [![GitHub release][github-release-image]][github-release-url]
 
 > <img align="middle" alt="markdown" height="50" width="50"  src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/markdown.svg"> Inspect GitHub (and GitHub Enterprise) repositories for the presence and quality of READMEs.
 
 [![The MIT License][license-image]][license-url]
-[![FOSSA Status][fossa-image]][fossa-url]<br>
+[![FOSSA Status][fossa-image]][fossa-url]
 [![NSP Status][nsp-image]][nsp-url]
+[![Known Vulnerabilities][vulnerabilities-image]][vulnerabilities-url]<br>
 [![Dependency Status][daviddm-image]][daviddm-url]
 [![Development Dependency Status][daviddm-dev-image]][daviddm-dev-url]<br>
 [![MacOS and Ubuntu build statuses][travis-image]][travis-url]
 [![Windows build status][appveyor-image]][appveyor-url]
 [![Coverage percentage][codacy-coverage-image]][codacy-url]
 [![Codacy code quality][codacy-image]][codacy-url]
+![Maintenance][maintenance-image]<br>
 [![NPMS score][npms-image]][npms-url]
 [![NPM downloads per month][npm-downloads-month]][npm-url]
 
 ## Table of contents
 
-<!-- ⛔️ AUTO-GENERATED-CONTENT:START (TOC:excludeText=Table of contents) -->
+<!-- 🚫 AUTO-GENERATED-CONTENT:START (TOC:excludeText=Table of contents) -->
 - [1. Installation](#1-installation)
+- [2. Configuration](#2-configuration)
 - [2. Usage](#2-usage)
 - [3. API](#3-api)
   * [3.1. `authenticate({token, type, key})`](#31-authenticatetoken-type-key)
     + [3.1.1. Parameters](#311-parameters)
     + [3.1.2. Returns `void`](#312-returns-void)
     + [3.1.3. Example](#313-example)
-  * [3.2. `check(ower, repo, ref)`](#32-checkower-repo-ref)
+  * [3.2. `check({ower, repo, ref})`](#32-checkower-repo-ref)
     + [3.2.1. Parameters](#321-parameters)
     + [3.2.2. Returns `Promise`](#322-returns-promise)
     + [3.2.3. Examples](#323-examples)
-  * [3.3. `getReadmeInfo(owner, repo, ref)`](#33-getreadmeinfoowner-repo-ref)
+  * [3.3. `getInfo({owner, repo, ref})`](#33-getinfoowner-repo-ref)
     + [3.3.1. Parameters](#331-parameters)
     + [3.3.2. Returns `Promise`](#332-returns-promise)
     + [3.3.3. Examples](#333-examples)
-  * [3.4. `getReadmeScore(url)`](#34-getreadmescoreurl)
-  * [3.5. `ReadmeScore`](#35-readmescore)
-    + [3.5.1. `for(url: String): Promise`](#351-forurl-string-promise)
+  * [3.4. `getAppraisal(url)`](#34-getappraisalurl)
+  * [3.5. `ReadmeAppraisal`](#35-readmeappraisal)
+    + [3.5.1. `for(url): Promise`](#351-forurl-promise)
       - [3.5.1.1. Parameters](#3511-parameters)
       - [3.5.1.2. Returns `Promise`](#3512-returns-promise)
       - [3.5.1.3. Examples](#3513-examples)
 - [4. Version](#4-version)
 - [5. Contributing](#5-contributing)
 - [6. License](#6-license)
-<!-- ⛔️ AUTO-GENERATED-CONTENT:END -->
+<!-- 🚫 AUTO-GENERATED-CONTENT:END -->
 
 ## 1. Installation
 
 `readme-inspector` is written in JavaScript (CommonJS) for [Node.js ![External link][octicon-link-external]](https://nodejs.org/) versions 7.6.0 or higher (for `async/await` support).
 
-```sh
+```bash
 $ npm install --save readme-inspector
 ```
 
-> ![light-bulb][octicon-light-bulb] **Recommendation:** To avoid rate-limiting, you should [create a personal access token ![External link][octicon-link-external]](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/) and save your personal access token in an environment variable called `GH_TOKEN`.
->
-> * **MacOS and Unix**
->
->   ```bash
->   $ mkdir -p /usr/local/etc/readme-inspector/envvars/
->   $ touch /usr/local/etc/readme-inspector/envvars/.env
->   $ echo "GH_TOKEN={your-personal-access-token-value}" > \
->     /usr/local/etc/readme-inspector/envvars/.env
->   ```
->
-> * **Windows**
->
->   ```shell
->    md -p C:\usr\local\etc\readme-inspector\envvars\
->    touch C:\usr\local\etc\readme-inspector\envvars\.env
->    echo "GH_TOKEN="{your-personal-access-token-value}" > C:\usr\local\etc\readme-inspector\envvars\.env
->   ```
+## 2. Configuration
+
+The `commonality/readme-inspector` module combines the mediator, proxy, and factory design patterns to simplify:
+
+* README detection with the `readmeInfo` object, and
+* Quality assessment with the `readmeInfo.appraisal` object.
+
+Since both of these features invoke Web services to return information, they both use `.env` variables
+that require configuration:
+
+```properties
+# 🔹 OPTIONAL env vars
+
+# API endpoint for the readme-score-api (with default value)
+API_ENDPOINT_README_SCORE="http://readme-score-api.herokuapp.com/score.json?url=&human_breakdown=false&force=false"
+
+# Google Analytics trackingCode (with default value)
+GA_README_INSPECTOR="UA-117338111-1"
+
+# 🔸 GitHub token variables to extend GitHub API rate limits
+#    from 60 requests per minute to 5,000 requests per minute:
+GH_TOKEN=
+GITHUB_ACCESS_TOKEN=
+```
+
+> ![light-bulb][octicon-light-bulb] **To avoid rate-limiting**, you should [create a personal access token ![External link][octicon-link-external]](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/) and save your personal access token in an environment variable called `GH_TOKEN`.
 
 ---
 
-<details><summary>Click here for detailed <samp>.env</samp> variable initialization instructions</summary><pre>
+<details><summary>Click here for detailed <samp>.env</samp> variable initialization instructions.</summary><p>
+
+> [![info][octicon-info] View **dotenv-extended**'s README ![External link][octicon-link-external]](https://github.com/keithmorris/node-dotenv-extended#readme) for detailed `.env` variable set up instructions.
+
+<h4><img align="bottom" alt="file" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/file.svg"> <samp>.env.schema</samp></h4>
+
+Defines a schema of what variables should be defined in the combination of
+<samp>.env</samp> and <samp>.env.defaults</samp>.
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./lib/.env.schema&syntax=properties) -->
 <!-- The below code snippet is automatically added from ./lib/.env.schema -->
@@ -98,6 +116,55 @@ GA_README_INSPECTOR=
 # 🔸 RECOMMENDED vars (to extend GitHub API rate limits)
 GH_TOKEN=
 GITHUB_ACCESS_TOKEN=
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<h4><img align="bottom" alt="file" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/file.svg"> <samp>.env.defaults</samp></h4>
+
+<samp>.env.defaults</samp> provides common configuration defaults across all
+environments (commited to source control). This contains overall app
+configuration values that would be common across environments. The
+<samp>.env.defaults</samp> file is loaded first; then the <samp>.env</samp>
+file is loaded and will overwrite any values from the <samp>.env.defaults</samp>
+file.
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=./lib/.env.defaults&syntax=properties) -->
+<!-- The below code snippet is automatically added from ./lib/.env.defaults -->
+```properties
+# .env.defaults, committed to repo
+
+## See https://github.com/keithmorris/node-dotenv-extended/#readme
+## ⛔️
+## 🚫  DO NOT COMMIT YOUR ACTUAL .env file to version control.
+## 🚫  It should only include environment-specific values such
+## 🚫  as database passwords or API keys.
+## 🚫  Your production database should have a different password
+## 🚫  than your development database.
+
+# ENV VARS defaults for readme-inspector:
+
+## Google Analytics trackingCode
+GA_README_INSPECTOR="UA-117338111-1"
+
+# ReadmeAppraisal
+API_ENDPOINT_README_SCORE="http://readme-score-api.herokuapp.com/score.json?url=&human_breakdown=false&force=false"
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<h4><img align="bottom" alt="file" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/file.svg"> <samp>.env</samp></h4>
+
+The environment-specific file (not committed to source control).
+This file will have sensitive information such as usernames, passwords,
+api keys, etc. These would be specific to each environment and **should
+not be committed to source control**.
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=./lib/.env&syntax=properties) -->
+<!-- The below code snippet is automatically added from ./lib/.env -->
+```properties
+API_ENDPOINT_README_SCORE="http://readme-score-api.herokuapp.com/score.json?url=&human_breakdown=false&force=false"
+GA_README_INSPECTOR="UA-117338111-1"
+GH_TOKEN=$GH_TOKEN
+GITHUB_ACCESS_TOKEN=$GH_TOKEN
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -144,9 +211,7 @@ console.log(JSON.stringify(results, null, WHITESPACE))
 // =>
 /*
 {
-  "err": null,
-  "isPresent": true,
-  "scoreData": {
+  "appraisal": {
     "breakdown": {
       "cumulativeCodeBlockLength": 0,
       "hasLists": 0,
@@ -156,10 +221,12 @@ console.log(JSON.stringify(results, null, WHITESPACE))
       "numberOfImages": 0,
       "numberOfNonCodeSections": 0
     },
-    "err": null,
+    "error": null,
     "score": 0,
     "url": null
   },
+  "error": null,
+  "isPresent": true,
   "value": {
     "name": "README.md",
     "path": "README.md",
@@ -186,6 +253,8 @@ console.log(JSON.stringify(results, null, WHITESPACE))
 ## 3. API
 
 > [![beaker][octicon-beaker] Test `readme-inspector` in your Web browser ![link-external][octicon-link-external]][runkit-readme-inspector-url].
+>
+> [![gear][octicon-gear] View the full API docs for details](docs/readme-inspector/1.0.2/ReadmeAppraisal.html).
 
 The `readmeInspector` module detects whether or not a README document exists at the root of a GitHub or GitHub Enterprise repository. If a README exists, it can evaluate the README's quality and provide a numerical score from 0 to 100, where 0 is the lowest quality and 100 is the highest.
 
@@ -227,7 +296,7 @@ The `readmeInspector` module detects whether or not a README document exists at 
 > })
 > ```
 
-### 3.2. `check(ower, repo, ref)`
+### 3.2. `check({ower, repo, ref})`
 
 A convenience method that
 
@@ -283,7 +352,7 @@ A convenience method that
 {
   'err': null,
   'isPresent': null,
-  'scoreData': {
+  'appraisal': {
     'breakdown': {
       'cumulativeCodeBlockLength': 0,
       'hasLists': 0,
@@ -326,9 +395,9 @@ A convenience method that
   >   .catch(err => {})
   > ```
 
-### 3.3. `getReadmeInfo(owner, repo, ref)`
+### 3.3. `getInfo({owner, repo, ref})`
 
-Retrieves README information _without_ any `ScoreData`.
+Retrieves README information _without_ any `AppraisalData`.
 
 ![GET][rest-get-img]
 
@@ -379,7 +448,7 @@ Retrieves README information _without_ any `ScoreData`.
 {
   'err': null,
   'isPresent': null,
-  'scoreData': {
+  'appraisal': {
     'breakdown': {
       'cumulativeCodeBlockLength': 0,
       'hasLists': 0,
@@ -402,7 +471,7 @@ Retrieves README information _without_ any `ScoreData`.
 * _async/await:_
 
   > ```js
-  > const readmeInfo = await readmeInspector.getReadmeInfo({
+  > const readmeInfo = await readmeInspector.getInfo({
   >   owner: 'commonality',
   >   ref: 'GH-1-feat-inspect-readmes',
   >   repo: 'readme-inspector'
@@ -413,7 +482,7 @@ Retrieves README information _without_ any `ScoreData`.
 
   > ```js
   > readmeInspector
-  >   .getReadmeInfo({
+  >   .getInfo({
   >     owner: 'commonality',
   >     ref: 'GH-1-feat-inspect-readmes',
   >     repo: 'readme-inspector'
@@ -422,13 +491,13 @@ Retrieves README information _without_ any `ScoreData`.
   >   .catch(err => {})
   > ```
 
-### 3.4. `getReadmeScore(url)`
+### 3.4. `getAppraisal(url)`
 
-A convenience wrapper that calls the `ReadmeScore.for` method.
+A convenience wrapper that calls the `ReadmeAppraisal.prototype.for` method.
 
-### 3.5. `ReadmeScore`
+### 3.5. `ReadmeAppraisal`
 
-`ReadmeScore` is an API proxy for [@clayallsopp ![External link][octicon-link-external]](https://github.com/clayallsopp)'s [`readme-score-api` ![External link][octicon-link-external]](https://github.com/clayallsopp/readme-score-api).
+`ReadmeAppraisal` is an API proxy for [@clayallsopp ![External link][octicon-link-external]](https://github.com/clayallsopp)'s [`readme-score-api` ![External link][octicon-link-external]](https://github.com/clayallsopp/readme-score-api).
 
 > ![quote][octicon-quote] ScoreMe gives you a numerical score from 0 to 100 for your Github-style README. The intention is to measure complexity, which is a generally correlated with quality.
 >
@@ -436,7 +505,7 @@ A convenience wrapper that calls the `ReadmeScore.for` method.
 >
 > ScoreMe. (2018). Clayallsopp.github.io. Retrieved 10 April 2018, from <http://clayallsopp.github.io/readme-score/>
 
-#### 3.5.1. `for(url: String): Promise<ScoreData>`
+#### 3.5.1. `for(url): Promise<AppraisalData>`
 
 Evaluate the README at the root of a GitHub repository.
 
@@ -446,9 +515,9 @@ Evaluate the README at the root of a GitHub repository.
 | :--- | :----- | :--------------------------------------------------------------- |
 | url  | String | The URL, or slug of the repository to be evaluated for a README. |
 
-##### 3.5.1.2. Returns `Promise<ScoreData>`
+##### 3.5.1.2. Returns `Promise<AppraisalData>`
 
-* `ScoreData` as a `NullObject` (see <samp>[lib/score-data](lib/score-data.js)</samp>):<br>
+* `AppraisalData` as a `NullObject` (see <samp>[lib/appraisal-data](lib/appraisal-data.js)</samp>):<br>
 
   > ```js
   > {
@@ -472,11 +541,11 @@ Evaluate the README at the root of a GitHub repository.
 * _URL:_
 
   > ```js
-  > const inspector = require('readme-inspector')
-  >
+  > const { ReadmeAppraisal } = require('readme-inspector')
+  > const readmeAppraisal = new ReadmeAppraisal()
   > const url = 'https://github.com/gregswindle/github-resource-converter'
   >
-  > const result = inspector.readmeScore.for(url)
+  > const appraisal = readmeAppraisal.for(url)
   > /** =>
   >  * {
   >  *   breakdown: {
@@ -498,11 +567,11 @@ Evaluate the README at the root of a GitHub repository.
 * _Repository slug:_
 
   > ```js
-  > const inspector = require('readme-inspector')
+  > const { ReadmeAppraisal } = require('readme-inspector')
+  > const readmeAppraisal = new ReadmeAppraisal()
+  > const url = 'gregswindle/github-resource-converter'
   >
-  > const slug = 'gregswindle/github-resource-converter'
-  >
-  > const result = inspector.readmeScore.for(slug)
+  > const appraisal = readmeAppraisal.for(url)
   > ```
 
 ## 4. Version
@@ -555,9 +624,11 @@ Before embarking on a significant change, please follow these guidelines:
 ---
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/commonality/readme-inspector.svg)](https://greenkeeper.io/)
-[![Readme ReadmeScore](http://readme-score-api.herokuapp.com/score.svg?url=https://github.com/commonality/readme-inspector)](http://clayallsopp.github.io/readme-score?url=https://github.com/commonality/readme-inspector)
+[![Readme ReadmeAppraisal](http://readme-score-api.herokuapp.com/score.svg?url=https://github.com/commonality/readme-inspector)](http://clayallsopp.github.io/readme-score?url=https://github.com/commonality/readme-inspector)
 
-<!-- ⛔️ Link References ⛔️  -->
+<!-- ⛔️ Do not remove this comment or anything under it ⛔️ -->
+
+<!-- 🔗 link references 🔗 -->
 
 [bunyan-format-url]: https://github.com/thlorenz/bunyan-format/#readme
 [node-bunyan-url]: https://github.com/trentm/node-bunyan/#readme
@@ -566,7 +637,7 @@ Before embarking on a significant change, please follow these guidelines:
 [runkit-readme-inspector-url]: https://runkit.com/gregswindle/5acc09bde794d70011a136e5
 [toc]: #table-of-contents
 
-<!-- ⛔️ CI Services ⛔️  -->
+<!-- 🔗 ci services 🔗 -->
 
 [appveyor-image]: https://img.shields.io/appveyor/ci/gregswindle/readme-inspector.svg?style=flat-square&logo=appveyor&label=windows%20build
 [appveyor-url]: https://ci.appveyor.com/project/gregswindle/readme-inspector
@@ -581,8 +652,11 @@ Before embarking on a significant change, please follow these guidelines:
 [daviddm-url]: https://david-dm.org/commonality/readme-inspector
 [fossa-image]: https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcommonality%2Freadme-inspector.svg?type=shield&style=flat-square
 [fossa-url]: https://app.fossa.io/projects/git%2Bgithub.com%2Fcommonality%2Freadme-inspector?ref=badge_shield
+[github-release-image]: https://img.shields.io/github/release/commonality/readme-inspector.svg?style=flat-square
+[github-release-url]: https://github.com/commonality/readme-inspector/releases/latest
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
 [license-url]: http://opensource.org/licenses/MIT
+[maintenance-image]: https://img.shields.io/maintenance/readme-inspector/2018.svg?style=flat-square
 [notice-url]: https://app.fossa.io/reports/07123904-7d26-40a6-b6af-c74e82a53789
 [npm-downloads-month]: https://img.shields.io/npm/dm/readme-inspector.svg?style=social
 [npm-image]: https://img.shields.io/npm/v/readme-inspector.svg?style=flat-square
@@ -593,22 +667,24 @@ Before embarking on a significant change, please follow these guidelines:
 [nsp-url]: https://nodesecurity.io/orgs/commonality/projects/a2aa0184-ae94-4307-8b87-f0e12324368a
 [travis-image]: https://img.shields.io/travis/commonality/readme-inspector.svg?branch=master&style=flat-square&label=macOS%20%7C%20ubuntu%20builds&logo=travis
 [travis-url]: https://travis-ci.org/commonality/readme-inspector
+[vulnerabilities-image]: https://snyk.io/test/github/commonality/readme-inspector/badge.svg?style=flat-square&targetFile=package.json
+[vulnerabilities-url]: https://snyk.io/test/github/commonality/readme-inspector?targetFile=package.json
 
-<!-- ⛔️ Contributing ⛔️  -->
+<!-- 🔗 contributing link references 🔗 -->
 
 [code-of-conduct-url]: https://github.com/commonality/readme-inspector/blob/master/.github/CODE_OF_CONDUCT.md
 [contributing-image]: https://img.shields.io/badge/read-CONTRIBUTING%20Guidelines-yellow.svg?style=for-the-badge&label=read+the
 [contributing-url]: https://github.com/commonality/readme-inspector/blob/master/.github/CONTRIBUTING.md
-[issues-new-defect-image]: https://img.shields.io/badge/report-defect-lightgrey.svg?style=for-the-badge&label=report+a
+[issues-new-defect-image]: https://img.shields.io/badge/report-defect-F5CB5C.svg?style=for-the-badge&label=report+a
 [issues-new-defect-url]: https://github.com/commonality/readme-inspector/issues/new?title=defect%28scope%29%3A+defect-summary&labels=priority%3a+medium%2cstatus%3a+review+needed%2ctype%3a+defect&template=defect-report.md
-[issues-new-feat-image]: https://img.shields.io/badge/request-feature-blue.svg?style=for-the-badge&label=request+a
+[issues-new-feat-image]: https://img.shields.io/badge/request-feature-c1ccc6.svg?style=for-the-badge&label=request+a
 [issues-new-feat-url]: https://github.com/commonality/readme-inspector/issues/new?title=feat%28scope%29%3A+change-proposal-summary&labels=priority%3a+medium%2cstatus%3a+review+needed%2ctype%3a+feature&template=feature-request.md
 [issues-url]: https://github.com/commonality/readme-inspector/issues
 [makeapullrequest-image]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
 [makeapullrequest-url]: http://makeapullrequest.com
 [pr-url]: https://github.com/commonality/readme-inspector/pulls
 
-<!-- ⛔️ Octicon img references ⛔️  -->
+<!-- 🔗 octicon img references 🔗 -->
 
 [octicon-alert]: https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/alert.svg
 [octicon-arrow-down]: https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/arrow-down.svg

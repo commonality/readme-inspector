@@ -1,5 +1,5 @@
 {
-  "err": {
+  "error": {
     "code": 404,
     "status": "Not Found",
     "message":
@@ -18,7 +18,7 @@
       "numberOfImages": 0,
       "numberOfNonCodeSections": 0
     },
-    "err": null
+    "error": null
   },
   "value": null
 }

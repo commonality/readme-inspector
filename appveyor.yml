@@ -1,4 +1,10 @@
 environment:
+  API_ENDPOINT_README_SCORE: http://readme-score-api.herokuapp.com/score.json?url=&human_breakdown=false&force=false
+  GA_README_INSPECTOR: UA-117338111-1
+  GH_TOKEN:
+    secure: 1nsZPoMsZopgW0XtFNZdjuzxWvw8EcheaCS6H3B8zYM1ihueWRMc1hdUdeHyg9TM
+  GITHUB_ACCESS_TOKEN:
+    secure: 1nsZPoMsZopgW0XtFNZdjuzxWvw8EcheaCS6H3B8zYM1ihueWRMc1hdUdeHyg9TM
   matrix:
     - nodejs_version: '9'
     - nodejs_version: '8'

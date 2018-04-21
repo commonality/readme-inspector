@@ -1,13 +1,14 @@
 {
-  "score": 0,
-  "url": "gregswindle/no-readme",
   "breakdown": {
-    "cumulative_code_block_length": 0,
-    "has_lists?": 0,
-    "low_code_block_penalty": -10,
-    "number_of_code_blocks": 0,
-    "number_of_gifs": 0,
-    "number_of_images": 0,
-    "number_of_non_code_sections": 0
-  }
+    "cumulativeCodeBlockLength": 0,
+    "hasLists": 0,
+    "lowCodeBlockPenalty": 0,
+    "numberOfCodeBlocks": 0,
+    "numberOfGifs": 0,
+    "numberOfImages": 0,
+    "numberOfNonCodeSections": 0
+  },
+  "error": "Could not determine score for gregswindle/no-readme",
+  "score": 0,
+  "url": null
 }
