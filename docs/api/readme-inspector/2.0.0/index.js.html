@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>index.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="ReadmeAppraisal.html">ReadmeAppraisal</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="ReadmeAppraisal.html#for">for</a></span></li><li class="nav-heading">Modules</li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-readme-inspector.html">readme-inspector</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-readme-inspector.html#.authenticate">authenticate</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-readme-inspector.html#.check">check</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-readme-inspector.html#.getAppraisal">getAppraisal</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-readme-inspector.html#.getInfo">getInfo</a></span></li><li class="nav-heading">Externals</li><li class="nav-heading"><span class="nav-item-type type-external">E</span><span class="nav-item-name"><a href="external-Contents.html">Contents</a></span></li><li class="nav-heading"><span class="nav-item-type type-external">E</span><span class="nav-item-name"><a href="external-Octokit.html">Octokit</a></span></li><li class="nav-heading"><span class="nav-item-type type-external">E</span><span class="nav-item-name"><a href="external-Promise.html">Promise</a></span></li><li class="nav-heading"><span class="nav-item-type type-external">E</span><span class="nav-item-name"><a href="external-URL.html">URL</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">index.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// Copyright (c) 2018 commonality &lt;greg@swindle.net> (https://github.com/commonality). All rights reserved.
+
+// See LICENSE &lt;https://github.com/commonality/readme-inspector/blob/master/LICENSE>.
+
+/*
+ * Load required environment variables
+ * @see /lib/.env.example
+ * @private
+ * @ignore
+ */
+
+const dotenvExtended = require('dotenv-extended')
+const envConfig = dotenvExtended.config()
+
+/**
+ * Represents the contents of files within a repository as Base64 encoded content.
+ * @external Contents
+ * @see {@link https://developer.github.com/v3/repos/contents/#get-the-readme}
+ * @example
+ * {
+ *   "type": file",
+ *   "encoding": base64",
+ *   "size": 5362,
+ *   "name": README.md",
+ *   "path": README.md",
+ *   "content": encoded content ...",
+ *   "sha": 3d21ec53a331a6f037a91c368710b99387d012c1",
+ *   "url": https://api.github.com/repos/octokit/octokit.rb/contents/README.md",
+ *   "git_url": https://api.github.com/repos/octokit/octokit.rb/git/blobs/3d21ec53a331a6f037a91c368710b99387d012c1",
+ *   "html_url": https://github.com/octokit/octokit.rb/blob/master/README.md",
+ *   "download_url": https://raw.githubusercontent.com/octokit/octokit.rb/master/README.md",
+ *   "_links": {
+ *     "git": https://api.github.com/repos/octokit/octokit.rb/git/blobs/3d21ec53a331a6f037a91c368710b99387d012c1",
+ *     "self": https://api.github.com/repos/octokit/octokit.rb/contents/README.md",
+ *     "html": https://github.com/octokit/octokit.rb/blob/master/README.md"
+ *   }
+ * }
+ */
+
+/**
+ * A GitHub REST API client instance.
+ * @external Octokit
+ * @see {@link https://github.com/octokit/rest.js/#readme}
+ */
+
+/**
+ * A Promise is an object representing the eventual completion or failure of an asynchronous operation.
+ * @external Promise
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise}
+ */
+
+/**
+ * A Node.js WHATWG URL object.
+ * @external URL
+ * @see {@link https://nodejs.org/api/url.html}
+ */
+
+/**
+ * Detect whether or not a README document exists at the root of a
+ * GitHub or GitHub Enterprise repository. If a README exists,
+ * evaluate the README for quality and provide a numerical score
+ * from 0 to 100, where 0 is the lowest quality and 100 is the
+ * highest.
+ *
+ * @public
+ * @prop {external:Octokit} api - A GitHubAPI (@octokit/rest) instance.
+ * @see https://github.com/octokit/rest.js/#readme
+ * @see https://octokit.github.io/rest.js/
+ *
+ * @prop {ReadmeAppraisal} ReadmeAppraisal - An API proxy/wrapper that
+ * invokes the readme-score-api in order to assess and grade
+ * the quality of a README file.
+ *
+ * @module readme-inspector
+ */
+
+const githubRestApiOptions = require('./github-rest-api-options')
+const Octokit = require('@octokit/rest')
+const readmeInfo = require('./readme-info')
+const ReadmeAppraisal = require('./readme-appraisal')
+
+/**
+ * Octokit GitHubAPI shadow instance.
+ *
+ * @private
+ * @ignore
+ */
+
+const octokit = new Octokit(githubRestApiOptions)
+
+/**
+ * @module readme-inspector
+ * @alias readmeInspector
+ */
+
+const readmeInspector = {
+  ReadmeAppraisal,
+
+  'api': octokit,
+
+  /**
+   * Sets GitHub credentials for all subsequent requests.
+   *
+   * @method
+   * @memberOf module:readme-inspector
+   *
+   * @param {object} credentials - Secret strings used to prove identity.
+   * @param {string} credentials.type - Valid values are `basic`, `oauth`, `token`, and `integration`.
+   * @param {string} credentials.username - The name of an agent.
+   * @param {string} credentials.password - A secret sequence of characters.
+   * @param {string} credentials.token
+   * @param {string} credentials.key
+   * @param {string} credentials.secret
+   *
+   * @returns {void}
+   * @see https://github.com/octokit/rest.js#authentication
+   */
+
+  authenticate (credentials) {
+    const creds = credentials || {
+      'token': envConfig.GH_TOKEN,
+      'type': 'token'
+    }
+    octokit.authenticate(creds)
+  },
+
+  /**
+   * Attempts to GET a README at the root of a GitHub
+   * (or GitHub Enterprise) repository and, if found,
+   * rate its quality with the
+   * [readme-score-api](https://github.com/clayallsopp/readme-score-api/#readme).
+   *
+   * @method check
+   * @memberOf module:readme-inspector
+   *
+   * @param {object} params - The owner/org, repo, and (optional)
+   *  branch to check.
+   * @param {string} params.owner - The account or organization to which
+   *  the source code belongs.
+   * @param {string} params.repo - The name of the repository in which
+   *  to look for a README.
+   * @param {string} [params.ref={Default branch}] - The name of the
+   *  commit/branch/tag.
+   *  Default: the repository’s default branch (usually master).
+   * @returns {Promise&lt;ReadmeInfo>}
+   * @fulfil {ReadmeInfo} - A {ReadmeInfo} object with the `appraisal` property.
+   * @reject {ReadmeInfo} - A {ReadmeInfo} object with a defined `error` property.
+   */
+
+  async check (params = {
+  }) {
+    const info = await readmeInspector.getInfo(params)
+    if (info.isPresent) {
+      info.appraisal = await readmeInspector.getAppraisal(`${params.owner}/${params.repo}`)
+    }
+    return info
+  },
+
+  /**
+   * An API proxy for the readme-score-api, which provides quality
+   * measures for README files with the {@link appraisalData AppraisalData}
+   * interface.
+   *
+   * @method getAppraisal
+   * @memberOf module:readme-inspector
+   * @param {string} url - The URL or slug of a repository.
+   *
+   * @returns {Promise&lt;AppraisalData>}
+   * @see https://github.com/clayallsopp/readme-score-api/#readme
+   */
+
+  async getAppraisal (url) {
+    const readmeAppraisal = new ReadmeAppraisal()
+    const appraisal = await readmeAppraisal.for(url)
+    return appraisal
+  },
+
+  /**
+   * Attempts to GET a remote README at the root of a GitHub
+   * (or GitHub Enterprise) repository, but with an {AppraisalData}
+   * `NullObject`.
+   *
+   * @method getInfo
+   * @memberOf module:readme-inspector
+   *
+   * @param {object} params - The owner/org, repo, and (optional)
+   *  branch to check.
+   * @param {string} params.owner - The account or organization to which
+   *  the source code belongs.
+   * @param {string} params.repo - The name of the repository in which
+   *  to look for a README.
+   * @param {string} [params.ref={Default branch}] - The name of the
+   *  commit/branch/tag.
+   *  Default: the repository’s default branch (usually master).
+   * @returns {Promise.&lt;ReadmeInfo>}
+   * @fulfil {ReadmeInfo} - A {ReadmeInfo} object with `null` {AppraisalData}.
+   * @reject {ReadmeInfo} - A {ReadmeInfo} object with a defined `err` property.
+   *
+   * @see https://octokit.github.io/rest.js/#api-Repos-getReadme
+   */
+
+  async getInfo (params) {
+    const info = Object.assign({
+    }, readmeInfo)
+    try {
+      const {data} = await readmeInspector.api.repos.getReadme(params)
+      info.value = data
+      info.isPresent = true
+    } catch (err) {
+      info.err = err
+      info.isPresent = false
+    }
+
+    return info
+  }
+}
+
+module.exports = readmeInspector
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sat Apr 21 2018 02:14:35 GMT-0500 (CDT) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

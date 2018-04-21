@@ -16,7 +16,7 @@ const config = {
 const main = () => {
   let markdownPath = path.join(__dirname, '**/*.md')
   let index = 0
-  let paths = ['**/*.md', '../CONTRIBUTING.md', '../../docs/project/*.md']
+  let paths = ['**/*.md', '../CONTRIBUTING.md', '../../docs/**/*.md']
 
   paths.forEach(filePath => {
     markdownPath = path.join(__dirname, filePath)

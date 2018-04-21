@@ -3,9 +3,9 @@
 > <img align="middle" alt="markdown" height="50" width="50"  src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/markdown.svg"> Inspect GitHub (and GitHub Enterprise) repositories for the presence and quality of READMEs.
 
 [![The MIT License][license-image]][license-url]
-[![FOSSA Status][fossa-image]][fossa-url]<br>
+[![FOSSA Status][fossa-image]][fossa-url]
 [![NSP Status][nsp-image]][nsp-url]
-[![Known Vulnerabilities][vulnerabilities-image]][vulnerabilities-url]
+[![Known Vulnerabilities][vulnerabilities-image]][vulnerabilities-url]<br>
 [![Dependency Status][daviddm-image]][daviddm-url]
 [![Development Dependency Status][daviddm-dev-image]][daviddm-dev-url]<br>
 [![MacOS and Ubuntu build statuses][travis-image]][travis-url]
@@ -61,13 +61,36 @@ The `commonality/readme-inspector` module combines the mediator, proxy, and fact
 * README detection with the `readmeInfo` object, and
 * Quality assessment with the `readmeInfo.appraisal` object.
 
-[design-pattern-mediator-url]: https://refactoring.guru/design-patterns/mediator
+Since both of these features invoke Web services to return information, they both use `.env` variables
+that require configuration:
 
-> ![light-bulb][octicon-light-bulb] \*\*Avoid rate-limiting, you should [create a personal access token ![External link][octicon-link-external]](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/) and save your personal access token in an environment variable called `GH_TOKEN`.
+```properties
+# 🔹 OPTIONAL env vars
+
+# API endpoint for the readme-score-api (with default value)
+API_ENDPOINT_README_SCORE="http://readme-score-api.herokuapp.com/score.json?url=&human_breakdown=false&force=false"
+
+# Google Analytics trackingCode (with default value)
+GA_README_INSPECTOR="UA-117338111-1"
+
+# 🔸 GitHub token variables to extend GitHub API rate limits
+#    from 60 requests per minute to 5,000 requests per minute:
+GH_TOKEN=
+GITHUB_ACCESS_TOKEN=
+```
+
+> ![light-bulb][octicon-light-bulb] **To avoid rate-limiting**, you should [create a personal access token ![External link][octicon-link-external]](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/) and save your personal access token in an environment variable called `GH_TOKEN`.
 
 ---
 
-<details><summary>Click here for detailed <samp>.env</samp> variable initialization instructions</summary><pre>
+<details><summary>Click here for detailed <samp>.env</samp> variable initialization instructions.</summary><p>
+
+> [![info][octicon-info] View **dotenv-extended**'s README ![External link][octicon-link-external]](https://github.com/keithmorris/node-dotenv-extended#readme) for detailed `.env` variable set up instructions.
+
+<h4><img align="bottom" alt="file" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/file.svg"> <samp>.env.schema</samp></h4>
+
+Defines a schema of what variables should be defined in the combination of
+<samp>.env</samp> and <samp>.env.defaults</samp>.
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./lib/.env.schema&syntax=properties) -->
 <!-- The below code snippet is automatically added from ./lib/.env.schema -->
@@ -96,6 +119,15 @@ GITHUB_ACCESS_TOKEN=
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
+<h4><img align="bottom" alt="file" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/file.svg"> <samp>.env.defaults</samp></h4>
+
+<samp>.env.defaults</samp> provides common configuration defaults across all
+environments (commited to source control). This contains overall app
+configuration values that would be common across environments. The
+<samp>.env.defaults</samp> file is loaded first; then the <samp>.env</samp>
+file is loaded and will overwrite any values from the <samp>.env.defaults</samp>
+file.
+
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./lib/.env.defaults&syntax=properties) -->
 <!-- The below code snippet is automatically added from ./lib/.env.defaults -->
 ```properties
@@ -116,6 +148,23 @@ GA_README_INSPECTOR="UA-117338111-1"
 
 # ReadmeAppraisal
 API_ENDPOINT_README_SCORE="http://readme-score-api.herokuapp.com/score.json?url=&human_breakdown=false&force=false"
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<h4><img align="bottom" alt="file" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/file.svg"> <samp>.env</samp></h4>
+
+The environment-specific file (not committed to source control).
+This file will have sensitive information such as usernames, passwords,
+api keys, etc. These would be specific to each environment and **should
+not be committed to source control**.
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=./lib/.env&syntax=properties) -->
+<!-- The below code snippet is automatically added from ./lib/.env -->
+```properties
+API_ENDPOINT_README_SCORE="http://readme-score-api.herokuapp.com/score.json?url=&human_breakdown=false&force=false"
+GA_README_INSPECTOR="UA-117338111-1"
+GH_TOKEN=$GH_TOKEN
+GITHUB_ACCESS_TOKEN=$GH_TOKEN
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 

@@ -2,6 +2,47 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+---
+
+<a name="2.0.0"></a>
+
+## [2.0.0](https://github.com/commonality/readme-inspector/compare/v1.0.2...v2.0.0) (2018-04-21)
+
+### Bug Fixes
+
+* **@semantic-release/git:** update to version 4.0.2 ([ad96ea5](https://github.com/commonality/readme-inspector/commit/ad96ea5))
+* **score:** verify appraisal initialization ([fd87a8b](https://github.com/commonality/readme-inspector/commit/fd87a8b)), closes [#18](https://github.com/commonality/readme-inspector/issues/18) [#21](https://github.com/commonality/readme-inspector/issues/21)
+
+### BREAKING CHANGES
+
+**readme-score:** `ReadmeScore` is now `ReadmeAppraisal`, with two method signatures changes and one property name change.
+
+#### Objects & Properties
+
+`readmeInspector.ReadmeScore` - refactor:rename `ReadmeScore` → `ReadmeAppraisal`, which is now a class.
+
+#### Functions
+
+1.  `readmeInspector.getReadmeInfo` → `readmeInspector.getInfo`
+
+    > * Refactor:rename function
+    >
+    > * Refactor function signature: now expects a `params` object literal
+
+2.  `readmeInspector.getReadmeScore` → `readmeInspector.getAppraisal`
+
+    > Refactor:rename function; signature remains the same as in 1.x.x,
+    > however.
+
+3.  `readmeInspector.check`'s signature now expects a `params` object literal,
+    which it passes to `getInfo`.
+
+#### API tests
+
+Add API (integration) tests.
+
+---
+
 <a name="1.0.2"></a>
 
 ## [1.0.2](https://github.com/commonality/readme-inspector/compare/v1.0.1...v1.0.2) (2018-04-17)
@@ -14,6 +55,8 @@ All notable changes to this project will be documented in this file. See [standa
   >
   > Refactor `readmeScoreApiClientOptions` with a single property called `apiEndpoint: URL` in order to set the `url` query parameter explicitly, and call `apiEndpoint.toString()` for a serialized URL string.
 
+---
+
 <a name="1.0.1"></a>
 
 ## [1.0.1](https://github.com/commonality/readme-inspector/compare/v1.0.0...v1.0.1) (2018-04-16)
@@ -24,13 +67,17 @@ All notable changes to this project will be documented in this file. See [standa
 
   Replaced [`dotenv`][dotenv-url] with [`dotenv-extended`][dotenv-extended-url] in order to load default values.
 
+---
+
 <a name="1.0.0"></a>
 
 ## 1.0.0 (2018-04-12)
 
 ### Features
 
-* **module:readme-inspector:** Verify the existence—and assess the quality—of README files
+* #### module:readme-inspector
+
+  Verify the existence—and assess the quality—of README files
 
   > ![quote][octicon-quote] READMEs do more than explain how to use your project. They also
   > explain why your project matters, and what your users can do with it.
@@ -47,29 +94,29 @@ All notable changes to this project will be documented in this file. See [standa
   > licenses and attribution. If you don’t want to accept contributions, or
   > your project is not yet ready for production, write this information down. <sup><a href="#ref-1" title="View reference.">[1]</a></sup>
 
-  **Public API**
+* #### Public API
 
   _Methods_
 
-  * `authenticate` - Sets GitHub credentials for all subsequent requests.
-  * `check` - Attempts to GET and assess a README at a repo-root directory.
-  * `getReadmeInfo` - Attempt to GET a README without assessing it.
-  * `getReadmeScore` - Assess the quality of a README.
+  > * `authenticate` - Sets GitHub credentials for all subsequent requests.
+  > * `check` - Attempts to GET and assess a README at a repo-root directory.
+  > * `getReadmeInfo` - Attempt to GET a README without assessing it.
+  > * `getReadmeScore` - Assess the quality of a README.
 
   _Properties_
 
-  * `ReadmeScore` - An API proxy wrapper for the readme-score-api.
-  * `api` - A configurable Octokit instance.
+  > * `ReadmeScore` - An API proxy wrapper for the readme-score-api.
+  > * `api` - A configurable Octokit instance.
 
   _Documentation_
 
-  Visit <https://github.com/commonality/readme-inspector/#readme> for
-  more information about installation, usage, API, version,
-  contributing guidelines, and licenses.
+  > Visit <https://github.com/commonality/readme-inspector/#readme> for
+  > more information about installation, usage, API, version,
+  > contributing guidelines, and licenses.
 
   _Commit_
 
-  ([e04a07a](https://github.com/commonality/readme-inspector/commit/e04a07a)), closes [#1](https://github.com/commonality/readme-inspector/issues/1)
+  > ([e04a07a](https://github.com/commonality/readme-inspector/commit/e04a07a)), closes [#1](https://github.com/commonality/readme-inspector/issues/1)
 
 ## References
 

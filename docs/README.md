@@ -4,21 +4,33 @@
 
 ## Table of contents
 
+<!-- 🚫 AUTO-GENERATED-CONTENT:START (TOC:excludeText=Table of contents) -->
+- [API reference](#api-reference)
+- [Development](#development)
+- [Delivery](#delivery)
+- [Maintenance](#maintenance)
+- [Governance](#governance)
+<!-- 🚫 AUTO-GENERATED-CONTENT:END -->
+
+## API reference
+
+[![book][octicon-book] JSDocs](api/readme-inspector/2.0.0/index.html) for readme-inspector.
+
 ## Development
 
-> <img align="bottom" alt="tools" height="24" width="24" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/tools.svg"> [Guidelines for developing, buidling, and testing](project/DEVELOPERS.md) readme-inspector.
+[![tools][octicon-tools] Guidelines for developing, buidling, and testing](project/DEVELOPERS.md) readme-inspector.
 
 ## Delivery
 
-> <img align="bottom" alt="package" height="24" width="24" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/package.svg">
+> <img align="bottom" alt="package" height="24" width="24" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/package.svg"> Instructions coming in the next patch or feature release.
 
 ## Maintenance
 
-> <img align="bottom" alt="repo" height="24" width="24" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/repo.svg">
+> <img align="bottom" alt="repo" height="24" width="24" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/repo.svg"> Instructions coming in the next patch or feature release.
 
 ## Governance
 
-> <img align="bottom" alt="organization" height="24" width="24" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/organization.svg">
+> <img align="bottom" alt="organization" height="24" width="24" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/organization.svg"> Information coming in the next patch or feature release.
 
 <!-- ⛔️ Octicon img references ⛔️  -->
 

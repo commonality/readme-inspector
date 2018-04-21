@@ -2,7 +2,7 @@
   "name": "readme-inspector",
   "description":
     "Inspect GitHub (and GitHub Enterprise) repositories for the presence and quality of READMEs.",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "author": {
     "name": "commonality",
     "email": "greg@swindle.net",
@@ -162,6 +162,8 @@
     "url": "https://github.com/commonality/readme-inspector.git"
   },
   "scripts": {
+    "code-quality:sonar":
+      "sonar-scanner -Dproject.settings=./.github/config/sonar-project.properties -Dsonar.login=$SONAR_COMMONALITY_TOKEN -Dsonar.projectVersion=$npm_package_version -X",
     "docs": "npm run docs:toc && npm run docs:api",
     "docs:api":
       "jsdoc --package ./package.json --configure .github/config/.jsdoc.json --verbose",
