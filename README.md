@@ -12,13 +12,13 @@
 [![Windows build status][appveyor-image]][appveyor-url]
 [![Coverage percentage][codacy-coverage-image]][codacy-url]
 [![Codacy code quality][codacy-image]][codacy-url]
-![Maintenance](https://img.shields.io/maintenance/readme-inspector/2018.svg?style=flat-square)<br>
+![Maintenance][maintenance-image]<br>
 [![NPMS score][npms-image]][npms-url]
 [![NPM downloads per month][npm-downloads-month]][npm-url]
 
 ## Table of contents
 
-<!-- ⛔️ AUTO-GENERATED-CONTENT:START (TOC:excludeText=Table of contents) -->
+<!-- 🚫 AUTO-GENERATED-CONTENT:START (TOC:excludeText=Table of contents) -->
 - [1. Installation](#1-installation)
 - [2. Configuration](#2-configuration)
 - [2. Usage](#2-usage)
@@ -44,13 +44,13 @@
 - [4. Version](#4-version)
 - [5. Contributing](#5-contributing)
 - [6. License](#6-license)
-<!-- ⛔️ AUTO-GENERATED-CONTENT:END -->
+<!-- 🚫 AUTO-GENERATED-CONTENT:END -->
 
 ## 1. Installation
 
 `readme-inspector` is written in JavaScript (CommonJS) for [Node.js ![External link][octicon-link-external]](https://nodejs.org/) versions 7.6.0 or higher (for `async/await` support).
 
-```sh
+```bash
 $ npm install --save readme-inspector
 ```
 
@@ -577,7 +577,9 @@ Before embarking on a significant change, please follow these guidelines:
 [![Greenkeeper badge](https://badges.greenkeeper.io/commonality/readme-inspector.svg)](https://greenkeeper.io/)
 [![Readme ReadmeAppraisal](http://readme-score-api.herokuapp.com/score.svg?url=https://github.com/commonality/readme-inspector)](http://clayallsopp.github.io/readme-score?url=https://github.com/commonality/readme-inspector)
 
-<!-- ⛔️ Link References ⛔️  -->
+<!-- ⛔️ Do not remove this comment or anything under it ⛔️ -->
+
+<!-- 🔗 link references 🔗 -->
 
 [bunyan-format-url]: https://github.com/thlorenz/bunyan-format/#readme
 [node-bunyan-url]: https://github.com/trentm/node-bunyan/#readme
@@ -586,7 +588,7 @@ Before embarking on a significant change, please follow these guidelines:
 [runkit-readme-inspector-url]: https://runkit.com/gregswindle/5acc09bde794d70011a136e5
 [toc]: #table-of-contents
 
-<!-- ⛔️ CI Services ⛔️  -->
+<!-- 🔗 ci services 🔗 -->
 
 [appveyor-image]: https://img.shields.io/appveyor/ci/gregswindle/readme-inspector.svg?style=flat-square&logo=appveyor&label=windows%20build
 [appveyor-url]: https://ci.appveyor.com/project/gregswindle/readme-inspector
@@ -605,6 +607,7 @@ Before embarking on a significant change, please follow these guidelines:
 [github-release-url]: https://github.com/commonality/readme-inspector/releases/latest
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
 [license-url]: http://opensource.org/licenses/MIT
+[maintenance-image]: https://img.shields.io/maintenance/readme-inspector/2018.svg?style=flat-square
 [notice-url]: https://app.fossa.io/reports/07123904-7d26-40a6-b6af-c74e82a53789
 [npm-downloads-month]: https://img.shields.io/npm/dm/readme-inspector.svg?style=social
 [npm-image]: https://img.shields.io/npm/v/readme-inspector.svg?style=flat-square
@@ -618,7 +621,7 @@ Before embarking on a significant change, please follow these guidelines:
 [vulnerabilities-image]: https://snyk.io/test/github/commonality/readme-inspector/badge.svg?style=flat-square&targetFile=package.json
 [vulnerabilities-url]: https://snyk.io/test/github/commonality/readme-inspector?targetFile=package.json
 
-<!-- ⛔️ Contributing ⛔️  -->
+<!-- 🔗 contributing link references 🔗 -->
 
 [code-of-conduct-url]: https://github.com/commonality/readme-inspector/blob/master/.github/CODE_OF_CONDUCT.md
 [contributing-image]: https://img.shields.io/badge/read-CONTRIBUTING%20Guidelines-yellow.svg?style=for-the-badge&label=read+the
@@ -632,7 +635,7 @@ Before embarking on a significant change, please follow these guidelines:
 [makeapullrequest-url]: http://makeapullrequest.com
 [pr-url]: https://github.com/commonality/readme-inspector/pulls
 
-<!-- ⛔️ Octicon img references ⛔️  -->
+<!-- 🔗 octicon img references 🔗 -->
 
 [octicon-alert]: https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/alert.svg
 [octicon-arrow-down]: https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/arrow-down.svg
