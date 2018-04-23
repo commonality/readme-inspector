@@ -1,28 +1,59 @@
-# readme-inspector product development and delivery
+# Product development, delivery, and governance
 
 > Rules, guidelines, a governance for developing, fixing, maintaining, and delivering readme-inspector.
+
+[![The MIT License][license-image]][license-url]
+[![FOSSA Status][fossa-image]][fossa-url]
+[![NSP Status][nsp-image]][nsp-url]
+[![Known Vulnerabilities][vulnerabilities-image]][vulnerabilities-url]<br>
+[![Dependency Status][daviddm-image]][daviddm-url]
+[![Development Dependency Status][daviddm-dev-image]][daviddm-dev-url]<br>
+[![MacOS and Ubuntu build statuses][travis-image]][travis-url]
+[![Windows build status][appveyor-image]][appveyor-url]
+[![Coverage percentage][codacy-coverage-image]][codacy-url]
+[![Codacy code quality][codacy-image]][codacy-url]
+![Maintenance][maintenance-image]<br>
+[![NPMS score][npms-image]][npms-url]
+[![NPM downloads per month][npm-downloads-month]][npm-url]
 
 ## Table of contents
 
 <!-- 🚫 AUTO-GENERATED-CONTENT:START (TOC:excludeText=Table of contents) -->
+- [Project dashboard](#project-dashboard)
 - [API reference](#api-reference)
-- [Development](#development)
-- [Delivery](#delivery)
+- [Designing REST APIs](#designing-rest-apis)
+- [Development and testing](#development-and-testing)
+- [Continuous delivery](#continuous-delivery)
 - [Maintenance](#maintenance)
 - [Governance](#governance)
 <!-- 🚫 AUTO-GENERATED-CONTENT:END -->
 
+## Project dashboard
+
+> <img align="bottom" alt="dashboard" height="30" width="30" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/dashboard.svg"> Community activity and engagement, as well as project health.
+
+| Measure                                 | Status/info                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| :-------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Community engagement                    | [![contributor-count][contributor-count-image]][contributor-count-url]<br>[![author][author-image]][author-url]<hr>![commits-per-year][commit-activity-one-year-image]<br>[![last-commit][commit-last-image]][commit-last-url]<hr>[![NPM downloads per month][npm-downloads-month]][npm-url]<br>[![used-by][used-by-image]][used-by-url]<br>[![github-forks][github-forks-image]][github-forks-url]<br>[![github-stars][github-stars-image]][github-stars-url]<br>[![github-watchers][github-watchers-image]][github-watchers-url] |
+| Issues                                  | [![issue-opened][octicon-issue-opened] ![issues-open][issues-open-image]][issues-open-url]<br>[![megaphone][octicon-megaphone] ![breaking-change-issues-open][issues-open-breaking-change-image]][issues-open-breaking-change-url]<br>[![bell][octicon-bell] ![feature-issues-open][issues-open-feature-image]][issues-open-url]<br>[![bug][octicon-bug] ![defect-issues-open][issues-open-defect-image]][issues-open-url]<hr>[![issue-closed][octicon-issue-closed] ![issues-closed][issues-closed-image]][issues-closed-url]     |
+| Pull requests and merges                | [![prs-open][octicon-git-pull-request] ![pull-requests-open][pull-requests-open-image]][pull-requests-open-url]<br>[![git-merge][octicon-git-merge] ![pull-requests-closed][pull-requests-closed-image]][pull-requests-closed-url]                                                                                                                                                                                                                                                                                                 |
+| Product releases, maintenance, and size | [![last-release-date][release-date-image]][releases-url]<br>![maintenance][maintenance-image]<br>![code-size-in-bytes][code-size-bytes-image]<br>![repository-size][repo-size-bytes-image]<br>                                                                                                                                                                                                                                                                                                                                     |
+
 ## API reference
 
-[![book][octicon-book] JSDocs](api/readme-inspector/2.0.0/index.html) for readme-inspector.
+> <img align="bottom" alt="gear" height="24" width="24" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/gear.svg"> [View `readme-inspector`'s JSDocs][api-jsdocs-url].
 
-## Development
+## Designing REST APIs
 
-[![tools][octicon-tools] Guidelines for developing, buidling, and testing](project/DEVELOPERS.md) readme-inspector.
+> <img align="bottom" alt="radio-tower" height="24" width="24" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/radio-tower.svg"> [View `readme-inspector`'s REST APIs](project/API.md).
 
-## Delivery
+## Development and testing
 
-> <img align="bottom" alt="package" height="24" width="24" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/package.svg"> Instructions coming in the next patch or feature release.
+> <img align="bottom" alt="beaker" height="24" width="24" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/beaker.svg"> [Guidelines for developing, building, and testing](project/DEVELOPERS.md) `readme-inspector`.
+
+## Continuous delivery
+
+> <img align="bottom" alt="squirrel" height="24" width="24" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/squirrel.svg"> Instructions coming in the next patch or feature release.
 
 ## Maintenance
 
@@ -32,7 +63,85 @@
 
 > <img align="bottom" alt="organization" height="24" width="24" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/organization.svg"> Information coming in the next patch or feature release.
 
-<!-- ⛔️ Octicon img references ⛔️  -->
+<!-- ⛔️ link references ⛔️  -->
+
+[api-jsdocs-url]: https://commonality.github.io/readme-inspector/api/readme-inspector/2.0.0/module-readme-inspector.html
+
+<!-- 🔗 ci services 🔗 -->
+
+[appveyor-image]: https://img.shields.io/appveyor/ci/gregswindle/readme-inspector.svg?style=flat-square&logo=appveyor&label=windows%20build
+[appveyor-url]: https://ci.appveyor.com/project/gregswindle/readme-inspector
+[codacy-coverage-image]: https://img.shields.io/codacy/coverage/21f517a2d5bf4304895f40c5cbb596c4.svg?style=flat-square
+[codacy-image]: https://img.shields.io/codacy/grade/21f517a2d5bf4304895f40c5cbb596c4.svg?style=flat-square
+[codacy-url]: https://www.codacy.com/app/greg_7/readme-inspector?utm_source=github.com&utm_medium=referral&utm_content=commonality/readme-inspector&utm_campaign=Badge_Grade
+[coveralls-image]: https://img.shields.io/coveralls/github/commonality/readme-inspector/master.svg
+[coveralls-url]: https://coveralls.io/r/commonality/readme-inspector
+[daviddm-dev-image]: https://david-dm.org/commonality/readme-inspector/dev-status.svg?theme=shields.io&style=flat-square
+[daviddm-dev-url]: https://david-dm.org/commonality/readme-inspector?type=dev
+[daviddm-image]: https://david-dm.org/commonality/readme-inspector.svg?theme=shields.io&style=flat-square
+[daviddm-url]: https://david-dm.org/commonality/readme-inspector
+[fossa-image]: https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcommonality%2Freadme-inspector.svg?type=shield&style=flat-square
+[fossa-url]: https://app.fossa.io/projects/git%2Bgithub.com%2Fcommonality%2Freadme-inspector?ref=badge_shield
+[github-release-image]: https://img.shields.io/github/release/commonality/readme-inspector.svg?style=flat-square
+[github-release-url]: https://github.com/commonality/readme-inspector/releases/latest
+[license-image]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
+[license-url]: http://opensource.org/licenses/MIT
+[notice-url]: https://app.fossa.io/reports/07123904-7d26-40a6-b6af-c74e82a53789
+[npm-image]: https://img.shields.io/npm/v/readme-inspector.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/readme-inspector
+[npms-image]: https://badges.npms.io/readme-inspector.svg?style=flat-square
+[npms-url]: https://npms.io/search?q=readme-inspector
+[nsp-image]: https://nodesecurity.io/orgs/commonality/projects/a2aa0184-ae94-4307-8b87-f0e12324368a/badge
+[nsp-url]: https://nodesecurity.io/orgs/commonality/projects/a2aa0184-ae94-4307-8b87-f0e12324368a
+[travis-image]: https://img.shields.io/travis/commonality/readme-inspector.svg?branch=master&style=flat-square&label=macOS%20%7C%20ubuntu%20builds&logo=travis
+[travis-url]: https://travis-ci.org/commonality/readme-inspector
+[vulnerabilities-image]: https://snyk.io/test/github/commonality/readme-inspector/badge.svg?style=flat-square&targetFile=package.json
+[vulnerabilities-url]: https://snyk.io/test/github/commonality/readme-inspector?targetFile=package.json
+
+<!-- 🔗 project statistics 🔗 -->
+
+[author-image]: https://img.shields.io/github/issues/detail/u/commonality/readme-inspector/1.svg?style=social
+[author-url]: https://github.com/gregswindle
+[code-size-bytes-image]: https://img.shields.io/github/languages/code-size/commonality/readme-inspector.svg?style=flat-square
+[commit-activity-one-year-image]: https://img.shields.io/github/commit-activity/y/commonality/readme-inspector.svg?style=social
+[commit-last-image]: https://img.shields.io/github/last-commit/commonality/readme-inspector.svg?style=social
+[commit-last-url]: https://github.com/commonality/readme-inspector/graphs/commit-activity
+[contributor-count-image]: https://img.shields.io/github/contributors/commonality/readme-inspector.svg?style=social
+[contributor-count-url]: https://github.com/commonality/readme-inspector/graphs/contributors
+[github-forks-image]: https://img.shields.io/github/forks/commonality/readme-inspector.svg?style=social&label=Forks
+[github-forks-url]: https://github.com/commonality/readme-inspector/network/members
+[github-stars-image]: https://img.shields.io/github/stars/commonality/readme-inspector.svg?style=social&label=Stars
+[github-stars-url]: https://github.com/commonality/readme-inspector/stargazers
+[github-watchers-image]: https://img.shields.io/github/watchers/commonality/readme-inspector.svg?style=social&label=Watchers
+[github-watchers-url]: https://github.com/commonality/readme-inspector/watchers
+[issues-closed-image]: https://img.shields.io/github/issues-closed/commonality/readme-inspector.svg?style=flat-square
+[issues-closed-url]: https://github.com/commonality/readme-inspector/issues?q=is%3Aissue+sort%3Aupdated-desc+is%3Aclosed
+[issues-open-breaking-change-image]: https://img.shields.io/github/issues/commonality/readme-inspector/type%3A%20breaking%20change.svg?style=flat-square&colorB=b60205
+[issues-open-breaking-change-url]: https://github.com/commonality/readme-inspector/labels/type%3A%20breaking%20change
+[issues-open-defect-image]: https://img.shields.io/github/issues/commonality/readme-inspector/type:%20defect.svg?style=flat-square&colorB=e99695
+[issues-open-defect-url]: https://github.com/commonality/readme-inspector/labels/type%3A%20defect
+[issues-open-feature-image]: https://img.shields.io/github/issues/commonality/readme-inspector/type:%20feature.svg?style=flat-square&colorB=5319e7
+[issues-open-feature-url]: https://github.com/commonality/readme-inspector/labels/type%3A%20feature
+[issues-open-image]: https://img.shields.io/github/issues/commonality/readme-inspector.svg?style=flat-square
+[issues-open-url]: https://github.com/commonality/readme-inspector/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc
+[language-count-image]: https://img.shields.io/github/languages/count/commonality/readme-inspector.svg?style=flat-square
+[language-top-image]: https://img.shields.io/github/languages/top/commonality/readme-inspector.svg?style=flat-square
+[language-top-url]: https://github.com/commonality/readme-inspector/search?l=javascript
+[maintenance-image]: https://img.shields.io/maintenance/readme-inspector/2018.svg?style=flat-square
+[maintenance-image]: https://img.shields.io/maintenance/readme-inspector/2018.svg?style=flat-square
+[npm-downloads-month]: https://img.shields.io/npm/dm/readme-inspector.svg?style=social
+[npm-downloads-year]: https://img.shields.io/npm/dy/readme-inspector.svg?style=social
+[pull-requests-closed-image]: https://img.shields.io/github/issues-pr-closed/commonality/readme-inspector.svg?style=flat-square
+[pull-requests-closed-url]: https://github.com/commonality/readme-inspector/pulls?q=is%3Apr+sort%3Aupdated-desc+is%3Aclosed
+[pull-requests-open-image]: https://img.shields.io/github/issues-pr/commonality/readme-inspector.svg?style=flat-square
+[pull-requests-open-url]: https://github.com/commonality/readme-inspector/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc
+[release-date-image]: https://img.shields.io/github/release-date/commonality/readme-inspector.svg?style=flat-square
+[releases-url]: https://github.com/commonality/readme-inspector/releases
+[repo-size-bytes-image]: https://img.shields.io/github/repo-size/commonality/readme-inspector.svg?style=flat-square
+[used-by-image]: https://img.shields.io/sourcegraph/rrc/github.com/commonality/readme-inspector.svg?style=social
+[used-by-url]: https://www.npmjs.com/browse/depended/readme-inspector
+
+<!-- 🔗 octicon images 🔗 -->
 
 [octicon-alert]: https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/alert.svg
 [octicon-arrow-down]: https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/arrow-down.svg

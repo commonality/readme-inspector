@@ -1,4 +1,4 @@
-# Building and testing readme-inspector
+# Developing, building, and testing readme-inspector
 
 > <img align="bottom" alt="code" height="50" width="50" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/code.svg"> This document describes how to set up your development environment to build and test readme-inspector. It also explains the basic mechanics of using `git`, `node`, and `npm` from a Terminal/CLI (command-line interface).
 >
@@ -12,47 +12,38 @@
 - [3. Installing dependencies](#3-installing-dependencies)
 - [4. Building](#4-building)
 - [5. Running tests](#5-running-tests)
-- [5. Formatting and verifying your sources](#5-formatting-and-verifying-your-sources)
-- [6. Git guidelines](#6-git-guidelines)
-  * [6.1. Makes changes in a topic branch](#61-makes-changes-in-a-topic-branch)
-  * [6..2. Favor the topic branch naming convention `GH-{ISSUE_NUMBER}-type-scope`](#62-favor-the-topic-branch-naming-convention-gh-issue_number-type-scope)
-  * [6.3. Branch out from `master`.](#63-branch-out-from-master)
-  * [6.4. **_Never_**. push into the `master` branch. **_Always_** submit a Pull Request](#64-_never_-push-into-the-master-branch-_always_-submit-a-pull-request)
-  * [6.5. Submit a Pull Request as soon as possible.](#65-submit-a-pull-request-as-soon-as-possible)
-  * [6.6. Rebase your local `master` branch before you ask for PR approvals.](#66-rebase-your-local-master-branch-before-you-ask-for-pr-approvals)
-  * [6.7. Resolve rebase conflicts before Pull Request reviews.](#67-resolve-rebase-conflicts-before-pull-request-reviews)
-  * [6.8. Add reviewers and the label `Status: Needs Review` when the topic branch is ready.](#68-add-reviewers-and-the-label-status-needs-review-when-the-topic-branch-is-ready)
-  * [6.9. Delete local and remote topic branches after merging.](#69-delete-local-and-remote-topic-branches-after-merging)
-  * [6.10. Protect your `master` branch.](#610-protect-your-master-branch)
-  * [6.2. **Feature-branch-workflow**](#62-feature-branch-workflow)
-  * [6.2.1. Initialize a Git repository in the product directory (_for new repositories only_).](#621-initialize-a-git-repository-in-the-product-directory-_for-new-repositories-only_)
-  * [6.2.2. Checkout a new `feat`ure or `fix` branch.](#622-checkout-a-new-feature-or-fix-branch)
-  * [6.2.3. Make Changes.](#623-make-changes)
-  * [6.2.4. Follow the Conventional Commits Specification for commit messages.](#624-follow-the-conventional-commits-specification-for-commit-messages)
-  * [6.2.5. Sync with remote to get changes you’ve missed.](#625-sync-with-remote-to-get-changes-youve-missed)
-  * [6.2.6. Update your topic branch with the latest changes from `master` by interactive rebase.](#626-update-your-topic-branch-with-the-latest-changes-from-master-by-interactive-rebase)
-  * [6.2.7. Resolve conflicts (if any occur), and continue rebase.](#627-resolve-conflicts-if-any-occur-and-continue-rebase)
+- [5. Formatting and verifying your sources' quality](#5-formatting-and-verifying-your-sources-quality)
+- [6. Git rules](#6-git-rules)
+  * [6.1. _Always_ create a topic branch or fork from `master`](#61-_always_-create-a-topic-branch-or-fork-from-master)
+  * [6..2. Favor the branch naming convention `GH-{ISSUE_NUMBER}--[-]`](#62-favor-the-branch-naming-convention-gh-issue_number---)
+  * [6.3. **_Never_** push into the `master` branch. **_Always_** submit a Pull Request](#63-_never_-push-into-the-master-branch-_always_-submit-a-pull-request)
+  * [6.4. Submit a Pull Request as soon as possible](#64-submit-a-pull-request-as-soon-as-possible)
+  * [6.5. Add reviewers and the label `Status: Needs Review` when the topic branch is ready](#65-add-reviewers-and-the-label-status-needs-review-when-the-topic-branch-is-ready)
+  * [6.6. Delete local and remote topic branches after merging](#66-delete-local-and-remote-topic-branches-after-merging)
+  * [6.7. Protect the `master` branch](#67-protect-the-master-branch)
+  * [6.8. GitHub workflow](#68-github-workflow)
+  * [6.8.1. Initialize a Git repository in the product directory (_for new repositories only_).](#681-initialize-a-git-repository-in-the-product-directory-_for-new-repositories-only_)
+  * [6.8.2. Checkout a new `feat`ure or `fix` branch.](#682-checkout-a-new-feature-or-fix-branch)
+  * [6.8.3. Make Changes.](#683-make-changes)
+  * [6.8.4. Follow the Conventional Commits Specification for commit messages.](#684-follow-the-conventional-commits-specification-for-commit-messages)
+  * [6.8.5. Sync with remote to get changes you’ve missed.](#685-sync-with-remote-to-get-changes-youve-missed)
+  * [6.8.6. Update your topic branch with the latest changes from `master` by interactive rebase](#686-update-your-topic-branch-with-the-latest-changes-from-master-by-interactive-rebase)
+  * [6.2.7. Resolve conflicts (if any occur), and continue rebase](#627-resolve-conflicts-if-any-occur-and-continue-rebase)
   * [6.2.8. Push your branch with the `-f` flag (if necessary).](#628-push-your-branch-with-the--f-flag-if-necessary)
-  * [6.2.9. Submit a Pull Request.](#629-submit-a-pull-request)
-  * [6.2.10. Once accepted, the Pull request will be merged, closed, and deleted by an administrator.](#6210-once-accepted-the-pull-request-will-be-merged-closed-and-deleted-by-an-administrator)
-  * [6.2.11. Remove your local topic branch if you're done.](#6211-remove-your-local-topic-branch-if-youre-done)
-- [3. **Code standards**](#3-code-standards)
-  * [3.1. Use the Standard JS Style.](#31-use-the-standard-js-style)
-  * [3.2. Use ESLint to analyze source code.](#32-use-eslint-to-analyze-source-code)
-- [4. **Unit testing**](#4-unit-testing)
-  * [4.1. Write Jest tests.](#41-write-jest-tests)
-  * [4.2. Reach 100% code coverage.](#42-reach-100%25-code-coverage)
-- [5. **Directory structure**](#5-directory-structure)
-- [6. **Logging**](#6-logging)
-- [7. **Dependencies**](#7-dependencies)
-  * [7.1. Production](#71-production)
-  * [7.2. Development](#72-development)
-  * [7.3. Optional](#73-optional)
-- [8. **APIs**](#8-apis)
-  * [8.1 **API design**](#81-api-design)
-  * [8.2 **API security**](#82-api-security)
-  * [8.3 **API documentation**](#83-api-documentation)
-- [9. **Licensing**](#9-licensing)
+  * [6.2.9. Submit a Pull Request](#629-submit-a-pull-request)
+  * [6.2.10. Remove your local topic branch if you're done](#6210-remove-your-local-topic-branch-if-youre-done)
+- [7. **Code standards**](#7-code-standards)
+  * [7.1. Use the Standard JS Style](#71-use-the-standard-js-style)
+  * [7.2. Use ESLint to analyze source code.](#72-use-eslint-to-analyze-source-code)
+- [8. **Unit testing**](#8-unit-testing)
+  * [8.1. Write Jest tests](#81-write-jest-tests)
+  * [8.2. Reach 100% code coverage](#82-reach-100%25-code-coverage)
+- [9. **Directory structure**](#9-directory-structure)
+- [10. **Logging**](#10-logging)
+- [11. **Dependencies**](#11-dependencies)
+  * [11.1. Production](#111-production)
+  * [11.2. Development](#112-development)
+- [12. **Licensing**](#12-licensing)
 <!-- ⛔️ AUTO-GENERATED-CONTENT:END ⛔️ -->
 
 ## 1. Prerequisite software
@@ -60,7 +51,7 @@
 Before you can build and test readme-inspector, you must install and configure the
 following products on your development machine:
 
-1.  [Git](http://git-scm.com) and/or the \**GitHub app*1. (for [Mac](http://mac.github.com) or
+1.  [Git](http://git-scm.com) and/or the **GitHub app** (for [Mac](http://mac.github.com) or
     [Windows](http://windows.github.com)); [GitHub's Guide to Installing
     Git](https://help.github.com/articles/set-up-git) is a good source of information.
 
@@ -75,7 +66,7 @@ Fork and clone the readme-inspector repository:
 
 1.  [**Sign in**](https://github.com/login) to your GitHub account or [sign up for a (free) GitHub account](https://github.com/join).
 2.  [**Fork**](http://help.github.com/forking) the [main readme-inspector repository](https://github.com/commonality/readme-inspector) (aka, "`origin`").
-3.  \**Clone your fork*1. of the readme-inspector repository and define an `upstream` remote pointing back to the readme-inspector repository that you forked in the first place.
+3.  **Clone your fork** of the readme-inspector repository and define an `upstream` remote pointing back to the readme-inspector repository that you forked in the first place.
 
 ```shell
 # Clone your GitHub repository:
@@ -99,7 +90,7 @@ npm install
 
 ## 4. Building
 
-![info][octicon-info] There are no build tasks for versions <samp>1.x.x</samp> of readme-inspector.
+![info][octicon-info] There are currently no build tasks for readme-inspector.
 
 ## 5. Running tests
 
@@ -119,18 +110,19 @@ $ npm run test:watch
 >
 > ![bug][octicon-bug] See [DEBUG.md](DEBUG.md) for information on debugging the code while running the unit tests.
 
-All the tests are executed on our Continuous Integration infrastructure and a PR could only be merged once the tests pass.
+All tests are executed with Continuous Integration services.
 
-1.  CircleCI fails if your code is not formatted properly,
-1.  Travis CI fails if any of the test suites described above fails.
+1.  We test on Node.js versions `9`, `8`, and `7.6.0` on Windows, Mac, and Ubuntu operating systems.
+1.  PRs will only be merged once all tests pass.
+1.  Travis CI will fail if any of the test suites fails, or a linting rule is violated.
 
-## 5. Formatting and verifying your sources
+## 5. Formatting and verifying your sources' quality
 
 ![verified][octicon-verified] readme-inspector uses
 
 1.  [ESLint](http://clang.llvm.org/docs/ClangFormat.html) to evaluate and format source code;
-1.  [Fixpack]() to order all `package.json` properties in alphabetical order; and
-1.  [Prettier]() to format JSON, Markdown, and YAML.
+1.  [Fixpack](https://www.npmjs.com/package/fixpack) to order all `package.json` properties consistently; and
+1.  [Prettier](https://www.npmjs.com/package/eslint-plugin-prettier) to format JSON, Markdown, and YAML.
 
 You can both evaluate and format your all sources by running:
 
@@ -158,90 +150,136 @@ npm run lint:md
 
 > ![alert][octicon-alert] If the source code does not pass linting, the CI will fail and the PR can not be merged.
 
-## 6. Git guidelines
+## 6. Git rules
 
 ![Git Logo][icon-git-logo-image]
 
-`readme-inspector` manages contributions with the [feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow).
+`readme-inspector` manages contributions with the [GitHub Flow](https://guides.github.com/introduction/flow/):
+**anything in the `master` branch is _always_ deployable**.
 
-### 6.1. Makes changes in a topic branch
-
-_Why:_
-
-> ⌦ Use an isolated topic branch for parallel product development. Topic branches allow you to submit multiple pull requests without confusion. You can iterate without polluting the master branch with potentially unstable, unfinished code. The `readme-inspector` team uses:
->
-> 1.  [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) for small-ish codebases, or
-> 1.  [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) for large applications and monoliths
-
-### 6..2. Favor the topic branch naming convention `GH-{ISSUE_NUMBER}-type-scope`
+### 6.1. _Always_ create a topic branch or fork from `master`
 
 _Why:_
 
-> ⌦ Although not required, our team prefixes branches with the GitHub issue number, followed by the type of change being introduced, followed by the scope of changes.
->
-> **Examples:**
->
-> 1.  **feat**: a new feature, e.g., `GH-1-feat-cli-add-authz`.
-> 1.  **fix**: a defect/bug repair, e.g., `GH-2-fix-api-logging-error`.
-> 1.  **build**: changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm), e.g., `GH-8-build-add-markdown-toc`.
-> 1.  **chore**: changes that don't modify src or test files, e.g., `GH-10-remove-unused-files`.
-> 1.  **ci**: changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs), e.g., `GH-9-ci-travis-deploy-semantic-release`.
-> 1.  **docs**: documentation changes, e.g., `GH-3-docs-readme-revise-api`.
-> 1.  **perf**: change that improves performance `GH-6-perf-quicksort`.
-> 1.  **refactor**: code changes that improve design, but neither fixes a bug nor adds a feature, e.g., `GH-5-refactor-extract-class`.
-> 1.  **revert**: reverts a previous commit, e.g., `GH-11-revert-7f87cc2`.
-> 1.  **style**: changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc), e.g., `GH-4-style-lint`.
-> 1.  **test**: add missing tests or correct existing tests, e.g., `GH-7-test-complete-coverage`.
+> ⌦ Use an isolated topic branch for parallel product development. Topic branches allow you to submit multiple pull requests without confusion. You can iterate without polluting the `master` branch with potentially unstable, unfinished code.
 
-### 6.3. Branch out from `master`.
+### 6..2. Favor the branch naming convention `GH-{ISSUE_NUMBER}-<type>-<scope>[-<subject>]`
 
 _Why:_
 
-> ⌦ `readme-inspector` follows the feature-branch-workflow.
+> ⌦ Although not required, our team
+>
+> 1.  Prefixes branches with the GitHub issue number in the format
+>
+>     ```shell
+>     GH-{ISSUE_NUMBER}
+>     ```
+>
+>     followed by
+>
+> 1.  The `<type>` or "kind" of change being introduced, followed by
+> 1.  The `<scope>` of change, (the feature or module that is changing), followed by
+> 1.  An _optional_ short, descriptive `<subject>`.
 
-### 6.4. **_Never_**. push into the `master` branch. **_Always_** submit a Pull Request
+_Examples:_
+
+> 1.  **feat**: a new feature, e.g.,
+>
+>     ```shell
+>     GH-1-feat-cli-add-authz
+>     ```
+>
+> 1.  **fix**: a defect/bug repair, e.g., `GH-2-fix-api-logging-error`
+>
+>     ```shell
+>     GH-1-feat-cli-add-authz
+>     ```
+>
+> 1.  **build**: changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm), e.g., `GH-8-build-add-markdown-toc`
+>
+>     ```shell
+>     GH-1-feat-cli-add-authz
+>     ```
+>
+> 1.  **chore**: changes that don't modify src or test files, e.g., `GH-10-remove-unused-files`
+>
+>     ```shell
+>     GH-1-feat-cli-add-authz
+>     ```
+>
+> 1.  **ci**: changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs), e.g.:
+>
+>     ```shell
+>     GH-9-ci-travis-deploy-semantic-release
+>     ```
+>
+> 1.  **docs**: documentation changes, e.g.:
+>
+>     ```shell
+>     GH-3-docs-readme-revise-api
+>     ```
+>
+> 1.  **perf**: change that improves performance, e.g.:
+>
+>     ```shell
+>     GH-6-perf-quicksort
+>     ```
+>
+> 1.  **refactor**: code changes that improve design, but neither fixes a bug nor adds a feature, e.g.:
+>
+>     ```shell
+>     GH-5-refactor-extract-class
+>     ```
+>
+> 1.  **revert**: reverts a previous commit, e.g.:
+>
+>     ```shell
+>     GH-11-revert-7f87cc2
+>     ```
+>
+> 1.  **style**: changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc), e.g.:
+>
+>     ```shell
+>     GH-4-style-lint
+>     ```
+>
+> 1.  **test**: add missing tests or correct existing tests, e.g.:
+>
+>     ```shell
+>     GH-7-test-complete-coverage
+>     ```
+
+### 6.3. **_Never_** push into the `master` branch. **_Always_** submit a Pull Request
 
 _Why:_
 
-> ⌦ It notifies team members whenever changes occur and allows the community to review your changes at any time..
+> ⌦ It notifies team members whenever changes occur and allows the community to review your changes at any time.
 >
-> It also enables easy peer-review of the code and dedicates forum for discussing the proposed feature.
+> ⌦ It also enables easy peer-review of the code and dedicates forum for discussing the proposed feature.
 
-### 6.5. Submit a Pull Request as soon as possible.
+### 6.4. Submit a Pull Request as soon as possible
 
 _Why:_
 
 > ⌦ Pull Requests declare work in progress. Frequent pushes to a Pull Request notify your team members about change, and gives them the opportunity to provide feedback more often.
 >
-> Pull Request pushes also trigger automated CI-services, which help you fail fast and assess quality.
+> ⌦ Pull Request pushes also trigger automated CI-services, which help you fail fast and assess quality.
 
-### 6.6. Rebase your local `master` branch before you ask for PR approvals.
-
-_Why:_
-
-> ⌦ Rebasing will merge in the requested branch (`master` or `develop`) and apply the commits that you have made locally to the top of the history without creating a merge commit (assuming there were no conflicts). This results in a nice and clean history.
-
-### 6.7. Resolve rebase conflicts before Pull Request reviews.
-
-_Why:_
-
-> ⌦ Rebasing will merge in the `master` branch and apply the commits that you have made locally to the top of it.
-
-### 6.8. Add reviewers and the label `Status: Needs Review` when the topic branch is ready.
+### 6.5. Add reviewers and the label `Status: Needs Review` when the topic branch is ready
 
 _Why:_
 
 > ⌦ When you add a Reviewer, GitHub (or Bitbucket) notifies teammates that your topic branch meets all Acceptance Criteria and is ready to be merged into `master`.
 >
-> Add the label "Status: Review Needed" formally declares the status of your topic branch, and helps teams filter through issues.
+> Add the label <kbd>Status: Review Needed</kbd> and someone in the community will take a look.
 
-### 6.9. Delete local and remote topic branches after merging.
+### 6.6. Delete local and remote topic branches after merging
 
 _Why:_
 
 > ⌦ Topic branches should only exist while work is in-progress. Merged topic branches clutter up your list of branches with dead branches. Topic branch deletion also insures that you only ever merge back into `master`.
 
-### 6.10. Protect your `master` branch.
+### 6.7. Protect the `master` branch
 
 _Why:_
 
@@ -250,11 +288,11 @@ _Why:_
 > 1.  [GitHub protected branches](https://help.github.com/articles/about-protected-branches/) and
 > 1.  [Bitbucket protected branches](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html).
 
-### 6.2. **Feature-branch-workflow**
+### 6.8. GitHub workflow
 
 We use the [feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow). We _recommend_ [interactive rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing), too, but that's not required.
 
-### 6.2.1. Initialize a Git repository in the product directory (_for new repositories only_).
+### 6.8.1. Initialize a Git repository in the product directory (_for new repositories only_).
 
 For subsequent features and changes, this step should be ignored.
 
@@ -263,7 +301,7 @@ cd <product-repo-directory>
 git init
 ```
 
-### 6.2.2. Checkout a new `feat`ure or `fix` branch.
+### 6.8.2. Checkout a new `feat`ure or `fix` branch.
 
 ```sh
 # For a new feature branch:
@@ -273,7 +311,7 @@ git checkout -b GH-<issueId>-feat-scope-of-change
 git checkout -b GH-<issueId>-fix-scope-of-change
 ```
 
-### 6.2.3. Make Changes.
+### 6.8.3. Make Changes.
 
 ```sh
 git add
@@ -284,13 +322,33 @@ _Why:_
 
 > ⌦ `git commit -a` will start an editor which lets you separate the subject from the body. Read more about it in _section 1.3_.
 
-### 6.2.4. Follow the Conventional Commits Specification for commit messages.
+### 6.8.4. Follow the Conventional Commits Specification for commit messages.
 
 This project enforces [AngularJS Git Commit Guidelines][git-commit-guidelines-url] (which is now an extension of the [Conventional Commits Specfication][conventional-commits-url]) with [`commitplease`][commitplease-url] pre-commit hooks.
 
 _Why:_
 
-> Consistent, legible Git logs not only facilitate communication, but also enable automated `CHANGELOG` generation and semantic versioning with [`standard-version`][standard-version-url].
+> Consistent, legible Git logs not only facilitate communication, but also enable automated `CHANGELOG` generation and semantic versioning with [`standard-version`][standard-version-url] and [`semantic-release`][semantic-release-url].
+
+---
+
+<details><summary>Click here for conventional commit definitions with examples.</summary><p>
+
+1.  **`BREAKING CHANGES` commit messages**
+
+    Commits that change the public API of your product.
+
+    > ![info][octicon-info] BREAKING CHANGES result in a MAJOR version bump.
+
+    ```shell
+    <type>(<scope>): <subject>
+    <BLANK LINE>
+    BREAKING CHANGE: <Summarize your changes to the public API here.>
+    <BLANK LINE>
+    <body>
+    <BLANK LINE>
+    <footer>
+    ```
 
 1.  **`build` commit messages**
 
@@ -426,7 +484,11 @@ _Why:_
     <footer>
     ```
 
-### 6.2.5. Sync with remote to get changes you’ve missed.
+<p></details>
+
+---
+
+### 6.8.5. Sync with remote to get changes you’ve missed.
 
 ```shell
 git checkout master
@@ -437,7 +499,7 @@ _Why:_
 
 > ⌦ This will give you a chance to deal with conflicts on your machine while rebasing(later) rather than creating a Pull Request that contains conflicts.
 
-### 6.2.6. Update your topic branch with the latest changes from `master` by interactive rebase.
+### 6.8.6. Update your topic branch with the latest changes from `master` by interactive rebase
 
 ```sh
 git checkout <branchname>
@@ -450,7 +512,7 @@ _Why:_
 >
 > [Learn more about autosquashing Git commits][autosquashing-git-commits-url].
 
-### 6.2.7. Resolve conflicts (if any occur), and continue rebase.
+### 6.2.7. Resolve conflicts (if any occur), and continue rebase
 
 ```sh
 git add <file1> <file2> ...
@@ -473,14 +535,14 @@ _Why:_
 >
 > [Learn more about `--force-with-lease`][force-with-lease-url].
 
-### 6.2.9. Submit a Pull Request.
+### 6.2.9. Submit a Pull Request
 
-### 6.2.10. Once accepted, the Pull request will be merged, closed, and deleted by an administrator.
+Once accepted, the Pull request will be approved, merged, closed, and deleted by an administrator.
 
-### 6.2.11. Remove your local topic branch if you're done.
+### 6.2.10. Remove your local topic branch if you're done
 
 ```sh
-git branch -d <branchname>
+git branch -D <branchname>
 ```
 
 to remove all branches which are no longer on remote
@@ -492,15 +554,15 @@ git fetch -p && \
   done
 ```
 
-## 3. **Code standards**
+## 7. **Code standards**
 
 [![JavaScript Style Guide][standard-js-badge-image]][standard-js-url] [![ESLint logo][eslint-logo-image]][eslint-url]
 
-### 3.1. Use the Standard JS Style.
+### 7.1. Use the Standard JS Style
 
 `readme-inspector` follows the [Standard JS Style][standard-js-url].
 
-### 3.2. Use ESLint to analyze source code.
+### 7.2. Use ESLint to analyze source code.
 
 _Why:_
 
@@ -514,25 +576,25 @@ npm run lint:js
 
 View [`readme-inspector's` ESLint rules][eslint-rules-table-url] and their enforcement.
 
-## 4. **Unit testing**
+## 8. **Unit testing**
 
 [![Jest JavaScript Testing][jest-logo-image]][jest-url]
 
-### 4.1. Write Jest tests.
+### 8.1. Write Jest tests
 
 _Why:_
 
 > ⌦ Behavior-driven development specifications are executable documentation.
 
-1.  **Put test files in the \*\*test\*\1. directory.**
+1.  **Put test files in the `__tests__` directory.**
 
-1.  **Use the `.spec.js` suffix for all tests.**
+1.  **Use the `.test.js` suffix for all tests.**
 
-### 4.2. Reach 100% code coverage.
+### 8.2. Reach 100% code coverage
 
 _Why:_
 
-> ⌦ Full coverage makes automated dependency drift updates safer.
+> ⌦ Full coverage makes automated dependency drift updates safer, which also allows more people to work on the product at the same time.
 
 1.  View a test coverage summary in the Terminal:
 
@@ -559,23 +621,27 @@ _Why:_
     ----------|----------|----------|----------|----------|----------------|
     ```
 
-1.  Open `/coverage/lcov-report/index.html` in a Web browser to view detailed coverage reports.
+> ![info][octicon-info] Open `/lib/__tests__/coverage/lcov-report/index.html` in a Web browser to view detailed coverage reports.
 
-## 5. **Directory structure**
+## 9. **Directory structure**
 
-> `node_modules` has been excluded for brevity.
+<img align="bottom" alt="file-directory" height="50" width="50" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/file-directory.svg">
+
+> ![info][octicon-info] `node_modules` has been excluded for brevity.
 
 ```text
 
 ```
 
-## 6. **Logging**
+## 10. **Logging**
 
-`readme-inspector` uses [`bunyan`](https://github.com/trentm/node-bunyan) for logging.
+<img align="botom" alt="eye" height="50" width="50" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/eye.svg"> `readme-inspector` uses [`bunyan`](https://github.com/trentm/node-bunyan) for logging.
 
-## 7. **Dependencies**
+## 11. **Dependencies**
 
-### 7.1. Production
+<img align="bottom" alt="package" height="50" width="50" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/package.svg">
+
+### 11.1. Production
 
 `readme-inspector` requires the following dependencies to operate.
 
@@ -595,7 +661,7 @@ _Why:_
  | [meow@4.0.0](https://github.com/sindresorhus/meow#readme) | CLI app helper | 4.0.0 | MIT | production | 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-### 7.2. Development
+### 11.2. Development
 
 `readme-inspector` uses the the following dependencies to build, test, or deploy:
 
@@ -647,335 +713,9 @@ _Why:_
  | [standard-version@4.3.0](https://github.com/conventional-changelog/standard-version#readme) | replacement for `npm version` with automatic CHANGELOG generation | 4.3.0 | ISC | dev | 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-### 7.3. Optional
+## 12. **Licensing**
 
-<!-- AUTO-GENERATED-CONTENT:START (DEPENDENCYTABLE:optional=true) -->
-| **Dependency** | **Description** | **Version** | **License** | **Type** |
-| -------------- | --------------- | ----------- | ----------- | -------- |
-<!-- AUTO-GENERATED-CONTENT:END -->
-
-## 8. **APIs**
-
-![APIs][icon-rest-api-image]
-
-### 8.1 **API design**
-
-We try to enforce development of sanely constructed RESTful interfaces, which team members and clients can consume simply and consistently.
-
-Lack of consistency and simplicity can massively increase integration and maintenance costs, which is why `API design` is included in this document.
-
-1.  We mostly follow resource-oriented design. It has three main factors: resources, collection, and URLs.
-
-1.  A resource has data, gets nested, and there are methods that operate against it.
-1.  A group of resources is called a collection.
-1.  URL identifies the online location of resource or collection.
-
-    _Why:_
-
-    > ⌦ This is a very well-known design to developers (your main API consumers). Apart from readability and ease of use, it allows us to write generic libraries and connectors without even knowing what the API is about.
-
-1.  Use kebab-case for URLs.
-1.  Use camelCase for parameters in the query string or resource fields.
-1.  Use plural kebab-case for resource names in URLs.
-
-1.  Always use a plural nouns for naming a url pointing to a collection: `/users`.
-
-    _Why:_
-
-    > ⌦ Basically, it reads better and keeps URLs consistent. [read more...](https://apigee.com/about/blog/technology/restful-api-design-plural-nouns-and-concrete-names)
-
-1.  In the source code convert plurals to variables and properties with a List suffix.
-
-    _Why_:
-
-    > ⌦ Plural is nice in the URL but in the source code, it’s just too subtle and error-prone.
-
-1.  Always use a singular concept that starts with a collection and ends to an identifier:
-
-    ```http
-    /students/245743
-    /airports/kjfk
-    ```
-
-1.  Avoid URLs like this:
-
-    ```http
-    GET /blogs/:blogId/posts/:postId/summary
-    ```
-
-    _Why:_
-
-    > ⌦ This is not pointing to a resource but to a property instead. You can pass the property as a parameter to trim your response.
-
-1.  Keep verbs out of your resource URLs.
-
-    _Why:_
-
-    > ⌦ Because if you use a verb for each resource operation you soon will have a huge list of URLs and no consistent pattern which makes it difficult for developers to learn. Plus we use verbs for something else.
-
-1.  Use verbs for non-resources. In this case, your API doesn't return any resources. Instead, you execute an operation and return the result. These \**are not*1. CRUD (create, retrieve, update, and delete) operations:
-
-    ```http
-    /translate?text=Hallo
-    ```
-
-    _Why:_
-
-    > ⌦ Because for CRUD we use HTTP methods on `resource` or `collection` URLs. The verbs we were talking about are actually `Controllers`. You usually don't develop many of these. [read more...](https://byrondover.github.io/post/restful-api-guidelines/#controller)
-
-1.  The request body or response type is JSON then please follow `camelCase` for `JSON` property names to maintain the consistency.
-
-    _Why:_
-
-    > ⌦ This is a JavaScript project guideline, Where Programming language for generating JSON as well as Programming language for parsing JSON are assumed to be JavaScript.
-
-1.  Even though a resource is a singular concept that is similar to an object instance or database record, you should not use your `table_name` for a resource name and `column_name` resource property.
-
-    _Why:_
-
-    > ⌦ Because your intention is to expose Resources, not your database schema details.
-
-1.  Again, only use nouns in your URL when naming your resources and don’t try to explain their functionality.
-
-    _Why:_
-
-    > ⌦ Only use nouns in your resource URLs, avoid endpoints like `/addNewUser` or `/updateUser` . Also avoid sending resource operations as a parameter.
-
-1.  Explain the CRUD functionalities using HTTP methods:
-
-    _How:_
-
-    > `GET`: Retrieve a representation of a resource.
-    >
-    > `POST`: Create new resources and sub-resources.
-    >
-    > `PUT`: Replace existing resources.
-    >
-    > `PATCH`: Update existing resources. It only updates the fields that were supplied, leaving the others alone.
-    >
-    > `DELETE`: Delete existing resources.
-
-1.  For nested resources, use the relation between them in the URL. For instance, using `id` to relate an employee to a company.
-
-    _Why:_
-
-    > ⌦ This is a natural way to make resources explorable.
-    >
-    > _How:_
-    >
-    > `GET /schools/2/students` , should get the list of all students from school 2.
-    >
-    > `GET /schools/2/students/31` , should get the details of student 31, which belongs to school 2.
-    >
-    > `DELETE /schools/2/students/31` , should delete student 31, which belongs to school 2.
-    >
-    > `PUT /schools/2/students/31` , should update info of student 31, Use PUT on resource-URL only, not collection.
-    >
-    > `POST /schools` , should create a new school and return the details of the new school created. Use POST on collection-URLs.
-
-1.  Use a simple ordinal number for a version with a `v` prefix (v1, v2). Move it all the way to the left in the URL so that it has the highest scope:
-
-    ```http
-    http://api.domain.com/v1/schools/3/students
-    ```
-
-    _Why:_
-
-    > ⌦ When your APIs are public for other third parties, upgrading the APIs with some breaking change would also lead to breaking the existing products or services using your APIs. Using versions in your URL can prevent that from happening. [read more...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
-
-1.  Response messages must be self-descriptive. A good error message response might look something like this:
-
-    ```json
-    {
-      "code": 404,
-      "level": "ERROR",
-      "logger": "[http-logger]",
-      "message":
-        "No resource found at URL /archetypes/v1/locales/iso-country-codes/BS",
-      "timestamp": 1504878062000
-    }
-    ```
-
-    or for validation errors:
-
-    ```json
-    {
-      "code": 400,
-      "logger": "[registration-form-logger]",
-      "level": "ERROR",
-      "timestamp": 1504878062000,
-      "message": "Validation Failed",
-      "stack": [
-        {
-          "code": 1233,
-          "field": "email",
-          "message": "Invalid email"
-        },
-        {
-          "code": 1234,
-          "field": "password",
-          "message": "No password provided"
-        }
-      ]
-    }
-    ```
-
-    _Why:_
-
-    > ⌦ Developers depend on well-designed errors at the critical times when they are troubleshooting and resolving issues after the applications they've built using your APIs are in the hands of their users.
-
-    ---
-
-    _![alert][octicon-alert] **Keep security exception messages as generic as possible.**_ For instance, instead of saying ‘incorrect password’, you can reply back saying ‘invalid username or password’ so that we don’t unknowingly inform user that username was indeed correct and only the password was incorrect.
-
-    ---
-
-1.  Use only these 8 status codes to send with you response to describe whether **everything worked**,
-    The **client app did something wrong\*1. or The **API did something wrong\*\*.
-
-    _Which ones:_
-
-    > `200 OK` response represents success for `GET`, `PUT` or `POST` requests.
-    >
-    > `201 Created` for when new instance is created. Creating a new instance, using `POST` method returns `201` status code.
-    >
-    > `304 Not Modified` response is to minimize information transfer when the recipient already has cached representations.
-    >
-    > `400 Bad Request` for when the request was not processed, as the server could not understand what the client is asking for.
-    >
-    > `401 Unauthorized` for when the request lacks valid credentials and it should re-request with the required credentials.
-    >
-    > `403 Forbidden` means the server understood the request but refuses to authorize it.
-    >
-    > `404 Not Found` indicates that the requested resource was not found.
-    >
-    > `500 Internal Server Error` indicates that the request is valid, but the server could not fulfill it due to some unexpected condition.
-
-    _Why:_
-
-    > ⌦ Most API providers use a small subset HTTP status codes. For example, the Google GData API uses only 10 status codes, Netflix uses 9, and Digg, only 8. Of course, these responses contain a body with additional information.There are over 70 HTTP status codes. However, most developers don't have all 70 memorized. So if you choose status codes that are not very common you will force application developers away from building their apps and over to wikipedia to figure out what you're trying to tell them. [read more...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
-
-1.  Provide total numbers of resources in your response.
-1.  Accept `limit` and `offset` parameters.
-
-1.  The amount of data the resource exposes should also be taken into account. The API consumer doesn't always need the full representation of a resource.Use a fields query parameter that takes a comma separated list of fields to include:
-
-    ```http
-    GET /student?fields=id,name,age,class
-    ```
-
-1.  Pagination, filtering, and sorting don’t need to be supported from start for all resources. Document those resources that offer filtering and sorting.
-
-### 8.2 **API security**
-
-These are some basic security best practices:
-
-1.  Don't use basic authentication unless over a secure connection (HTTPS). Authentication tokens must not be transmitted in the URL: `GET /users/123?token=asdf....`
-
-    _Why:_
-
-    > ⌦ Because Token, or user ID and password are passed over the network as clear text (it is base64 encoded, but base64 is a reversible encoding), the basic authentication scheme is not secure. [read more...](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
-
-1.  Tokens must be transmitted using the Authorization header on every request: `Authorization: Bearer xxxxxx, Extra yyyyy`.
-
-1.  Authorization Code should be short-lived.
-
-1.  Reject any non-TLS requests by not responding to any HTTP request to avoid any insecure data exchange. Respond to HTTP requests by `403 Forbidden`.
-
-1.  Consider using Rate Limiting.
-
-    _Why:_
-
-    > ⌦ To protect your APIs from bot threats that call your API thousands of times per hour. You should consider implementing rate limit early on.
-
-1.  Setting HTTP headers appropriately can help to lock down and secure your web application. [read more...](https://github.com/helmetjs/helmet)
-
-1.  Your API should convert the received data to their canonical form or reject them. Return 400 Bad Request with details about any errors from bad or missing data.
-
-1.  All the data exchanged with the ReST API must be validated by the API.
-
-1.  Serialize your JSON.
-
-    _Why:_
-
-    > ⌦ A key concern with JSON encoders is preventing arbitrary JavaScript remote code execution within the browser... or, if you're using node.js, on the server. It's vital that you use a proper JSON serializer to encode user-supplied data properly to prevent the execution of user-supplied input on the browser.
-
-1.  Validate the content-type and mostly use `application/*json` (Content-Type header).
-
-    _Why:_
-
-    > ⌦ For instance, accepting the `application/x-www-form-urlencoded` mime type allows the attacker to create a form and trigger a simple POST request. The server should never assume the Content-Type. A lack of Content-Type header or an unexpected Content-Type header should result in the server rejecting the content with a `4XX` response.
-
-### 8.3 **API documentation**
-
-1.  Fill the \**API*1. section in the README for API.
-1.  Describe API authentication methods with a code sample.
-1.  Explaining The URL Structure (path only, no root URL) including The request type (Method). For each endpoint explain:
-
-1.  URL Params If URL Params exist, specify them in accordance with name mentioned in URL section:
-
-    ```http
-    Required: id=[integer]
-    Optional: photo_id=[alphanumeric]
-    ```
-
-1.  If the request type is POST, provide working examples. URL Params rules apply here too. Separate the section into Optional and Required.
-
-1.  \**Success Responses.*1. What should be the status code and is there any return data? This is useful when people need to know what their callbacks should expect:
-
-    ```http
-    Code: 200
-    Content: { id : 12 }
-    ```
-
-1.  \**Error Responses.*1. Most endpoints have many ways to fail. From unauthorized access to wrongful parameters etc. All of those should be listed here. It might seem repetitive, but it helps prevent assumptions from being made. For example:
-
-
-    1. **HTTP status code**
-
-        ```http
-        404 Not Found
-        ```
-
-    1. **Response body**
-
-        ```json
-        {
-          "code": 404,
-          "level": "ERROR",
-          "logger": "[http-logger]",
-          "message":
-            "No resource found at URL /archetypes/v1/locales/iso-country-codes/BS",
-          "timestamp": 1504878062000
-        }
-        ```
-
-    1. **Response headers**
-
-        ```http
-        accept-ranges: bytes
-        access-control-allow-headers: Authorization
-        access-control-allow-methods: GET, HEAD, OPTIONS
-        access-control-allow-origin: *
-        cache-control: public, no-transform, must-revalidate
-        connection: keep-alive
-        content-encoding: gzip
-        content-language: en-US
-        content-length: 149
-        content-type: application/json
-        date: Fri, 08 Sep 2017 06:41:02 GMT
-        last-modified: Tue, 1 Oct 2014 10:10:10 GMT
-        server: nginx/1.12.1
-        vary: Accept-Encoding
-        ```
-
-1.  Use API design tools, There are lots of open source tools for good documentation such as [API Blueprint](https://apiblueprint.org/) and [Swagger](https://swagger.io/).
-
-## 9. **Licensing**
-
-![Licensing][osi-logo-image]
-
-Make sure you use resources that you have the rights to use. If you use libraries, remember to look for MIT, Apache or BSD but if you modify them, then take a look into license details. Copyrighted images and videos may cause legal problems.
+<img align="left" alt="law" height="50" width="50" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/law.svg"> Make sure you use resources that you have the rights to use. If you use libraries, remember to look for MIT, Apache or BSD but if you modify them, then take a look into license details. Copyrighted images and videos may cause legal problems.
 
 <!-- ⛔️  Do not remove anything below this comment. ⛔️  -->
 
@@ -1031,8 +771,9 @@ Make sure you use resources that you have the rights to use. If you use librarie
 [stackshare-url]: https://stackshare.io/commonality/readme-inspector
 [standard-js-badge-image]: https://cdn.rawgit.com/standard/standard/master/badge.svg
 [standard-js-url]: https://github.com/standard/standard
-[standard-version-url]: https://github.com/conventional-changelog/standard-version
+[standard-version-url]: https://github.com/semantic-release/semantic-releasehttps://github.com/conventional-changelog/standard-version
 [tech-stack-image]: ./assets/img/icons8/icon-package-filled.png
+[semantic-release-url]: https://github.com/semantic-release/semantic-release
 
 <!-- ⛔️ LINK REFERENCES(Begin) ⛔️  -->
 
