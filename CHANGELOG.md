@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
----
+<a name="2.0.1"></a>
+
+## [2.0.1](https://github.com/commonality/readme-inspector/compare/v2.0.0...v2.0.1) (2018-04-24)
+
+### Bug Fixes
+
+* **config:** move .env files ([2ff8905](https://github.com/commonality/readme-inspector/commit/2ff8905)), closes [#23](https://github.com/commonality/readme-inspector/issues/23)
 
 <a name="2.0.0"></a>
 

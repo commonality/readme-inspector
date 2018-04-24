@@ -657,7 +657,7 @@ Before embarking on a significant change, please follow these guidelines:
 
 <!-- 🔗 link references 🔗 -->
 
-[api-docs-url]: https://commonality.github.io/readme-inspector/api/readme-inspector/2.0.0/ReadmeAppraisal.html
+[api-docs-url]: https://commonality.github.io/readme-inspector/api/readme-inspector/2.0.1/ReadmeAppraisal.html
 [bunyan-format-url]: https://github.com/thlorenz/bunyan-format/#readme
 [node-bunyan-url]: https://github.com/trentm/node-bunyan/#readme
 [optional-param-img]: https://fakeimg.pl/60x22/757575/FFF/?text=optional&font_size=16

@@ -2,7 +2,7 @@
 
 > Rules, guidelines, a governance for developing, fixing, maintaining, and delivering readme-inspector.
 
-readme-inspector [![NPM version][npm-image]][npm-url] [![GitHub release][github-release-image]][github-release-url]<br>
+[![NPM version][npm-image]][npm-url] [![GitHub release][github-release-image]][github-release-url]<br>
 [![The MIT License][license-image]][license-url]
 [![FOSSA Status][fossa-image]][fossa-url]
 [![NSP Status][nsp-image]][nsp-url]
@@ -66,7 +66,7 @@ readme-inspector [![NPM version][npm-image]][npm-url] [![GitHub release][github-
 
 <!-- ⛔️ link references ⛔️  -->
 
-[api-jsdocs-url]: https://commonality.github.io/readme-inspector/api/readme-inspector/2.0.0/module-readme-inspector.html
+[api-jsdocs-url]: https://commonality.github.io/readme-inspector/api/readme-inspector/2.0.1/module-readme-inspector.html
 
 <!-- 🔗 ci services 🔗 -->
 
