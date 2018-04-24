@@ -1,6 +1,6 @@
 # readme-inspector [![NPM version][npm-image]][npm-url] [![GitHub release][github-release-image]][github-release-url]
 
-> <img align="middle" alt="markdown" height="50" width="50"  src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/markdown.svg"> Inspect GitHub (and GitHub Enterprise) repositories for the presence and quality of READMEs.
+> <img align="middle" alt="markdown" height="50" width="50"  src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/markdown.svg"> Inspect GitHub (Enterprise) repositories for the presence and quality of READMEs.
 
 [![The MIT License][license-image]][license-url]
 [![FOSSA Status][fossa-image]][fossa-url]
@@ -92,8 +92,8 @@ GITHUB_ACCESS_TOKEN=
 Defines a schema of what variables should be defined in the combination of
 <samp>.env</samp> and <samp>.env.defaults</samp>.
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=./lib/.env.schema&syntax=properties) -->
-<!-- The below code snippet is automatically added from ./lib/.env.schema -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=./.env.schema&syntax=properties) -->
+<!-- The below code snippet is automatically added from ./.env.schema -->
 ```properties
 # .env.schema, committed to repo
 
@@ -111,9 +111,15 @@ Defines a schema of what variables should be defined in the combination of
 
 # 🔹 OPTIONAL env vars:
 API_ENDPOINT_README_SCORE=
+BITBUCKET_API_BASE_URL=
 GA_README_INSPECTOR=
+GITHUB_API_BASE_URL=
+README_SCORE_API_BASE_URL=
 
-# 🔸 RECOMMENDED vars (to extend GitHub API rate limits)
+# 🔸 RECOMMENDED vars (to extend API rate limits)
+BITBUCKET_ACCESS_TOKEN=
+BITBUCKET_AUTH_PASSWORD=
+BITBUCKET_AUTH_USERNAME=
 GH_TOKEN=
 GITHUB_ACCESS_TOKEN=
 ```
@@ -128,8 +134,8 @@ configuration values that would be common across environments. The
 file is loaded and will overwrite any values from the <samp>.env.defaults</samp>
 file.
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=./lib/.env.defaults&syntax=properties) -->
-<!-- The below code snippet is automatically added from ./lib/.env.defaults -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=./.env.defaults&syntax=properties) -->
+<!-- The below code snippet is automatically added from ./.env.defaults -->
 ```properties
 # .env.defaults, committed to repo
 
@@ -143,11 +149,22 @@ file.
 
 # ENV VARS defaults for readme-inspector:
 
+# ReadmeAppraisal
+API_ENDPOINT_README_SCORE="http://readme-score-api.herokuapp.com/score.json?url=&human_breakdown=false&force=false"
+
+# Bitbucket REST API v1.0 and v2.0 base url. Modify this if you're using
+# on-premise, company-hosted Bitbucket servers.
+BITBUCKET_API_BASE_URL="https://api.bitbucket.org"
+
 ## Google Analytics trackingCode
 GA_README_INSPECTOR="UA-117338111-1"
 
-# ReadmeAppraisal
-API_ENDPOINT_README_SCORE="http://readme-score-api.herokuapp.com/score.json?url=&human_breakdown=false&force=false"
+# GitHub REST API v3 baseUrl. Modify this if you're using GitHub Enterprise.
+GITHUB_API_BASE_URL="https://api.github.com"
+
+# readme-score-api base url. Modify this if you're using it
+# behind a company firewall.
+README_SCORE_API_BASE_URL="http://readme-score-api.herokuapp.com"
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -158,13 +175,19 @@ This file will have sensitive information such as usernames, passwords,
 api keys, etc. These would be specific to each environment and **should
 not be committed to source control**.
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=./lib/.env&syntax=properties) -->
-<!-- The below code snippet is automatically added from ./lib/.env -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=./.env&syntax=properties) -->
+<!-- The below code snippet is automatically added from ./.env -->
 ```properties
+# BITBUCKET_ACCESS_TOKEN=
+# BITBUCKET_API_BASE_URL=
+# BITBUCKET_AUTH_PASSWORD=
+# BITBUCKET_AUTH_USERNAME=
+# GA_README_INSPECTOR="UA-117338111-1"
+# GITHUB_API_BASE_URL=
+# README_SCORE_API_BASE_URL=
 API_ENDPOINT_README_SCORE="http://readme-score-api.herokuapp.com/score.json?url=&human_breakdown=false&force=false"
-GA_README_INSPECTOR="UA-117338111-1"
-GH_TOKEN=$GH_TOKEN
-GITHUB_ACCESS_TOKEN=$GH_TOKEN
+GH_TOKEN=$(echo $GH_TOKEN)
+GITHUB_ACCESS_TOKEN=$(echo $GH_TOKEN)
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -254,7 +277,7 @@ console.log(JSON.stringify(results, null, WHITESPACE))
 
 > [![beaker][octicon-beaker] Test `readme-inspector` in your Web browser ![link-external][octicon-link-external]][runkit-readme-inspector-url].
 >
-> [![gear][octicon-gear] View the full API docs for details](docs/readme-inspector/1.0.2/ReadmeAppraisal.html).
+> [![gear][octicon-gear] View the full API docs for details ![link-external][octicon-link-external]][api-docs-url].
 
 The `readmeInspector` module detects whether or not a README document exists at the root of a GitHub or GitHub Enterprise repository. If a README exists, it can evaluate the README's quality and provide a numerical score from 0 to 100, where 0 is the lowest quality and 100 is the highest.
 
@@ -265,15 +288,19 @@ The `readmeInspector` module detects whether or not a README document exists at 
 > 1.  If you can see the information by visiting the site without being logged in, you don't have to be authenticated to retrieve the same information through the API.
 > 1.  If you want to change data, you have to be authenticated.
 >
+> Note: authenticate is synchronous because it only sets the credentials for the following requests.
+>
 > octokit/rest.js. (2018). GitHub. Retrieved 21 March 2018, from <https://github.com/octokit/rest.js#authentication> ![link-external][octicon-link-external]
 
 #### 3.1.1. Parameters
 
-| Name  | Type   | Description                                                      | Notes |
-| :---- | :----- | :--------------------------------------------------------------- | :---- |
-| key   | String |                                                                  |       |
-| token | String |                                                                  |       |
-| type  | Enum   | `basic`, `oauth`, `oauth-key-secret`, `token`, and `integration` |       |
+| Name     | Type          | Description                                 |
+| :------- | :------------ | :------------------------------------------ |
+| key      | String        | `type=oauth` Client identifier              |
+| token    | String        | `type=[integration|token]` Unique value     |
+| type     | Enum.<String> | `basic`, `oauth`, `token`, or `integration` |
+| username | String        | `type=basic` Basic authentication username  |
+| password | String        | `type=basic` Basic authentication password  |
 
 #### 3.1.2. Returns `void`
 
@@ -630,6 +657,7 @@ Before embarking on a significant change, please follow these guidelines:
 
 <!-- 🔗 link references 🔗 -->
 
+[api-docs-url]: https://commonality.github.io/readme-inspector/api/readme-inspector/2.0.1/ReadmeAppraisal.html
 [bunyan-format-url]: https://github.com/thlorenz/bunyan-format/#readme
 [node-bunyan-url]: https://github.com/trentm/node-bunyan/#readme
 [optional-param-img]: https://fakeimg.pl/60x22/757575/FFF/?text=optional&font_size=16

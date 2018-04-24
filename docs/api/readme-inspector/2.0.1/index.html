@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Home - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="ReadmeAppraisal.html">ReadmeAppraisal</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="ReadmeAppraisal.html#for">for</a></span></li><li class="nav-heading">Modules</li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-readme-inspector.html">readme-inspector</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-readme-inspector.html#.authenticate">authenticate</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-readme-inspector.html#.check">check</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-readme-inspector.html#.getAppraisal">getAppraisal</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-readme-inspector.html#.getInfo">getInfo</a></span></li><li class="nav-heading">Externals</li><li class="nav-heading"><span class="nav-item-type type-external">E</span><span class="nav-item-name"><a href="external-Contents.html">Contents</a></span></li><li class="nav-heading"><span class="nav-item-type type-external">E</span><span class="nav-item-name"><a href="external-Octokit.html">Octokit</a></span></li><li class="nav-heading"><span class="nav-item-type type-external">E</span><span class="nav-item-name"><a href="external-Promise.html">Promise</a></span></li><li class="nav-heading"><span class="nav-item-type type-external">E</span><span class="nav-item-name"><a href="external-URL.html">URL</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li>
+</nav>
+
+<div id="main">
+    
+
+    
+
+
+
+    
+
+
+
+
+
+
+
+
+
+    
+
+
+    <section class="readme">
+        <article><h1>readme-inspector <a href="https://npmjs.org/package/readme-inspector"><img src="https://img.shields.io/npm/v/readme-inspector.svg?style=flat-square" alt="NPM version"></a> <a href="https://github.com/commonality/readme-inspector/releases/latest"><img src="https://img.shields.io/github/release/commonality/readme-inspector.svg?style=flat-square" alt="GitHub release"></a></h1><blockquote>
+<p><img align="middle" alt="markdown" height="50" width="50"  src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/markdown.svg"> Inspect GitHub (Enterprise) repositories for the presence and quality of READMEs.</p>
+</blockquote>
+<p><a href="http://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="The MIT License"></a>
+<a href="https://app.fossa.io/projects/git%2Bgithub.com%2Fcommonality%2Freadme-inspector?ref=badge_shield"><img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcommonality%2Freadme-inspector.svg?type=shield&amp;style=flat-square" alt="FOSSA Status"></a>
+<a href="https://nodesecurity.io/orgs/commonality/projects/a2aa0184-ae94-4307-8b87-f0e12324368a"><img src="https://nodesecurity.io/orgs/commonality/projects/a2aa0184-ae94-4307-8b87-f0e12324368a/badge" alt="NSP Status"></a>
+<a href="https://snyk.io/test/github/commonality/readme-inspector?targetFile=package.json"><img src="https://snyk.io/test/github/commonality/readme-inspector/badge.svg?style=flat-square&amp;targetFile=package.json" alt="Known Vulnerabilities"></a><br>
+<a href="https://david-dm.org/commonality/readme-inspector"><img src="https://david-dm.org/commonality/readme-inspector.svg?theme=shields.io&amp;style=flat-square" alt="Dependency Status"></a>
+<a href="https://david-dm.org/commonality/readme-inspector?type=dev"><img src="https://david-dm.org/commonality/readme-inspector/dev-status.svg?theme=shields.io&amp;style=flat-square" alt="Development Dependency Status"></a><br>
+<a href="https://travis-ci.org/commonality/readme-inspector"><img src="https://img.shields.io/travis/commonality/readme-inspector.svg?branch=master&amp;style=flat-square&amp;label=macOS%20%7C%20ubuntu%20builds&amp;logo=travis" alt="MacOS and Ubuntu build statuses"></a>
+<a href="https://ci.appveyor.com/project/gregswindle/readme-inspector"><img src="https://img.shields.io/appveyor/ci/gregswindle/readme-inspector.svg?style=flat-square&amp;logo=appveyor&amp;label=windows%20build" alt="Windows build status"></a>
+<a href="https://www.codacy.com/app/greg_7/readme-inspector?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=commonality/readme-inspector&amp;utm_campaign=Badge_Grade"><img src="https://img.shields.io/codacy/coverage/21f517a2d5bf4304895f40c5cbb596c4.svg?style=flat-square" alt="Coverage percentage"></a>
+<a href="https://www.codacy.com/app/greg_7/readme-inspector?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=commonality/readme-inspector&amp;utm_campaign=Badge_Grade"><img src="https://img.shields.io/codacy/grade/21f517a2d5bf4304895f40c5cbb596c4.svg?style=flat-square" alt="Codacy code quality"></a>
+<img src="https://img.shields.io/maintenance/readme-inspector/2018.svg?style=flat-square" alt="Maintenance"><br>
+<a href="https://npms.io/search?q=readme-inspector"><img src="https://badges.npms.io/readme-inspector.svg?style=flat-square" alt="NPMS score"></a>
+<a href="https://npmjs.org/package/readme-inspector"><img src="https://img.shields.io/npm/dm/readme-inspector.svg?style=social" alt="NPM downloads per month"></a></p>
+<h2>Table of contents</h2><!-- 🚫 AUTO-GENERATED-CONTENT:START (TOC:excludeText=Table of contents) -->
+<ul>
+<li><a href="#1-installation">1. Installation</a></li>
+<li><a href="#2-configuration">2. Configuration</a></li>
+<li><a href="#2-usage">2. Usage</a></li>
+<li><a href="#3-api">3. API</a><ul>
+<li><a href="#31-authenticatetoken-type-key">3.1. <code>authenticate({token, type, key})</code></a><ul>
+<li><a href="#311-parameters">3.1.1. Parameters</a></li>
+<li><a href="#312-returns-void">3.1.2. Returns <code>void</code></a></li>
+<li><a href="#313-example">3.1.3. Example</a></li>
+</ul>
+</li>
+<li><a href="#32-checkower-repo-ref">3.2. <code>check({ower, repo, ref})</code></a><ul>
+<li><a href="#321-parameters">3.2.1. Parameters</a></li>
+<li><a href="#322-returns-promise">3.2.2. Returns <code>Promise</code></a></li>
+<li><a href="#323-examples">3.2.3. Examples</a></li>
+</ul>
+</li>
+<li><a href="#33-getinfoowner-repo-ref">3.3. <code>getInfo({owner, repo, ref})</code></a><ul>
+<li><a href="#331-parameters">3.3.1. Parameters</a></li>
+<li><a href="#332-returns-promise">3.3.2. Returns <code>Promise</code></a></li>
+<li><a href="#333-examples">3.3.3. Examples</a></li>
+</ul>
+</li>
+<li><a href="#34-getappraisalurl">3.4. <code>getAppraisal(url)</code></a></li>
+<li><a href="#35-readmeappraisal">3.5. <code>ReadmeAppraisal</code></a><ul>
+<li><a href="#351-forurl-promise">3.5.1. <code>for(url): Promise</code></a><ul>
+<li><a href="#3511-parameters">3.5.1.1. Parameters</a></li>
+<li><a href="#3512-returns-promise">3.5.1.2. Returns <code>Promise</code></a></li>
+<li><a href="#3513-examples">3.5.1.3. Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#4-version">4. Version</a></li>
+<li><a href="#5-contributing">5. Contributing</a></li>
+<li><a href="#6-license">6. License</a><!-- 🚫 AUTO-GENERATED-CONTENT:END -->
+</li>
+</ul>
+<h2>1. Installation</h2><p><code>readme-inspector</code> is written in JavaScript (CommonJS) for <a href="https://nodejs.org/">Node.js <img src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/link-external.svg" alt="External link"></a> versions 7.6.0 or higher (for <code>async/await</code> support).</p>
+<pre class="prettyprint source lang-bash"><code>$ npm install --save readme-inspector</code></pre><h2>2. Configuration</h2><p>The <code>commonality/readme-inspector</code> module combines the mediator, proxy, and factory design patterns to simplify:</p>
+<ul>
+<li>README detection with the <code>readmeInfo</code> object, and</li>
+<li>Quality assessment with the <code>readmeInfo.appraisal</code> object.</li>
+</ul>
+<p>Since both of these features invoke Web services to return information, they both use <code>.env</code> variables
+that require configuration:</p>
+<pre class="prettyprint source lang-properties"><code># 🔹 OPTIONAL env vars
+
+# API endpoint for the readme-score-api (with default value)
+API_ENDPOINT_README_SCORE=&quot;http://readme-score-api.herokuapp.com/score.json?url=&human_breakdown=false&force=false&quot;
+
+# Google Analytics trackingCode (with default value)
+GA_README_INSPECTOR=&quot;UA-117338111-1&quot;
+
+# 🔸 GitHub token variables to extend GitHub API rate limits
+#    from 60 requests per minute to 5,000 requests per minute:
+GH_TOKEN=
+GITHUB_ACCESS_TOKEN=</code></pre><blockquote>
+<p><img src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/light-bulb.svg" alt="light-bulb"> <strong>To avoid rate-limiting</strong>, you should <a href="https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/">create a personal access token <img src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/link-external.svg" alt="External link"></a> and save your personal access token in an environment variable called <code>GH_TOKEN</code>.</p>
+</blockquote>
+<hr>
+<details><summary>Click here for detailed <samp>.env</samp> variable initialization instructions.</summary><p>
+
+&gt; <a href="https://github.com/keithmorris/node-dotenv-extended#readme"><img src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/info.svg" alt="info"> View <strong>dotenv-extended</strong>'s README <img src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/link-external.svg" alt="External link"></a> for detailed <code>.env</code> variable set up instructions.
+
+<h4><img align="bottom" alt="file" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/file.svg"> <samp>.env.schema</samp></h4>
+
+Defines a schema of what variables should be defined in the combination of
+<samp>.env</samp> and <samp>.env.defaults</samp>.
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=./.env.schema&syntax=properties) -->
+<!-- The below code snippet is automatically added from ./.env.schema -->
+<code>properties
+# .env.schema, committed to repo
+
+## See https://github.com/keithmorris/node-dotenv-extended/#readme
+## ⛔️
+## 🚫  DO NOT COMMIT YOUR ACTUAL .env file to version control.
+## 🚫  It should only include environment-specific values such
+## 🚫  as database passwords or API keys.
+## 🚫  Your production database should have a different password
+## 🚫  than your development database.
+
+# ENV VARS required for readme-inspector
+## Add values to these ENV VARs and save to
+## {your-project-root-directory}/.env
+
+# 🔹 OPTIONAL env vars:
+API_ENDPOINT_README_SCORE=
+BITBUCKET_API_BASE_URL=
+GA_README_INSPECTOR=
+GITHUB_API_BASE_URL=
+README_SCORE_API_BASE_URL=
+
+# 🔸 RECOMMENDED vars (to extend API rate limits)
+BITBUCKET_ACCESS_TOKEN=
+BITBUCKET_AUTH_PASSWORD=
+BITBUCKET_AUTH_USERNAME=
+GH_TOKEN=
+GITHUB_ACCESS_TOKEN=</code>
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<h4><img align="bottom" alt="file" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/file.svg"> <samp>.env.defaults</samp></h4>
+
+<samp>.env.defaults</samp> provides common configuration defaults across all
+environments (commited to source control). This contains overall app
+configuration values that would be common across environments. The
+<samp>.env.defaults</samp> file is loaded first; then the <samp>.env</samp>
+file is loaded and will overwrite any values from the <samp>.env.defaults</samp>
+file.
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=./.env.defaults&syntax=properties) -->
+<!-- The below code snippet is automatically added from ./.env.defaults -->
+<code>properties
+# .env.defaults, committed to repo
+
+## See https://github.com/keithmorris/node-dotenv-extended/#readme
+## ⛔️
+## 🚫  DO NOT COMMIT YOUR ACTUAL .env file to version control.
+## 🚫  It should only include environment-specific values such
+## 🚫  as database passwords or API keys.
+## 🚫  Your production database should have a different password
+## 🚫  than your development database.
+
+# ENV VARS defaults for readme-inspector:
+
+# ReadmeAppraisal
+API_ENDPOINT_README_SCORE=&quot;http://readme-score-api.herokuapp.com/score.json?url=&amp;human_breakdown=false&amp;force=false&quot;
+
+# Bitbucket REST API v1.0 and v2.0 base url. Modify this if you're using
+# on-premise, company-hosted Bitbucket servers.
+BITBUCKET_API_BASE_URL=&quot;https://api.bitbucket.org&quot;
+
+## Google Analytics trackingCode
+GA_README_INSPECTOR=&quot;UA-117338111-1&quot;
+
+# GitHub REST API v3 baseUrl. Modify this if you're using GitHub Enterprise.
+GITHUB_API_BASE_URL=&quot;https://api.github.com&quot;
+
+# readme-score-api base url. Modify this if you're using it
+# behind a company firewall.
+README_SCORE_API_BASE_URL=&quot;http://readme-score-api.herokuapp.com&quot;</code>
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<h4><img align="bottom" alt="file" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/file.svg"> <samp>.env</samp></h4>
+
+The environment-specific file (not committed to source control).
+This file will have sensitive information such as usernames, passwords,
+api keys, etc. These would be specific to each environment and <strong>should
+not be committed to source control</strong>.
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=./.env&syntax=properties) -->
+<!-- The below code snippet is automatically added from ./.env -->
+<code>properties
+# BITBUCKET_ACCESS_TOKEN=
+# BITBUCKET_API_BASE_URL=
+# BITBUCKET_AUTH_PASSWORD=
+# BITBUCKET_AUTH_USERNAME=
+# GA_README_INSPECTOR=&quot;UA-117338111-1&quot;
+# GITHUB_API_BASE_URL=
+# README_SCORE_API_BASE_URL=
+API_ENDPOINT_README_SCORE=&quot;http://readme-score-api.herokuapp.com/score.json?url=&amp;human_breakdown=false&amp;force=false&quot;
+GH_TOKEN=$(echo $GH_TOKEN)
+GITHUB_ACCESS_TOKEN=$(echo $GH_TOKEN)</code>
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+</pre></details>
+
+<hr>
+<h2>2. Usage</h2><!-- AUTO-GENERATED-CONTENT:START (CODE:src=./.github/assets/examples/usage.js) -->
+<!-- The below code snippet is automatically added from ./.github/assets/examples/usage.js -->
+<pre class="prettyprint source lang-js"><code>// Load all .env variables before anything else.
+
+const dotenvExtended = require('dotenv-extended')
+const envConfig = dotenvExtended.config()
+
+// Import readme-inspector.
+
+const readmeInspector = require('readme-inspector')
+
+// Recommended: authenticate to avoid rate limts.
+
+readmeInspector.authenticate({
+  token: envConfig.GH_TOKEN,
+  type: 'oauth'
+})
+
+// Verify that the repository with the slug
+// gregswindle/github-resource-converter
+// 1. Has a README, and
+// 2. Score the README for quality.
+
+const info = await readmeInspector.check(
+  'gregswindle',
+  'github-resource-converter'
+)
+
+// Display the resulting readmeInfo as a
+// JSON string.
+
+const WHITESPACE = 2
+console.log(JSON.stringify(results, null, WHITESPACE))
+// =>
+/*
+{
+  &quot;appraisal&quot;: {
+    &quot;breakdown&quot;: {
+      &quot;cumulativeCodeBlockLength&quot;: 0,
+      &quot;hasLists&quot;: 0,
+      &quot;lowCodeBlockPenalty&quot;: 0,
+      &quot;numberOfCodeBlocks&quot;: 0,
+      &quot;numberOfGifs&quot;: 0,
+      &quot;numberOfImages&quot;: 0,
+      &quot;numberOfNonCodeSections&quot;: 0
+    },
+    &quot;error&quot;: null,
+    &quot;score&quot;: 0,
+    &quot;url&quot;: null
+  },
+  &quot;error&quot;: null,
+  &quot;isPresent&quot;: true,
+  &quot;value&quot;: {
+    &quot;name&quot;: &quot;README.md&quot;,
+    &quot;path&quot;: &quot;README.md&quot;,
+    &quot;sha&quot;: &quot;4769744aad57ff3e9aac2df603795c4d10fcdc31&quot;,
+    &quot;size&quot;: 36877,
+    &quot;url&quot;: &quot;https://api.github.com/repos/commonality/readme-inspector/contents/README.md?ref=master&quot;,
+    &quot;html_url&quot;: &quot;https://github.com/commonality/readme-inspector/blob/master/README.md&quot;,
+    &quot;git_url&quot;: &quot;https://api.github.com/repos/commonality/readme-inspector/git/blobs/4769744aad57ff3e9aac2df603795c4d10fcdc31&quot;,
+    &quot;download_url&quot;: &quot;https://raw.githubusercontent.com/commonality/readme-inspector/master/README.md&quot;,
+    &quot;type&quot;: &quot;file&quot;,
+    &quot;content&quot;: &quot;{base64-encoding-of-readme-markdown}&quot;,
+    &quot;encoding&quot;: &quot;base64&quot;,
+    &quot;_links&quot;: {
+      &quot;self&quot;: &quot;https://api.github.com/repos/commonality/readme-inspector/contents/README.md?ref=master&quot;,
+      &quot;git&quot;: &quot;https://api.github.com/repos/commonality/readme-inspector/git/blobs/4769744aad57ff3e9aac2df603795c4d10fcdc31&quot;,
+      &quot;html&quot;: &quot;https://github.com/commonality/readme-inspector/blob/master/README.md&quot;
+    }
+  }
+}
+*/</code></pre><!-- AUTO-GENERATED-CONTENT:END -->
+<h2>3. API</h2><blockquote>
+<p><a href="https://runkit.com/gregswindle/5acc09bde794d70011a136e5"><img src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/beaker.svg" alt="beaker"> Test <code>readme-inspector</code> in your Web browser <img src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/link-external.svg" alt="link-external"></a>.</p>
+<p><a href="https://commonality.github.io/readme-inspector/api/readme-inspector/2.0.1/ReadmeAppraisal.html"><img src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/gear.svg" alt="gear"> View the full API docs for details <img src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/link-external.svg" alt="link-external"></a>.</p>
+</blockquote>
+<p>The <code>readmeInspector</code> module detects whether or not a README document exists at the root of a GitHub or GitHub Enterprise repository. If a README exists, it can evaluate the README's quality and provide a numerical score from 0 to 100, where 0 is the lowest quality and 100 is the highest.</p>
+<h3>3.1. <code>authenticate({token, type, key})</code></h3><blockquote>
+<p><img src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/info.svg" alt="Info"> Most GitHub API calls don't require authentication. Rules of thumb:</p>
+<ol>
+<li>If you can see the information by visiting the site without being logged in, you don't have to be authenticated to retrieve the same information through the API.</li>
+<li>If you want to change data, you have to be authenticated.</li>
+</ol>
+<p>Note: authenticate is synchronous because it only sets the credentials for the following requests.</p>
+<p>octokit/rest.js. (2018). GitHub. Retrieved 21 March 2018, from <a href="https://github.com/octokit/rest.js#authentication">https://github.com/octokit/rest.js#authentication</a> <img src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/link-external.svg" alt="link-external"></p>
+</blockquote>
+<h4>3.1.1. Parameters</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">key</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"><code>type=oauth</code> Client identifier</td>
+</tr>
+<tr>
+<td style="text-align:left">token</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">`type=[integration</td>
+<td>token]` Unique value</td>
+</tr>
+<tr>
+<td style="text-align:left">type</td>
+<td style="text-align:left">Enum.<String></td>
+<td style="text-align:left"><code>basic</code>, <code>oauth</code>, <code>token</code>, or <code>integration</code></td>
+</tr>
+<tr>
+<td style="text-align:left">username</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"><code>type=basic</code> Basic authentication username</td>
+</tr>
+<tr>
+<td style="text-align:left">password</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left"><code>type=basic</code> Basic authentication password</td>
+</tr>
+</tbody>
+</table>
+<h4>3.1.2. Returns <code>void</code></h4><p><code>authenticate</code> does not return a value.</p>
+<h4>3.1.3. Example</h4><blockquote>
+<pre class="prettyprint source lang-javascript"><code>// Token (https://github.com/settings/tokens)
+// Load your GH_TOKEN or GITHUB_ACCESS_TOKEN from
+// environment variables:
+const dotenvExtended = require('dotenv-extended')
+const envConfig = dotenvExtended.config()
+
+const readmeInspector = require('readme-inspector')
+
+readmeInspector.authenticate({
+  token: envConfig.GH_TOKEN,
+  type: 'token'
+})</code></pre></blockquote>
+<h3>3.2. <code>check({ower, repo, ref})</code></h3><p>A convenience method that</p>
+<ul>
+<li>Attempts to <samp>GET</samp> a repository's root-level README, and, if found,</li>
+<li>Scores the README.</li>
+</ul>
+<p><img src="https://fakeimg.pl/40x30/0e8a16/FFF/?text=GET&amp;font_size=20" alt="GET"></p>
+<pre class="prettyprint source lang-http"><code>/repos/:owner/:repo/readme</code></pre><h4>3.2.1. Parameters</h4><table>
+  <thead>
+    <tr>
+    <th style="width: 30%">Field</th>
+      <th style="width: 10%">Type</th>
+      <th style="width: 60%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><samp>owner</samp></td>
+        <td>
+          String
+        </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><samp>repo</samp></td>
+        <td>
+          String
+        </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><samp>ref</samp> <img align="right" alt="optional" src="https://fakeimg.pl/60x22/757575/FFF/?text=optional&font_size=16" height="22" width="60"></td>
+        <td>
+          String
+        </td>
+      <td>The name of the commit/branch/tag. Default: the repository’s default branch (usually master).</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>3.2.2. Returns <code>Promise&lt;ReadmeInfo&gt;</code></h4><p><code>ReadmeInfo's</code> interface (as a <code>NullObject</code>):</p>
+<pre class="prettyprint source lang-js"><code>{
+  'err': null,
+  'isPresent': null,
+  'appraisal': {
+    'breakdown': {
+      'cumulativeCodeBlockLength': 0,
+      'hasLists': 0,
+      'lowCodeBlockPenalty': 0,
+      'numberOfCodeBlocks': 0,
+      'numberOfGifs': 0,
+      'numberOfImages': 0,
+      'numberOfNonCodeSections': 0
+    },
+    'err': null,
+    'score': 0,
+    'url': null
+  },
+  'value': null
+}</code></pre><h4>3.2.3. Examples</h4><ul>
+<li><p><em>async/await:</em></p>
+<blockquote>
+<pre class="prettyprint source lang-js"><code>const readmeInfo = await readmeInspector.check({
+  owner: 'commonality',
+  ref: 'GH-1-feat-inspect-readmes',
+  repo: 'readme-inspector'
+})</code></pre></blockquote>
+</li>
+<li><p><em>Promise:</em></p>
+<blockquote>
+<pre class="prettyprint source lang-js"><code>readmeInspector
+  .check({
+    owner: 'commonality',
+    ref: 'GH-1-feat-inspect-readmes',
+    repo: 'readme-inspector'
+  })
+  .then(readmeInfo => {})
+  .catch(err => {})</code></pre></blockquote>
+</li>
+</ul>
+<h3>3.3. <code>getInfo({owner, repo, ref})</code></h3><p>Retrieves README information <em>without</em> any <code>AppraisalData</code>.</p>
+<p><img src="https://fakeimg.pl/40x30/0e8a16/FFF/?text=GET&amp;font_size=20" alt="GET"></p>
+<pre class="prettyprint source lang-http"><code>/repos/:owner/:repo/readme</code></pre><h4>3.3.1. Parameters</h4><table>
+  <thead>
+    <tr>
+    <th style="width: 30%">Field</th>
+      <th style="width: 10%">Type</th>
+      <th style="width: 60%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><samp>owner</samp></td>
+        <td>
+          String
+        </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><samp>repo</samp></td>
+        <td>
+          String
+        </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><samp>ref</samp> <img align="right" alt="optional" src="https://fakeimg.pl/60x22/757575/FFF/?text=optional&font_size=16" height="22" width="60"></td>
+        <td>
+          String
+        </td>
+      <td>The name of the commit/branch/tag. Default: the repository’s default branch (usually master).</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>3.3.2. Returns <code>Promise&lt;ReadmeInfo&gt;</code></h4><p><code>ReadmeInfo's</code> interface (as a <code>NullObject</code>):</p>
+<pre class="prettyprint source lang-js"><code>{
+  'err': null,
+  'isPresent': null,
+  'appraisal': {
+    'breakdown': {
+      'cumulativeCodeBlockLength': 0,
+      'hasLists': 0,
+      'lowCodeBlockPenalty': 0,
+      'numberOfCodeBlocks': 0,
+      'numberOfGifs': 0,
+      'numberOfImages': 0,
+      'numberOfNonCodeSections': 0
+    },
+    'err': null,
+    'score': 0,
+    'url': null
+  },
+  'value': null
+}</code></pre><h4>3.3.3. Examples</h4><ul>
+<li><p><em>async/await:</em></p>
+<blockquote>
+<pre class="prettyprint source lang-js"><code>const readmeInfo = await readmeInspector.getInfo({
+  owner: 'commonality',
+  ref: 'GH-1-feat-inspect-readmes',
+  repo: 'readme-inspector'
+})</code></pre></blockquote>
+</li>
+<li><p><em>Promise:</em></p>
+<blockquote>
+<pre class="prettyprint source lang-js"><code>readmeInspector
+  .getInfo({
+    owner: 'commonality',
+    ref: 'GH-1-feat-inspect-readmes',
+    repo: 'readme-inspector'
+  })
+  .then(readmeInfo => {})
+  .catch(err => {})</code></pre></blockquote>
+</li>
+</ul>
+<h3>3.4. <code>getAppraisal(url)</code></h3><p>A convenience wrapper that calls the <code>ReadmeAppraisal.prototype.for</code> method.</p>
+<h3>3.5. <code>ReadmeAppraisal</code></h3><p><code>ReadmeAppraisal</code> is an API proxy for <a href="https://github.com/clayallsopp">@clayallsopp <img src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/link-external.svg" alt="External link"></a>'s <a href="https://github.com/clayallsopp/readme-score-api"><code>readme-score-api</code> <img src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/link-external.svg" alt="External link"></a>.</p>
+<blockquote>
+<p><img src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/quote.svg" alt="quote"> ScoreMe gives you a numerical score from 0 to 100 for your Github-style README. The intention is to measure complexity, which is a generally correlated with quality.</p>
+<p>It won't measure if one README is absolutely better than another, but it will give you a good idea if the README is high-quality, needs more work, or somewhere inbetween.</p>
+<p>ScoreMe. (2018). Clayallsopp.github.io. Retrieved 10 April 2018, from <a href="http://clayallsopp.github.io/readme-score/">http://clayallsopp.github.io/readme-score/</a></p>
+</blockquote>
+<h4>3.5.1. <code>for(url): Promise&lt;AppraisalData&gt;</code></h4><p>Evaluate the README at the root of a GitHub repository.</p>
+<h5>3.5.1.1. Parameters</h5><table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">url</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">The URL, or slug of the repository to be evaluated for a README.</td>
+</tr>
+</tbody>
+</table>
+<h5>3.5.1.2. Returns <code>Promise&lt;AppraisalData&gt;</code></h5><ul>
+<li><p><code>AppraisalData</code> as a <code>NullObject</code> (see <samp><a href="lib/appraisal-data.js">lib/appraisal-data</a></samp>):<br></p>
+<blockquote>
+<pre class="prettyprint source lang-js"><code>{
+  breakdown: {
+    cumulativeCodeBlockLength: 0
+    hasLists: 0
+    lowCodeBlockPenalty: 0
+    numberOfCodeBlocks: 0
+    numberOfGifs: 0
+    numberOfImages: 0
+    numberOfNonCodeSections: 0
+  },
+  err: null,
+  score: 0
+  url: null
+}</code></pre></blockquote>
+</li>
+</ul>
+<h5>3.5.1.3. Examples</h5><ul>
+<li><p><em>URL:</em></p>
+<blockquote>
+<pre class="prettyprint source lang-js"><code>const { ReadmeAppraisal } = require('readme-inspector')
+const readmeAppraisal = new ReadmeAppraisal()
+const url = 'https://github.com/gregswindle/github-resource-converter'
+
+const appraisal = readmeAppraisal.for(url)
+/** =>
+ * {
+ *   breakdown: {
+ *    cumulativeCodeBlockLength: 10
+ *    hasLists: 10
+ *    lowCodeBlockPenalty: 0
+ *    numberOfCodeBlocks: 40
+ *    numberOfGifs: 0
+ *    numberOfImages: 15
+ *    numberOfNonCodeSections: 30
+ *  },
+ *  err: null,
+ *  score: 100
+ *  url: 'https://github.com/gregswindle/github-resource-converter'
+ * }
+ */</code></pre></blockquote>
+</li>
+<li><p><em>Repository slug:</em></p>
+<blockquote>
+<pre class="prettyprint source lang-js"><code>const { ReadmeAppraisal } = require('readme-inspector')
+const readmeAppraisal = new ReadmeAppraisal()
+const url = 'gregswindle/github-resource-converter'
+
+const appraisal = readmeAppraisal.for(url)</code></pre></blockquote>
+</li>
+</ul>
+<h2>4. Version</h2><p><a href="https://npmjs.org/package/readme-inspector"><img src="https://img.shields.io/npm/v/readme-inspector.svg?style=flat-square" alt="NPM version"></a></p>
+<p>View the <a href="CHANGELOG.md">Change Log</a> and <a href="https://github.com/commonality/readme-inspector/releases">Releases</a> for details.</p>
+<h2>5. Contributing</h2><p><a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"> <img src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/link-external.svg" alt="External link"></a> We welcome contributions with GitHub <strong>issues</strong> and <strong>pull requests</strong>.</p>
+<hr>
+<p><a href="https://github.com/commonality/readme-inspector/issues/new?title=feat%28scope%29%3A+change-proposal-summary&amp;labels=priority%3a+medium%2cstatus%3a+review+needed%2ctype%3a+feature&amp;template=feature-request.md"><img src="https://img.shields.io/badge/request-feature-c1ccc6.svg?style=for-the-badge&amp;label=request+a" alt="Request a feature"></a>
+<a href="https://github.com/commonality/readme-inspector/issues/new?title=defect%28scope%29%3A+defect-summary&amp;labels=priority%3a+medium%2cstatus%3a+review+needed%2ctype%3a+defect&amp;template=defect-report.md"><img src="https://img.shields.io/badge/report-defect-F5CB5C.svg?style=for-the-badge&amp;label=report+a" alt="Report a defect"></a></p>
+<p><a href="https://github.com/commonality/readme-inspector/blob/master/.github/CONTRIBUTING.md"><img src="https://img.shields.io/badge/read-CONTRIBUTING%20Guidelines-yellow.svg?style=for-the-badge&amp;label=read+the" alt="Read the CONTRIBUTING guidelines"></a></p>
+<hr>
+<p>Before embarking on a significant change, please follow these guidelines:</p>
+<ol>
+<li><p><strong><a href="https://github.com/commonality/readme-inspector/issues">Create an issue</a></strong>&mdash;e.g., a <a href="https://github.com/commonality/readme-inspector/issues/new?title=defect%28scope%29%3A+defect-summary&amp;labels=priority%3a+medium%2cstatus%3a+review+needed%2ctype%3a+defect&amp;template=defect-report.md">defect (&quot;bug&quot;) report</a> or a <a href="https://github.com/commonality/readme-inspector/issues/new?title=feat%28scope%29%3A+change-proposal-summary&amp;labels=priority%3a+medium%2cstatus%3a+review+needed%2ctype%3a+feature&amp;template=feature-request.md">feature request</a>&mdash;to propose changes.</p>
+<p><em>Exceptions:</em></p>
+<blockquote>
+<p>If you're working on documentation and fixing something simple like a typo or an easy bug, go ahead and make a pull request.</p>
+</blockquote>
+</li>
+<li><p><strong><a href="https://github.com/commonality/readme-inspector/blob/master/.github/CONTRIBUTING.md">Follow the CONTRIBUTING guidelines</a>.</strong></p>
+<p><em>Why:</em></p>
+<blockquote>
+<p>Standards and guidelines make communication easier. If you're willing and able to program&mdash;or want to learn how&mdash; following the guidelines will increase the likelihood of having your changes added to <code>readme-inspector</code>.</p>
+</blockquote>
+</li>
+<li><p><strong><a href="https://github.com/commonality/readme-inspector/blob/master/.github/CODE_OF_CONDUCT.md">Read the Code of Conduct</a>.</strong><br></p>
+</li>
+<li><p><strong><a href="https://github.com/commonality/readme-inspector/pulls">Make a pull request</a></strong> when you're ready for other to review your changes (or you get stuck somewhere).</p>
+<p><em>Never created a pull request?</em></p>
+<blockquote>
+<p>No problem: <a href="http://makeapullrequest.com">this free online training <img src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/link-external.svg" alt="External link"></a> covers most of the conventions in the <a href="https://github.com/commonality/readme-inspector/blob/master/.github/CONTRIBUTING.md">CONTRIBUTING guidelines</a>.)</p>
+</blockquote>
+</li>
+</ol>
+<h2>6. License</h2><p><a href="http://opensource.org/licenses/MIT">MIT <img src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/link-external.svg" alt="link-external"></a> © <a href="https://github.com/commonality">commonality <img src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/link-external.svg" alt="link-external"></a></p>
+<p><a href="https://app.fossa.io/projects/git%2Bgithub.com%2Fcommonality%2Freadme-inspector?ref=badge_large"><img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcommonality%2Freadme-inspector.svg?type=large" alt="FOSSA Status"></a></p>
+<hr>
+<p><a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/commonality/readme-inspector.svg" alt="Greenkeeper badge"></a>
+<a href="http://clayallsopp.github.io/readme-score?url=https://github.com/commonality/readme-inspector"><img src="http://readme-score-api.herokuapp.com/score.svg?url=https://github.com/commonality/readme-inspector" alt="Readme ReadmeAppraisal"></a></p>
+<!-- ⛔️ Do not remove this comment or anything under it ⛔️ -->
+<!-- 🔗 link references 🔗 -->
+<!-- 🔗 ci services 🔗 -->
+<!-- 🔗 contributing link references 🔗 -->
+<!-- 🔗 octicon img references 🔗 --></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Apr 23 2018 21:09:12 GMT-0500 (CDT) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
