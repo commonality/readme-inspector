@@ -1,6 +1,6 @@
 # readme-inspector [![NPM version][npm-image]][npm-url] [![GitHub release][github-release-image]][github-release-url]
 
-> <img align="middle" alt="markdown" height="50" width="50"  src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/markdown.svg"> Inspect GitHub (and GitHub Enterprise) repositories for the presence and quality of READMEs.
+> <img align="middle" alt="markdown" height="50" width="50"  src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/markdown.svg"> Inspect GitHub (Enterprise) repositories for the presence and quality of READMEs.
 
 [![The MIT License][license-image]][license-url]
 [![FOSSA Status][fossa-image]][fossa-url]
@@ -118,6 +118,8 @@ README_SCORE_API_BASE_URL=
 
 # 🔸 RECOMMENDED vars (to extend API rate limits)
 BITBUCKET_ACCESS_TOKEN=
+BITBUCKET_AUTH_PASSWORD=
+BITBUCKET_AUTH_USERNAME=
 GH_TOKEN=
 GITHUB_ACCESS_TOKEN=
 ```
@@ -176,14 +178,16 @@ not be committed to source control**.
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./.env&syntax=properties) -->
 <!-- The below code snippet is automatically added from ./.env -->
 ```properties
-API_ENDPOINT_README_SCORE="http://readme-score-api.herokuapp.com/score.json?url=&human_breakdown=false&force=false"
 # BITBUCKET_ACCESS_TOKEN=
 # BITBUCKET_API_BASE_URL=
+# BITBUCKET_AUTH_PASSWORD=
+# BITBUCKET_AUTH_USERNAME=
 # GA_README_INSPECTOR="UA-117338111-1"
-GH_TOKEN=$(echo $GH_TOKEN)
-GITHUB_ACCESS_TOKEN=$(echo $GH_TOKEN)
 # GITHUB_API_BASE_URL=
 # README_SCORE_API_BASE_URL=
+API_ENDPOINT_README_SCORE="http://readme-score-api.herokuapp.com/score.json?url=&human_breakdown=false&force=false"
+GH_TOKEN=$(echo $GH_TOKEN)
+GITHUB_ACCESS_TOKEN=$(echo $GH_TOKEN)
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 

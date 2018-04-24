@@ -1,4 +1,4 @@
-# REST APIs
+# API design, security, and documentation
 
 > We try to enforce development of sanely constructed RESTful interfaces, which team members and clients can consume simply and consistently.
 >

@@ -2,7 +2,7 @@
 
 > Rules, guidelines, a governance for developing, fixing, maintaining, and delivering readme-inspector.
 
-`readme-inspector` [![NPM version][npm-image]][npm-url] [![GitHub release][github-release-image]][github-release-url]<br>
+readme-inspector [![NPM version][npm-image]][npm-url] [![GitHub release][github-release-image]][github-release-url]<br>
 [![The MIT License][license-image]][license-url]
 [![FOSSA Status][fossa-image]][fossa-url]
 [![NSP Status][nsp-image]][nsp-url]
@@ -46,11 +46,11 @@
 
 ## API design, security, and documentation
 
-> <img align="bottom" alt="radio-tower" height="24" width="24" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/radio-tower.svg"> [View `readme-inspector`'s REST APIs](project/API.md).
+> <img align="bottom" alt="radio-tower" height="24" width="24" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/radio-tower.svg"> [View `readme-inspector`'s REST APIs](API.md).
 
 ## Development and testing
 
-> <img align="bottom" alt="beaker" height="24" width="24" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/beaker.svg"> [Guidelines for developing, building, and testing](project/DEVELOPERS.md) `readme-inspector`.
+> <img align="bottom" alt="beaker" height="24" width="24" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/beaker.svg"> [Guidelines for developing, building, and testing](DEVELOPERS.md) `readme-inspector`.
 
 ## Continuous delivery
 
