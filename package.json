@@ -43,7 +43,7 @@
     "lodash.camelcase": "4.3.0",
     "lodash.mapkeys": "4.6.0",
     "lodash.noop": "3.0.1",
-    "meow": "4.0.0"
+    "meow": "4.0.1"
   },
   "devDependencies": {
     "@semantic-release/changelog": "2.0.1",
