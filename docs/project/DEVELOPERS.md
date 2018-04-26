@@ -22,16 +22,16 @@
   * [6.6. Delete local and remote topic branches after merging](#66-delete-local-and-remote-topic-branches-after-merging)
   * [6.7. Protect the `master` branch](#67-protect-the-master-branch)
   * [6.8. GitHub workflow](#68-github-workflow)
-  * [6.8.1. Initialize a Git repository in the product directory (_for new repositories only_).](#681-initialize-a-git-repository-in-the-product-directory-_for-new-repositories-only_)
-  * [6.8.2. Checkout a new `feat`ure or `fix` branch.](#682-checkout-a-new-feature-or-fix-branch)
-  * [6.8.3. Make Changes.](#683-make-changes)
-  * [6.8.4. Follow the Conventional Commits Specification for commit messages.](#684-follow-the-conventional-commits-specification-for-commit-messages)
-  * [6.8.5. Sync with remote to get changes you’ve missed.](#685-sync-with-remote-to-get-changes-youve-missed)
-  * [6.8.6. Update your topic branch with the latest changes from `master` by interactive rebase](#686-update-your-topic-branch-with-the-latest-changes-from-master-by-interactive-rebase)
-  * [6.2.7. Resolve conflicts (if any occur), and continue rebase](#627-resolve-conflicts-if-any-occur-and-continue-rebase)
-  * [6.2.8. Push your branch with the `-f` flag (if necessary).](#628-push-your-branch-with-the--f-flag-if-necessary)
-  * [6.2.9. Submit a Pull Request](#629-submit-a-pull-request)
-  * [6.2.10. Remove your local topic branch if you're done](#6210-remove-your-local-topic-branch-if-youre-done)
+    + [6.8.1. Initialize a Git repository in the product directory (_for new repositories only_).](#681-initialize-a-git-repository-in-the-product-directory-_for-new-repositories-only_)
+    + [6.8.2. Checkout a new `feat`ure or `fix` branch.](#682-checkout-a-new-feature-or-fix-branch)
+    + [6.8.3. Make Changes.](#683-make-changes)
+    + [6.8.4. Follow the Conventional Commits Specification for commit messages.](#684-follow-the-conventional-commits-specification-for-commit-messages)
+    + [6.8.5. Sync with remote to get changes you’ve missed.](#685-sync-with-remote-to-get-changes-youve-missed)
+    + [6.8.6. Update your topic branch with the latest changes from `master` by interactive rebase](#686-update-your-topic-branch-with-the-latest-changes-from-master-by-interactive-rebase)
+    + [6.8.7. Resolve conflicts (if any occur), and continue rebase](#687-resolve-conflicts-if-any-occur-and-continue-rebase)
+    + [6.8.8. Push your branch with the `-f` flag (if necessary).](#688-push-your-branch-with-the--f-flag-if-necessary)
+    + [6.8.9. Submit a Pull Request](#689-submit-a-pull-request)
+    + [6.8.10. Remove your local topic branch if you're done](#6810-remove-your-local-topic-branch-if-youre-done)
 - [7. **Code standards**](#7-code-standards)
   * [7.1. Use the Standard JS Style](#71-use-the-standard-js-style)
   * [7.2. Use ESLint to analyze source code.](#72-use-eslint-to-analyze-source-code)
@@ -292,7 +292,7 @@ _Why:_
 
 We use the [feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow). We _recommend_ [interactive rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing), too, but that's not required.
 
-### 6.8.1. Initialize a Git repository in the product directory (_for new repositories only_).
+#### 6.8.1. Initialize a Git repository in the product directory (_for new repositories only_).
 
 For subsequent features and changes, this step should be ignored.
 
@@ -301,7 +301,7 @@ cd <product-repo-directory>
 git init
 ```
 
-### 6.8.2. Checkout a new `feat`ure or `fix` branch.
+#### 6.8.2. Checkout a new `feat`ure or `fix` branch.
 
 ```sh
 # For a new feature branch:
@@ -311,7 +311,7 @@ git checkout -b GH-<issueId>-feat-scope-of-change
 git checkout -b GH-<issueId>-fix-scope-of-change
 ```
 
-### 6.8.3. Make Changes.
+#### 6.8.3. Make Changes.
 
 ```sh
 git add
@@ -322,7 +322,7 @@ _Why:_
 
 > ⌦ `git commit -a` will start an editor which lets you separate the subject from the body. Read more about it in _section 1.3_.
 
-### 6.8.4. Follow the Conventional Commits Specification for commit messages.
+#### 6.8.4. Follow the Conventional Commits Specification for commit messages.
 
 This project enforces [AngularJS Git Commit Guidelines][git-commit-guidelines-url] (which is now an extension of the [Conventional Commits Specfication][conventional-commits-url]) with [`commitplease`][commitplease-url] pre-commit hooks.
 
@@ -488,7 +488,7 @@ _Why:_
 
 ---
 
-### 6.8.5. Sync with remote to get changes you’ve missed.
+#### 6.8.5. Sync with remote to get changes you’ve missed.
 
 ```shell
 git checkout master
@@ -499,7 +499,7 @@ _Why:_
 
 > ⌦ This will give you a chance to deal with conflicts on your machine while rebasing(later) rather than creating a Pull Request that contains conflicts.
 
-### 6.8.6. Update your topic branch with the latest changes from `master` by interactive rebase
+#### 6.8.6. Update your topic branch with the latest changes from `master` by interactive rebase
 
 ```sh
 git checkout <branchname>
@@ -512,7 +512,7 @@ _Why:_
 >
 > [Learn more about autosquashing Git commits][autosquashing-git-commits-url].
 
-### 6.2.7. Resolve conflicts (if any occur), and continue rebase
+#### 6.8.7. Resolve conflicts (if any occur), and continue rebase
 
 ```sh
 git add <file1> <file2> ...
@@ -521,7 +521,7 @@ git rebase --continue
 
 [Learn more about resolving conflicts][git-resolve-conflicts-url].
 
-### 6.2.8. Push your branch with the `-f` flag (if necessary).
+#### 6.8.8. Push your branch with the `-f` flag (if necessary).
 
 Rebase changes history, so you might need to force changes into the `remote` branch with the `-f` flag. If someone else is working on your branch, use the less destructive `--force-with-lease`.
 
@@ -535,11 +535,11 @@ _Why:_
 >
 > [Learn more about `--force-with-lease`][force-with-lease-url].
 
-### 6.2.9. Submit a Pull Request
+#### 6.8.9. Submit a Pull Request
 
 Once accepted, the Pull request will be approved, merged, closed, and deleted by an administrator.
 
-### 6.2.10. Remove your local topic branch if you're done
+#### 6.8.10. Remove your local topic branch if you're done
 
 ```sh
 git branch -D <branchname>
@@ -658,7 +658,7 @@ _Why:_
  | [lodash.camelcase@4.3.0](https://lodash.com/) | The lodash method `_.camelCase` exported as a module. | 4.3.0 | MIT | production | 
  | [lodash.mapkeys@4.6.0](https://lodash.com/) | The lodash method `_.mapKeys` exported as a module. | 4.6.0 | MIT | production | 
  | [lodash.noop@3.0.1](https://lodash.com/) | The lodash method `_.noop` exported as a module. | 3.0.1 | MIT | production | 
- | [meow@4.0.0](https://github.com/sindresorhus/meow#readme) | CLI app helper | 4.0.0 | MIT | production | 
+ | [meow@5.0.0](https://github.com/sindresorhus/meow#readme) | CLI app helper | 4.0.0 | MIT | production | 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ### 11.2. Development
@@ -689,7 +689,7 @@ _Why:_
  | [eslint-plugin-prettier@^2.2.0](https://github.com/prettier/eslint-plugin-prettier#readme) | Runs prettier as an eslint rule | 2.6.0 | MIT | dev | 
  | [eslint-plugin-promise@3.7.0](https://github.com/xjamundx/eslint-plugin-promise#readme) | Enforce best practices for JavaScript promises | 3.7.0 | ISC | dev | 
  | [eslint-plugin-security@1.4.0](https://github.com/nodesecurity/eslint-plugin-security#readme) | Security rules for eslint | 1.4.0 | Apache-2.0 | dev | 
- | [eslint-plugin-standard@3.0.1](https://github.com/xjamundx/eslint-plugin-standard#readme) | ESlint Plugin for the Standard Linter | 3.0.1 | MIT | dev | 
+ | [eslint-plugin-standard@3.1.0](https://github.com/xjamundx/eslint-plugin-standard#readme) | ESlint Plugin for the Standard Linter | 3.0.1 | MIT | dev | 
  | [eslint-plugin-unicorn@4.0.3](https://github.com/sindresorhus/eslint-plugin-unicorn#readme) | Various awesome ESLint rules | 4.0.3 | MIT | dev | 
  | [eslint-plugin-xss@0.1.9](https://github.com/Rantanen/eslint-plugin-xss#readme) | Validates XSS related issues of mixing HTML and non-HTML content in variables. | 0.1.9 | ISC | dev | 
  | [fixpack@2.3.1](https://github.com/henrikjoreteg/fixpack) | cli tool that cleans up package.json files. | 2.3.1 | MIT | dev | 
@@ -698,7 +698,7 @@ _Why:_
  | [jest-runner-eslint@0.4.0](https://github.com/jest-community/jest-runner-eslint) | An experimental ESLint runner for Jest | 0.4.0 | MIT | dev | 
  | [jsdoc@3.5.5](https://github.com/jsdoc3/jsdoc#readme) | An API documentation generator for JavaScript. | 3.5.5 | Apache-2.0 | dev | 
  | [lec@^1.0.1](https://github.com/iShafayet/lec) | Command Line Wrapper for Line Ending Corrector (An utility that makes sure your files have consistent line endings) | 1.0.1 | MIT | dev | 
- | [lint-staged@7.0.4](https://github.com/okonet/lint-staged#readme) | Lint files staged by git | 7.0.4 | MIT | dev | 
+ | [lint-staged@7.0.5](https://github.com/okonet/lint-staged#readme) | Lint files staged by git | 7.0.4 | MIT | dev | 
  | [lodash.isundefined@3.0.1](https://lodash.com/) | The modern build of lodash’s `_.isUndefined` as a module. | 3.0.1 | MIT | dev | 
  | [lodash.set@4.3.2](https://lodash.com/) | The lodash method `_.set` exported as a module. | 4.3.2 | MIT | dev | 
  | [markdown-magic@0.1.21](https://github.com/DavidWells/markdown-magic#readme) | Automatically update markdown files with content from external sources | 0.1.21 | MIT | dev | 
@@ -749,10 +749,10 @@ _Why:_
 [icon-issue-image]: ./assets/img/icons8/icon-issues.png
 [icon-pr-image]: ./assets/img/icons8/icon-pr.png
 [icon-rest-api-image]: ./assets/img/icons8/icon-rest-api.png
-[issues-new-defect-image]: https://img.shields.io/badge/report-defect-F5CB5C.svg?style=for-the-badge&label=report+a
+[issues-new-defect-image]: https://img.shields.io/badge/report-defect-e99695.svg?style=for-the-badge&label=report+a
 [issues-new-defect-url]: /commonality/readme-inspector.git/issues/new?title=defect%28scope%29%3A+summary-of-change&labels=priority%3A+medium%2Cstatus%3A+review+needed%2Ctype%3A+defect&body=%2A%2A%F0%9F%92%A1+TIP%3A%2A%2A+Select+the+%E2%86%96%EF%B8%8E%E2%8E%BE+Preview+%E2%8F%8B+Tab+above+help+read+these+instructions.%0D%0A%0D%0A%23%23+1.+Issue+type%0D%0A%3E%E2%8C%A6+Type+the+letter+%22x%22+in+the+%22checkbox%22+the+best+describe+this+issue.%0D%0A%0D%0A-+%5Bx%5D+**Feature%3A**+I%27m+requesting+a+product+enhancement.%0D%0A%0D%0A%23%23+2.+User+story+summary%0D%0A%3E%E2%8C%A6+Describe+what+you+want+to+accomplish%2C+in+what+role%2Fcapacity%2C+and+why+it%27s+important+to+you.%0D%0A%0D%0A%3E+**EXAMPLE%3A**%0D%0A%3E+As+a+Applicant%2C%0D%0A%3E+I+want+to+submit+my+resume%0D%0A%3E+In+order+to+be+considered+for+a+job+opening.%0D%0A%0D%0AAs+a+%7Brole%7D%2C%0D%0AI+must%2Fneed%2Fwant%2Fshould+%7Bdo+something%7D%0D%0AIn+order+to+%7Bachieve+value%7D.%0D%0A%0D%0A%23%23+3.+Acceptance+criteria%0D%0A%3E%E2%8C%A6+Replace+the+examples+below+with+your+own+imperative%2C+%22true%2Ffalse%22+statements+for+the+**behavior+you+expect**+to+see%2C+or+the+behavior+that+**would**+be+true+if+there+were+no+errors+%28for+defects%29.%0D%0A%0D%0A-+%5B+%5D+1.+Job+Applicants+receive+a+confirmation+email+after+they+submit+their+resumes.%0D%0A-+%5B+%5D+2.+An+Applicant%27s+resume+information+isn%27t+lost+when+errors+occur.%0D%0A-+%5B+%5D+3.+%7Bcriterion-three%7D%0D%0A-+%5B+%5D+4.+%7Bcriterion-four%7D%0D%0A%0D%0A%3C%21--+%E2%9B%94%EF%B8%8F++Do+not+remove+anything+below+this+comment.+%E2%9B%94%EF%B8%8F++--%3E%0D%0A%5Bicon-info-image%5D%3A+..%2Fdocs%2Fimg%2Ficons8%2Ficon-info-50.png%0D%0A
 [issues-new-defect-url]: https://github.com/commonality/readme-inspector/issues/new?title=defect%28scope%29%3A+summary-of-problem&labels=priority%3A+medium%2Cstatus%3A+review+needed%2Ctype%3A+defect&body=%2A%2A%F0%9F%92%A1+TIP%3A%2A%2A+Select+the+%E2%86%96%EF%B8%8E%E2%8E%BE+Preview+%E2%8F%8B+Tab+above+help+read+these+instructions.%0D%0A%0D%0A%23%23+1.+Issue+type%0D%0A%3E%E2%8C%A6+Type+the+letter+%22x%22+in+the+%22checkbox%22+the+best+describe+this+issue.%0D%0A%0D%0A-+%5Bx%5D+**Feature%3A**+I%27m+requesting+a+product+enhancement.%0D%0A%0D%0A%23%23+2.+User+story+summary%0D%0A%3E%E2%8C%A6+Describe+what+you+want+to+accomplish%2C+in+what+role%2Fcapacity%2C+and+why+it%27s+important+to+you.%0D%0A%0D%0A%3E+**EXAMPLE%3A**%0D%0A%3E+As+a+Applicant%2C%0D%0A%3E+I+want+to+submit+my+resume%0D%0A%3E+In+order+to+be+considered+for+a+job+opening.%0D%0A%0D%0AAs+a+%7Brole%7D%2C%0D%0AI+must%2Fneed%2Fwant%2Fshould+%7Bdo+something%7D%0D%0AIn+order+to+%7Bachieve+value%7D.%0D%0A%0D%0A%23%23+3.+Acceptance+criteria%0D%0A%3E%E2%8C%A6+Replace+the+examples+below+with+your+own+imperative%2C+%22true%2Ffalse%22+statements+for+the+**behavior+you+expect**+to+see%2C+or+the+behavior+that+**would**+be+true+if+there+were+no+errors+%28for+defects%29.%0D%0A%0D%0A-+%5B+%5D+1.+Job+Applicants+receive+a+confirmation+email+after+they+submit+their+resumes.%0D%0A-+%5B+%5D+2.+An+Applicant%27s+resume+information+isn%27t+lost+when+errors+occur.%0D%0A-+%5B+%5D+3.+%7Bcriterion-three%7D%0D%0A-+%5B+%5D+4.+%7Bcriterion-four%7D%0D%0A%0D%0A%3C%21--+%E2%9B%94%EF%B8%8F++Do+not+remove+anything+below+this+comment.+%E2%9B%94%EF%B8%8F++--%3E%0D%0A%5Bicon-info-image%5D%3A+..%2Fdocs%2Fimg%2Ficons8%2Ficon-info-50.png%0D%0A
-[issues-new-feat-image]: https://img.shields.io/badge/request-feature-c1ccc6.svg?style=for-the-badge&label=request+a
+[issues-new-feat-image]: https://img.shields.io/badge/request-feature-0052cc.svg?style=for-the-badge&label=request+a
 [issues-new-feat-url]: /commonality/readme-inspector.git/issues/new?title=feat%28scope%29%3A+summary-of-change&labels=priority%3A+medium%2Cstatus%3A+review+needed%2Ctype%3A+feature&body=%2A%2A%F0%9F%92%A1+TIP%3A%2A%2A+Select+the+%E2%86%96%EF%B8%8E%E2%8E%BE+Preview+%E2%8F%8B+Tab+above+help+read+these+instructions.%0D%0A%0D%0A%23%23+1.+Issue+type%0D%0A%3E%E2%8C%A6+Type+the+letter+%22x%22+in+the+%22checkbox%22+the+best+describe+this+issue.%0D%0A%0D%0A-+%5Bx%5D+**Feature%3A**+I%27m+requesting+a+product+enhancement.%0D%0A%0D%0A%23%23+2.+User+story+summary%0D%0A%3E%E2%8C%A6+Describe+what+you+want+to+accomplish%2C+in+what+role%2Fcapacity%2C+and+why+it%27s+important+to+you.%0D%0A%0D%0A%3E+**EXAMPLE%3A**%0D%0A%3E+As+a+Applicant%2C%0D%0A%3E+I+want+to+submit+my+resume%0D%0A%3E+In+order+to+be+considered+for+a+job+opening.%0D%0A%0D%0AAs+a+%7Brole%7D%2C%0D%0AI+must%2Fneed%2Fwant%2Fshould+%7Bdo+something%7D%0D%0AIn+order+to+%7Bachieve+value%7D.%0D%0A%0D%0A%23%23+3.+Acceptance+criteria%0D%0A%3E%E2%8C%A6+Replace+the+examples+below+with+your+own+imperative%2C+%22true%2Ffalse%22+statements+for+the+**behavior+you+expect**+to+see%2C+or+the+behavior+that+**would**+be+true+if+there+were+no+errors+%28for+defects%29.%0D%0A%0D%0A-+%5B+%5D+1.+Job+Applicants+receive+a+confirmation+email+after+they+submit+their+resumes.%0D%0A-+%5B+%5D+2.+An+Applicant%27s+resume+information+isn%27t+lost+when+errors+occur.%0D%0A-+%5B+%5D+3.+%7Bcriterion-three%7D%0D%0A-+%5B+%5D+4.+%7Bcriterion-four%7D%0D%0A%0D%0A%3C%21--+%E2%9B%94%EF%B8%8F++Do+not+remove+anything+below+this+comment.+%E2%9B%94%EF%B8%8F++--%3E%0D%0A%5Bicon-info-image%5D%3A+..%2Fdocs%2Fimg%2Ficons8%2Ficon-info-50.png%0D%0A
 [issues-new-feat-url]: https://github.com/commonality/readme-inspector/issues/new?title=feat%28scope%29%3A+summary-of-change&labels=priority%3A+medium%2Cstatus%3A+review+needed%2Ctype%3A+feature&body=%2A%2A%F0%9F%92%A1+TIP%3A%2A%2A+Select+the+%E2%86%96%EF%B8%8E%E2%8E%BE+Preview+%E2%8F%8B+Tab+above+help+read+these+instructions.%0D%0A%0D%0A%23%23+1.+Issue+type%0D%0A%3E%E2%8C%A6+Type+the+letter+%22x%22+in+the+%22checkbox%22+the+best+describe+this+issue.%0D%0A%0D%0A-+%5Bx%5D+**Feature%3A**+I%27m+requesting+a+product+enhancement.%0D%0A%0D%0A%23%23+2.+User+story+summary%0D%0A%3E%E2%8C%A6+Describe+what+you+want+to+accomplish%2C+in+what+role%2Fcapacity%2C+and+why+it%27s+important+to+you.%0D%0A%0D%0A%3E+**EXAMPLE%3A**%0D%0A%3E+As+a+Applicant%2C%0D%0A%3E+I+want+to+submit+my+resume%0D%0A%3E+In+order+to+be+considered+for+a+job+opening.%0D%0A%0D%0AAs+a+%7Brole%7D%2C%0D%0AI+must%2Fneed%2Fwant%2Fshould+%7Bdo+something%7D%0D%0AIn+order+to+%7Bachieve+value%7D.%0D%0A%0D%0A%23%23+3.+Acceptance+criteria%0D%0A%3E%E2%8C%A6+Replace+the+examples+below+with+your+own+imperative%2C+%22true%2Ffalse%22+statements+for+the+**behavior+you+expect**+to+see%2C+or+the+behavior+that+**would**+be+true+if+there+were+no+errors+%28for+defects%29.%0D%0A%0D%0A-+%5B+%5D+1.+Job+Applicants+receive+a+confirmation+email+after+they+submit+their+resumes.%0D%0A-+%5B+%5D+2.+An+Applicant%27s+resume+information+isn%27t+lost+when+errors+occur.%0D%0A-+%5B+%5D+3.+%7Bcriterion-three%7D%0D%0A-+%5B+%5D+4.+%7Bcriterion-four%7D%0D%0A%0D%0A%3C%21--+%E2%9B%94%EF%B8%8F++Do+not+remove+anything+below+this+comment.+%E2%9B%94%EF%B8%8F++--%3E%0D%0A%5Bicon-info-image%5D%3A+..%2Fdocs%2Fimg%2Ficons8%2Ficon-info-50.png%0D%0A
 [issues-url]: /commonality/readme-inspector/issues
