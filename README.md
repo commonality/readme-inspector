@@ -197,6 +197,8 @@ GITHUB_ACCESS_TOKEN=$(echo $GH_TOKEN)
 
 ## 2. Usage
 
+> [![beaker][octicon-beaker] Test `readme-inspector` in your Web browser ![link-external][octicon-link-external]][runkit-readme-inspector-url].
+
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=./.github/assets/examples/usage.js) -->
 <!-- The below code snippet is automatically added from ./.github/assets/examples/usage.js -->
 ```js
@@ -334,6 +336,14 @@ A convenience method that
 
 ```http
 /repos/:owner/:repo/readme
+```
+
+If a README is found, then the `readme-score-api` is invoked:
+
+![GET][rest-get-img]
+
+```http
+/score.json?url=:owner/:repo
 ```
 
 #### 3.2.1. Parameters
@@ -701,11 +711,11 @@ Before embarking on a significant change, please follow these guidelines:
 <!-- 🔗 contributing link references 🔗 -->
 
 [code-of-conduct-url]: https://github.com/commonality/readme-inspector/blob/master/.github/CODE_OF_CONDUCT.md
-[contributing-image]: https://img.shields.io/badge/read-CONTRIBUTING%20Guidelines-yellow.svg?style=for-the-badge&label=read+the
+[contributing-image]: https://img.shields.io/badge/read-CONTRIBUTING%20Guidelines-5F758E.svg?style=for-the-badge&label=read+the
 [contributing-url]: https://github.com/commonality/readme-inspector/blob/master/.github/CONTRIBUTING.md
-[issues-new-defect-image]: https://img.shields.io/badge/report-defect-F5CB5C.svg?style=for-the-badge&label=report+a
+[issues-new-defect-image]: https://img.shields.io/badge/report-defect-e99695.svg?style=for-the-badge&label=report+a
 [issues-new-defect-url]: https://github.com/commonality/readme-inspector/issues/new?title=defect%28scope%29%3A+defect-summary&labels=priority%3a+medium%2cstatus%3a+review+needed%2ctype%3a+defect&template=defect-report.md
-[issues-new-feat-image]: https://img.shields.io/badge/request-feature-c1ccc6.svg?style=for-the-badge&label=request+a
+[issues-new-feat-image]: https://img.shields.io/badge/request-feature-0052cc.svg?style=for-the-badge&label=request+a
 [issues-new-feat-url]: https://github.com/commonality/readme-inspector/issues/new?title=feat%28scope%29%3A+change-proposal-summary&labels=priority%3a+medium%2cstatus%3a+review+needed%2ctype%3a+feature&template=feature-request.md
 [issues-url]: https://github.com/commonality/readme-inspector/issues
 [makeapullrequest-image]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
