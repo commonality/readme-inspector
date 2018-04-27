@@ -67,7 +67,10 @@
 <h2>Table of contents</h2><!-- 🚫 AUTO-GENERATED-CONTENT:START (TOC:excludeText=Table of contents) -->
 <ul>
 <li><a href="#1-installation">1. Installation</a></li>
-<li><a href="#2-configuration">2. Configuration</a></li>
+<li><a href="#2-configuration">2. Configuration</a><ul>
+<li><a href="#21-setting-environment-variables">2.1. Setting environment variables</a></li>
+</ul>
+</li>
 <li><a href="#2-usage">2. Usage</a></li>
 <li><a href="#3-api">3. API</a><ul>
 <li><a href="#31-authenticatetoken-type-key">3.1. <code>authenticate({token, type, key})</code></a><ul>
@@ -111,20 +114,30 @@
 <li>README detection with the <code>readmeInfo</code> object, and</li>
 <li>Quality assessment with the <code>readmeInfo.appraisal</code> object.</li>
 </ul>
-<p>Since both of these features invoke Web services to return information, they both use <code>.env</code> variables
+<h3>2.1. Setting environment variables</h3><p><code>readme-inspector</code> invokes Web services to return information. These services use <code>.env</code> variables
 that require configuration:</p>
-<pre class="prettyprint source lang-properties"><code># 🔹 OPTIONAL env vars
+<pre class="prettyprint source lang-properties"><code># ENV VARS defaults for readme-inspector:
 
-# API endpoint for the readme-score-api (with default value)
+# ReadmeAppraisal REST API
+# 💼 Modify this if you are using a company hosted installation.
 API_ENDPOINT_README_SCORE=&quot;http://readme-score-api.herokuapp.com/score.json?url=&human_breakdown=false&force=false&quot;
 
-# Google Analytics trackingCode (with default value)
+# Bitbucket REST API v1.0 and v2.0 base url.
+# 💼 Modify this if you're using on-premise,
+#    company-hosted Bitbucket servers.
+BITBUCKET_API_BASE_URL=&quot;https://api.bitbucket.org&quot;
+
+## Google Analytics trackingCode
 GA_README_INSPECTOR=&quot;UA-117338111-1&quot;
 
-# 🔸 GitHub token variables to extend GitHub API rate limits
-#    from 60 requests per minute to 5,000 requests per minute:
-GH_TOKEN=
-GITHUB_ACCESS_TOKEN=</code></pre><blockquote>
+# GitHub REST API v3 baseUrl.
+# 💼 Modify this if you're using GitHub Enterprise, e.g.,
+# GITHUB_API_BASE_URL=&quot;https://evilcorp.github.com/v3
+GITHUB_API_BASE_URL=&quot;https://api.github.com&quot;
+
+# readme-score-api base url.
+# 💼 Modify this if you've installed it behind a company firewall.
+README_SCORE_API_BASE_URL=&quot;http://readme-score-api.herokuapp.com&quot;</code></pre><blockquote>
 <p><img src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/light-bulb.svg" alt="light-bulb"> <strong>To avoid rate-limiting</strong>, you should <a href="https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/">create a personal access token <img src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/link-external.svg" alt="External link"></a> and save your personal access token in an environment variable called <code>GH_TOKEN</code>.</p>
 </blockquote>
 <hr>
@@ -193,21 +206,23 @@ file.
 
 # ENV VARS defaults for readme-inspector:
 
-# ReadmeAppraisal
+# ReadmeAppraisal REST API
+# 💼 Modify this if you are using a company hosted installation.
 API_ENDPOINT_README_SCORE=&quot;http://readme-score-api.herokuapp.com/score.json?url=&amp;human_breakdown=false&amp;force=false&quot;
 
-# Bitbucket REST API v1.0 and v2.0 base url. Modify this if you're using
-# on-premise, company-hosted Bitbucket servers.
+# Bitbucket REST API v1.0 and v2.0 base url.
+# 💼 Modify this if you're using on-premise, company-hosted Bitbucket servers.
 BITBUCKET_API_BASE_URL=&quot;https://api.bitbucket.org&quot;
 
 ## Google Analytics trackingCode
 GA_README_INSPECTOR=&quot;UA-117338111-1&quot;
 
-# GitHub REST API v3 baseUrl. Modify this if you're using GitHub Enterprise.
+# GitHub REST API v3 baseUrl.
+# 💼 Modify this if you're using GitHub Enterprise.
 GITHUB_API_BASE_URL=&quot;https://api.github.com&quot;
 
-# readme-score-api base url. Modify this if you're using it
-# behind a company firewall.
+# readme-score-api base url.
+# 💼 Modify this if you've installed it behind a company firewall.
 README_SCORE_API_BASE_URL=&quot;http://readme-score-api.herokuapp.com&quot;</code>
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -262,10 +277,10 @@ readmeInspector.authenticate({
 // 1. Has a README, and
 // 2. Score the README for quality.
 
-const info = await readmeInspector.check(
-  'gregswindle',
-  'github-resource-converter'
-)
+const info = await readmeInspector.check({
+  owner: 'gregswindle',
+  repo:  'github-resource-converter'
+})
 
 // Display the resulting readmeInfo as a
 // JSON string.
@@ -441,7 +456,7 @@ readmeInspector.authenticate({
 <blockquote>
 <pre class="prettyprint source lang-js"><code>const readmeInfo = await readmeInspector.check({
   owner: 'commonality',
-  ref: 'GH-1-feat-inspect-readmes',
+  ref: 'GH-1-a-topic-branch',
   repo: 'readme-inspector'
 })</code></pre></blockquote>
 </li>
@@ -450,7 +465,7 @@ readmeInspector.authenticate({
 <pre class="prettyprint source lang-js"><code>readmeInspector
   .check({
     owner: 'commonality',
-    ref: 'GH-1-feat-inspect-readmes',
+    ref: 'GH-1-a-topic-branch',
     repo: 'readme-inspector'
   })
   .then(readmeInfo => {})
@@ -516,7 +531,7 @@ readmeInspector.authenticate({
 <blockquote>
 <pre class="prettyprint source lang-js"><code>const readmeInfo = await readmeInspector.getInfo({
   owner: 'commonality',
-  ref: 'GH-1-feat-inspect-readmes',
+  ref: 'GH-1-a-topic-branch',
   repo: 'readme-inspector'
 })</code></pre></blockquote>
 </li>
@@ -525,11 +540,13 @@ readmeInspector.authenticate({
 <pre class="prettyprint source lang-js"><code>readmeInspector
   .getInfo({
     owner: 'commonality',
-    ref: 'GH-1-feat-inspect-readmes',
+    ref: 'GH-1-a-topic-branch',
     repo: 'readme-inspector'
   })
-  .then(readmeInfo => {})
-  .catch(err => {})</code></pre></blockquote>
+  .then(readmeInfo => readmeInfo)
+  .catch(err => {
+    console.error(err)
+  })</code></pre></blockquote>
 </li>
 </ul>
 <h3>3.4. <code>getAppraisal(url)</code></h3><p>A convenience wrapper that calls the <code>ReadmeAppraisal.prototype.for</code> method.</p>
@@ -662,7 +679,7 @@ const appraisal = readmeAppraisal.for(url)</code></pre></blockquote>
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Apr 26 2018 03:59:57 GMT-0500 (CDT) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Apr 27 2018 16:18:04 GMT-0500 (CDT) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

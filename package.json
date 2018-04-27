@@ -2,7 +2,7 @@
   "name": "readme-inspector",
   "description":
     "Inspect GitHub (and GitHub Enterprise) repositories for the presence and quality of READMEs.",
-  "version": "2.0.2",
+  "version": "2.0.5",
   "author": {
     "name": "commonality",
     "email": "greg@swindle.net",
@@ -51,7 +51,7 @@
     "@semantic-release/npm": "3.2.4",
     "ajv": "6.4.0",
     "ajv-keywords": "3.1.0",
-    "codacy-coverage": "2.1.1",
+    "codacy-coverage": "3.0.0",
     "commitplease": "3.2.0",
     "coveralls": "3.0.0",
     "eslint": "4.19.1",
