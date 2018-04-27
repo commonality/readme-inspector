@@ -19,10 +19,10 @@ readmeInspector.authenticate({
 // 1. Has a README, and
 // 2. Score the README for quality.
 
-const info = await readmeInspector.check(
-  'gregswindle',
-  'github-resource-converter'
-)
+const info = await readmeInspector.check({
+  owner: 'gregswindle',
+  repo:  'github-resource-converter'
+})
 
 // Display the resulting readmeInfo as a
 // JSON string.
