@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.5"></a>
+
+## [2.0.5](https://github.com/commonality/readme-inspector/compare/v2.0.4...v2.0.5) (2018-04-27)
+
+### Bug Fixes
+
+* **codacy-coverage:** update to v3.0.0 ([3892fc5](https://github.com/commonality/readme-inspector/commit/3892fc5))
+* **codacy-coverage:** update to version 3.0.0 ([6990e17](https://github.com/commonality/readme-inspector/commit/6990e17))
+* **lint-staged:** update to version 7.0.5 ([5c257cd](https://github.com/commonality/readme-inspector/commit/5c257cd))
+
 <a name="2.0.2"></a>
 
 ## [2.0.2](https://github.com/commonality/readme-inspector/compare/v2.0.3...v2.0.2) (2018-04-26)

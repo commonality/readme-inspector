@@ -21,6 +21,7 @@
 <!-- 🚫 AUTO-GENERATED-CONTENT:START (TOC:excludeText=Table of contents) -->
 - [1. Installation](#1-installation)
 - [2. Configuration](#2-configuration)
+  * [2.1. Setting environment variables](#21-setting-environment-variables)
 - [2. Usage](#2-usage)
 - [3. API](#3-api)
   * [3.1. `authenticate({token, type, key})`](#31-authenticatetoken-type-key)
@@ -61,22 +62,34 @@ The `commonality/readme-inspector` module combines the mediator, proxy, and fact
 * README detection with the `readmeInfo` object, and
 * Quality assessment with the `readmeInfo.appraisal` object.
 
-Since both of these features invoke Web services to return information, they both use `.env` variables
+### 2.1. Setting environment variables
+
+`readme-inspector` invokes Web services to return information. These services use `.env` variables
 that require configuration:
 
 ```properties
-# 🔹 OPTIONAL env vars
+# ENV VARS defaults for readme-inspector:
 
-# API endpoint for the readme-score-api (with default value)
+# ReadmeAppraisal REST API
+# 💼 Modify this if you are using a company hosted installation.
 API_ENDPOINT_README_SCORE="http://readme-score-api.herokuapp.com/score.json?url=&human_breakdown=false&force=false"
 
-# Google Analytics trackingCode (with default value)
+# Bitbucket REST API v1.0 and v2.0 base url.
+# 💼 Modify this if you're using on-premise,
+#    company-hosted Bitbucket servers.
+BITBUCKET_API_BASE_URL="https://api.bitbucket.org"
+
+## Google Analytics trackingCode
 GA_README_INSPECTOR="UA-117338111-1"
 
-# 🔸 GitHub token variables to extend GitHub API rate limits
-#    from 60 requests per minute to 5,000 requests per minute:
-GH_TOKEN=
-GITHUB_ACCESS_TOKEN=
+# GitHub REST API v3 baseUrl.
+# 💼 Modify this if you're using GitHub Enterprise, e.g.,
+# GITHUB_API_BASE_URL="https://evilcorp.github.com/v3
+GITHUB_API_BASE_URL="https://api.github.com"
+
+# readme-score-api base url.
+# 💼 Modify this if you've installed it behind a company firewall.
+README_SCORE_API_BASE_URL="http://readme-score-api.herokuapp.com"
 ```
 
 > ![light-bulb][octicon-light-bulb] **To avoid rate-limiting**, you should [create a personal access token ![External link][octicon-link-external]](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/) and save your personal access token in an environment variable called `GH_TOKEN`.
@@ -107,9 +120,16 @@ Defines a schema of what variables should be defined in the combination of
 
 # ENV VARS required for readme-inspector
 ## Add values to these ENV VARs and save to
-## {your-project-root-directory}/.env
+## {your-project-root-directory}/.env, e.g.,
+## if your root project directory is
+##
+## $ more-bort-license-plates/
+##
+## then save your .env file to
+##
+## $ more-bort-license-plates/.env
 
-# 🔹 OPTIONAL env vars:
+# 🔹 OPTIONAL env vars (set in .env.defaults):
 API_ENDPOINT_README_SCORE=
 BITBUCKET_API_BASE_URL=
 GA_README_INSPECTOR=
@@ -149,21 +169,23 @@ file.
 
 # ENV VARS defaults for readme-inspector:
 
-# ReadmeAppraisal
+# ReadmeAppraisal REST API
+# 💼 Modify this if you are using a company hosted installation.
 API_ENDPOINT_README_SCORE="http://readme-score-api.herokuapp.com/score.json?url=&human_breakdown=false&force=false"
 
-# Bitbucket REST API v1.0 and v2.0 base url. Modify this if you're using
-# on-premise, company-hosted Bitbucket servers.
+# Bitbucket REST API v1.0 and v2.0 base url.
+# 💼 Modify this if you're using on-premise, company-hosted Bitbucket servers.
 BITBUCKET_API_BASE_URL="https://api.bitbucket.org"
 
 ## Google Analytics trackingCode
 GA_README_INSPECTOR="UA-117338111-1"
 
-# GitHub REST API v3 baseUrl. Modify this if you're using GitHub Enterprise.
+# GitHub REST API v3 baseUrl.
+# 💼 Modify this if you're using GitHub Enterprise.
 GITHUB_API_BASE_URL="https://api.github.com"
 
-# readme-score-api base url. Modify this if you're using it
-# behind a company firewall.
+# readme-score-api base url.
+# 💼 Modify this if you've installed it behind a company firewall.
 README_SCORE_API_BASE_URL="http://readme-score-api.herokuapp.com"
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -223,10 +245,10 @@ readmeInspector.authenticate({
 // 1. Has a README, and
 // 2. Score the README for quality.
 
-const info = await readmeInspector.check(
-  'gregswindle',
-  'github-resource-converter'
-)
+const info = await readmeInspector.check({
+  owner: 'gregswindle',
+  repo:  'github-resource-converter'
+})
 
 // Display the resulting readmeInfo as a
 // JSON string.
@@ -414,7 +436,7 @@ If a README is found, then the `readme-score-api` is invoked:
   > ```js
   > const readmeInfo = await readmeInspector.check({
   >   owner: 'commonality',
-  >   ref: 'GH-1-feat-inspect-readmes',
+  >   ref: 'GH-1-a-topic-branch',
   >   repo: 'readme-inspector'
   > })
   > ```
@@ -425,7 +447,7 @@ If a README is found, then the `readme-score-api` is invoked:
   > readmeInspector
   >   .check({
   >     owner: 'commonality',
-  >     ref: 'GH-1-feat-inspect-readmes',
+  >     ref: 'GH-1-a-topic-branch',
   >     repo: 'readme-inspector'
   >   })
   >   .then(readmeInfo => {})
@@ -510,7 +532,7 @@ Retrieves README information _without_ any `AppraisalData`.
   > ```js
   > const readmeInfo = await readmeInspector.getInfo({
   >   owner: 'commonality',
-  >   ref: 'GH-1-feat-inspect-readmes',
+  >   ref: 'GH-1-a-topic-branch',
   >   repo: 'readme-inspector'
   > })
   > ```
@@ -521,11 +543,13 @@ Retrieves README information _without_ any `AppraisalData`.
   > readmeInspector
   >   .getInfo({
   >     owner: 'commonality',
-  >     ref: 'GH-1-feat-inspect-readmes',
+  >     ref: 'GH-1-a-topic-branch',
   >     repo: 'readme-inspector'
   >   })
-  >   .then(readmeInfo => {})
-  >   .catch(err => {})
+  >   .then(readmeInfo => readmeInfo)
+  >   .catch(err => {
+  >     console.error(err)
+  >   })
   > ```
 
 ### 3.4. `getAppraisal(url)`

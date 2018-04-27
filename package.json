@@ -2,7 +2,7 @@
   "name": "readme-inspector",
   "description":
     "Inspect GitHub (and GitHub Enterprise) repositories for the presence and quality of READMEs.",
-  "version": "2.0.2",
+  "version": "2.0.5",
   "author": {
     "name": "commonality",
     "email": "greg@swindle.net",
