@@ -2,7 +2,7 @@
   "name": "readme-inspector",
   "description":
     "Inspect GitHub (and GitHub Enterprise) repositories for the presence and quality of READMEs.",
-  "version": "2.0.5",
+  "version": "2.0.7",
   "author": {
     "name": "commonality",
     "email": "greg@swindle.net",
@@ -33,7 +33,7 @@
   },
   "contributors": [],
   "dependencies": {
-    "@octokit/rest": "15.2.6",
+    "@octokit/rest": "15.2.7",
     "bunyan": "1.8.12",
     "bunyan-format": "0.2.1",
     "dotenv": "5.0.1",
@@ -50,7 +50,7 @@
     "@semantic-release/git": "4.0.2",
     "@semantic-release/npm": "3.2.4",
     "ajv": "6.4.0",
-    "ajv-keywords": "3.1.0",
+    "ajv-keywords": "3.2.0",
     "codacy-coverage": "3.0.0",
     "commitplease": "3.2.0",
     "coveralls": "3.0.0",
@@ -73,7 +73,6 @@
     "fixpack": "2.3.1",
     "husky": "^0.14.3",
     "jest": "22.4.3",
-    "jest-runner-eslint": "0.4.0",
     "jsdoc": "3.5.5",
     "lec": "^1.0.1",
     "lint-staged": "7.0.5",

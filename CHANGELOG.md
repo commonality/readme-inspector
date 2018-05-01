@@ -2,23 +2,47 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.7"></a>
+
+## [2.0.7](https://github.com/commonality/readme-inspector/compare/v2.0.6...v2.0.7) (2018-05-01)
+
+### Dependency Updates
+
+* **jest-runner-eslint:** remove unused library ([a68be53](https://github.com/commonality/readme-inspector/commit/a68be53))
+
+---
+
+<a name="2.0.6"></a>
+
+## [2.0.6](https://github.com/commonality/readme-inspector/compare/v2.0.5...v2.0.6) (2018-05-01)
+
+### Dependency Updates
+
+* **ajv-keywords:** update to version 3.2.0 ([8be7236](https://github.com/commonality/readme-inspector/commit/8be7236))
+
+---
+
 <a name="2.0.5"></a>
 
 ## [2.0.5](https://github.com/commonality/readme-inspector/compare/v2.0.4...v2.0.5) (2018-04-27)
 
-### Bug Fixes
+### Dependency Updates
 
 * **codacy-coverage:** update to v3.0.0 ([3892fc5](https://github.com/commonality/readme-inspector/commit/3892fc5))
 * **codacy-coverage:** update to version 3.0.0 ([6990e17](https://github.com/commonality/readme-inspector/commit/6990e17))
 * **lint-staged:** update to version 7.0.5 ([5c257cd](https://github.com/commonality/readme-inspector/commit/5c257cd))
 
+---
+
 <a name="2.0.2"></a>
 
 ## [2.0.2](https://github.com/commonality/readme-inspector/compare/v2.0.3...v2.0.2) (2018-04-26)
 
-### Bug Fixes
+### Dependency Updates
 
 * **lint-staged:** update to version 7.0.5 ([5c257cd](https://github.com/commonality/readme-inspector/commit/5c257cd))
+
+---
 
 <a name="2.0.1"></a>
 
@@ -28,13 +52,18 @@ All notable changes to this project will be documented in this file. See [standa
 
 * **config:** move .env files ([2ff8905](https://github.com/commonality/readme-inspector/commit/2ff8905)), closes [#23](https://github.com/commonality/readme-inspector/issues/23)
 
+---
+
 <a name="2.0.0"></a>
 
 ## [2.0.0](https://github.com/commonality/readme-inspector/compare/v1.0.2...v2.0.0) (2018-04-21)
 
-### Bug Fixes
+### Dependency Updates
 
 * **@semantic-release/git:** update to version 4.0.2 ([ad96ea5](https://github.com/commonality/readme-inspector/commit/ad96ea5))
+
+### Bug Fixes
+
 * **score:** verify appraisal initialization ([fd87a8b](https://github.com/commonality/readme-inspector/commit/fd87a8b)), closes [#18](https://github.com/commonality/readme-inspector/issues/18) [#21](https://github.com/commonality/readme-inspector/issues/21)
 
 ### BREAKING CHANGES
