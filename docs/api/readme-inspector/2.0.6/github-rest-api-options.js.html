@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>github-rest-api-options.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="ReadmeAppraisal.html">ReadmeAppraisal</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="ReadmeAppraisal.html#for">for</a></span></li><li class="nav-heading">Modules</li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-readme-inspector.html">readme-inspector</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-readme-inspector.html#.authenticate">authenticate</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-readme-inspector.html#.check">check</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-readme-inspector.html#.getAppraisal">getAppraisal</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-readme-inspector.html#.getInfo">getInfo</a></span></li><li class="nav-heading">Externals</li><li class="nav-heading"><span class="nav-item-type type-external">E</span><span class="nav-item-name"><a href="external-Contents.html">Contents</a></span></li><li class="nav-heading"><span class="nav-item-type type-external">E</span><span class="nav-item-name"><a href="external-Octokit.html">Octokit</a></span></li><li class="nav-heading"><span class="nav-item-type type-external">E</span><span class="nav-item-name"><a href="external-Promise.html">Promise</a></span></li><li class="nav-heading"><span class="nav-item-type type-external">E</span><span class="nav-item-name"><a href="external-URL.html">URL</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">github-rest-api-options.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// Load all .env variables before anything else.
+
+const dotenvExtended = require('dotenv-extended')
+const envConfig = dotenvExtended.config()
+
+const {name, version} = require('../package')
+
+const acceptHeaders = [
+  'application/vnd.github.mercy-preview+json',
+  'application/vnd.github.scarlet-witch-preview+json',
+  'application/vnd.github.symmetra-preview+json',
+  'application/vnd.github.v3+json'
+]
+
+/**
+ * All available @octokit/rest.js client options, with default values.
+ *
+ * @name githubRestApiOptions
+ * @memberOf readme-inspector
+ *
+ * @prop [string='https://api.github.com'] baseUrl - A serialzied URL origin
+ *  followed by an _optional_ pathname. Change this value for
+ *  GitHub Enterprise requests.
+ * @see https://nodejs.org/api/url.html#url_url_origin
+ * @see https://nodejs.org/api/url.html#url_url_pathname
+ *
+ * @example
+ * $ const response = await readmeInspector.api.issues.getForRepo({
+ *     baseUrl: 'https://github.evilcorp.com:666/api/v3'
+ *   })
+ *
+ * @prop {HTTPHeaders} headers -
+ * {@link Headers https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers}
+ * applying to both requests and responses but with no relation to the data
+ * eventually transmitted in the body.
+ *
+ * @prop {string} owner - The GitHub (Enterprise) organization or account name.
+ * @prop {string} repo - The name of a GitHub (Enterprise) repository.
+ * @prop [string] {@link requestMedia https://developer.github.com/v3/media/} -
+ * Custom media types to let you choose the format of the data you wish to receive.
+ * @prop [number=0] {@link timeout https://tools.ietf.org/id/draft-thomson-hybi-http-timeout-01.html#rfc.section.2.1} -
+ * HTTP Header that sets the number of _seconds_ an
+ *  idle connection should remain open before it's closed. The default value--0
+ *  seconds--means "no timeout."
+ */
+
+const githubRestApiOptions = {
+  'baseUrl': envConfig.GITHUB_API_BASE_URL,
+  'headers': {
+    'Accept': acceptHeaders.join(','),
+    'User-Agent': `commonality/${name} v${version}`
+  },
+  'owner': null,
+  'repo': null,
+  'requestMedia': 'application/vnd.github.v3+json',
+  'timeout': 0
+}
+
+module.exports = githubRestApiOptions
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Apr 30 2018 20:20:39 GMT-0500 (CDT) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
