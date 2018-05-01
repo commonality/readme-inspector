@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.7"></a>
+
+## [2.0.7](https://github.com/commonality/readme-inspector/compare/v2.0.6...v2.0.7) (2018-05-01)
+
+### Dependency Updates
+
+* **jest-runner-eslint:** remove unused library ([a68be53](https://github.com/commonality/readme-inspector/commit/a68be53))
+
+---
+
 <a name="2.0.6"></a>
 
 ## [2.0.6](https://github.com/commonality/readme-inspector/compare/v2.0.5...v2.0.6) (2018-05-01)
@@ -9,6 +19,8 @@ All notable changes to this project will be documented in this file. See [standa
 ### Dependency Updates
 
 * **ajv-keywords:** update to version 3.2.0 ([8be7236](https://github.com/commonality/readme-inspector/commit/8be7236))
+
+---
 
 <a name="2.0.5"></a>
 
@@ -20,6 +32,8 @@ All notable changes to this project will be documented in this file. See [standa
 * **codacy-coverage:** update to version 3.0.0 ([6990e17](https://github.com/commonality/readme-inspector/commit/6990e17))
 * **lint-staged:** update to version 7.0.5 ([5c257cd](https://github.com/commonality/readme-inspector/commit/5c257cd))
 
+---
+
 <a name="2.0.2"></a>
 
 ## [2.0.2](https://github.com/commonality/readme-inspector/compare/v2.0.3...v2.0.2) (2018-04-26)
@@ -28,6 +42,8 @@ All notable changes to this project will be documented in this file. See [standa
 
 * **lint-staged:** update to version 7.0.5 ([5c257cd](https://github.com/commonality/readme-inspector/commit/5c257cd))
 
+---
+
 <a name="2.0.1"></a>
 
 ## [2.0.1](https://github.com/commonality/readme-inspector/compare/v2.0.0...v2.0.1) (2018-04-24)
@@ -35,6 +51,8 @@ All notable changes to this project will be documented in this file. See [standa
 ### Bug Fixes
 
 * **config:** move .env files ([2ff8905](https://github.com/commonality/readme-inspector/commit/2ff8905)), closes [#23](https://github.com/commonality/readme-inspector/issues/23)
+
+---
 
 <a name="2.0.0"></a>
 
