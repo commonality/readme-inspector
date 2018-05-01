@@ -672,8 +672,8 @@ _Why:_
  | [@semantic-release/git@4.0.2](https://github.com/semantic-release/git#readme) | Set of semantic-release plugins to publish to a git repository | 4.0.2 | MIT | dev | 
  | [@semantic-release/npm@3.2.4](https://github.com/semantic-release/npm#readme) | Set of semantic-release plugins to publish to a npm registry | 3.2.4 | MIT | dev | 
  | [ajv@6.4.0](https://github.com/epoberezkin/ajv) | Another JSON Schema Validator | 6.4.0 | MIT | dev | 
- | [ajv-keywords@3.1.0](https://github.com/epoberezkin/ajv-keywords#readme) | Custom JSON-Schema keywords for Ajv validator | 3.1.0 | MIT | dev | 
- | [codacy-coverage@3.0.0](https://github.com/codacy/node-codacy-coverage) | Code Coverage reporter for Codacy.com | 2.1.1 | MIT | dev | 
+ | [ajv-keywords@3.2.0](https://github.com/epoberezkin/ajv-keywords#readme) | Custom JSON-Schema keywords for Ajv validator | 3.2.0 | MIT | dev | 
+ | [codacy-coverage@3.0.0](https://github.com/codacy/node-codacy-coverage) | Code Coverage reporter for Codacy.com | 3.0.0 | MIT | dev | 
  | [commitplease@3.2.0](https://github.com/jzaefferer/commitplease#readme) | Validates strings as commit messages | 3.2.0 | MIT | dev | 
  | [coveralls@3.0.0](https://github.com/nickmerwin/node-coveralls#readme) | takes json-cov output into stdin and POSTs to coveralls.io | 3.0.0 | BSD-2-Clause | dev | 
  | [eslint@4.19.1](https://eslint.org) | An AST-based pattern checker for JavaScript. | 4.19.1 | MIT | dev | 
@@ -695,7 +695,6 @@ _Why:_
  | [fixpack@2.3.1](https://github.com/henrikjoreteg/fixpack) | cli tool that cleans up package.json files. | 2.3.1 | MIT | dev | 
  | [husky@^0.14.3](https://github.com/typicode/husky) | Prevents bad commit or push (git hooks, pre-commit/precommit, pre-push/prepush, post-merge/postmerge and all that stuff...) | 0.14.3 | MIT | dev | 
  | [jest@22.4.3](http://facebook.github.io/jest/) | Delightful JavaScript Testing. | 22.4.3 | MIT | dev | 
- | [jest-runner-eslint@0.4.0](https://github.com/jest-community/jest-runner-eslint) | An experimental ESLint runner for Jest | 0.4.0 | MIT | dev | 
  | [jsdoc@3.5.5](https://github.com/jsdoc3/jsdoc#readme) | An API documentation generator for JavaScript. | 3.5.5 | Apache-2.0 | dev | 
  | [lec@^1.0.1](https://github.com/iShafayet/lec) | Command Line Wrapper for Line Ending Corrector (An utility that makes sure your files have consistent line endings) | 1.0.1 | MIT | dev | 
  | [lint-staged@7.0.5](https://github.com/okonet/lint-staged#readme) | Lint files staged by git | 7.0.5 | MIT | dev | 
