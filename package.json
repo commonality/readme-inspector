@@ -36,7 +36,7 @@
     "@octokit/rest": "15.4.0",
     "bunyan": "1.8.12",
     "bunyan-format": "0.2.1",
-    "dotenv": "5.0.1",
+    "dotenv": "6.0.0",
     "dotenv-extended": "2.0.2",
     "got": "8.3.1",
     "insight": "0.10.1",
