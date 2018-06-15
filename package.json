@@ -85,7 +85,7 @@
     "minami": "1.2.3",
     "nsp": "^3.2.1",
     "prettier": "1.12.1",
-    "semantic-release": "15.3.0",
+    "semantic-release": "15.5.3",
     "standard-markdown": "4.0.2",
     "standard-version": "4.3.0"
   },
