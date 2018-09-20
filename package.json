@@ -51,7 +51,7 @@
     "@semantic-release/npm": "3.2.4",
     "ajv": "6.5.0",
     "ajv-keywords": "3.2.0",
-    "codacy-coverage": "3.0.0",
+    "codacy-coverage": "3.1.0",
     "commitplease": "3.2.0",
     "coveralls": "3.0.1",
     "eslint": "4.19.1",
