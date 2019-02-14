@@ -75,7 +75,7 @@
     "jest": "22.4.3",
     "jsdoc": "3.5.5",
     "lec": "^1.0.1",
-    "lint-staged": "7.0.5",
+    "lint-staged": "8.1.4",
     "lodash.isundefined": "3.0.1",
     "lodash.set": "4.3.2",
     "markdown-magic": "0.1.21",
