@@ -1,7 +1,6 @@
 {
   "name": "readme-inspector",
-  "description":
-    "Inspect GitHub (and GitHub Enterprise) repositories for the presence and quality of READMEs.",
+  "description": "Inspect GitHub (and GitHub Enterprise) repositories for the presence and quality of READMEs.",
   "version": "2.0.7",
   "author": {
     "name": "commonality",
@@ -43,7 +42,8 @@
     "lodash.camelcase": "4.3.0",
     "lodash.mapkeys": "4.6.0",
     "lodash.noop": "3.0.1",
-    "meow": "5.0.0"
+    "meow": "5.0.0",
+    "snyk": "^1.230.5"
   },
   "devDependencies": {
     "@semantic-release/changelog": "2.0.2",
@@ -92,8 +92,13 @@
   "engines": {
     "npm": ">= 4.0.0"
   },
-  "eslintIgnore": ["lib/__tests__/coverage/**", "docs/"],
-  "files": ["lib"],
+  "eslintIgnore": [
+    "lib/__tests__/coverage/**",
+    "docs/"
+  ],
+  "files": [
+    "lib"
+  ],
   "greenkeeper": {
     "commitMessages": {
       "dependencyPin": "fix(${dependency}): pin to ${oldVersion}",
@@ -123,12 +128,18 @@
         "statements": 100
       }
     },
-    "moduleDirectories": ["node_modules", "lib"],
+    "moduleDirectories": [
+      "node_modules",
+      "lib"
+    ],
     "testMatch": [
       "<rootDir>/lib/__tests__/**/*.test.js",
       "<rootDir>/lib/__tests__/*.test.js"
     ],
-    "testPathIgnorePatterns": ["/docs/", "/node_modules/"],
+    "testPathIgnorePatterns": [
+      "/docs/",
+      "/node_modules/"
+    ],
     "watchman": false
   },
   "keywords": [
@@ -147,9 +158,19 @@
   ],
   "license": "MIT",
   "lint-staged": {
-    "*.js": ["npm run lint:js", "git add"],
-    "*.json": ["npm run lint:json", "git add"],
-    "*.md": ["npm run lint:md", "npm run docs", "git add"]
+    "*.js": [
+      "npm run lint:js",
+      "git add"
+    ],
+    "*.json": [
+      "npm run lint:json",
+      "git add"
+    ],
+    "*.md": [
+      "npm run lint:md",
+      "npm run docs",
+      "git add"
+    ]
   },
   "main": "lib/index.js",
   "prettier": {
@@ -161,27 +182,20 @@
     "url": "https://github.com/commonality/readme-inspector.git"
   },
   "scripts": {
-    "code-quality:sonar":
-      "sonar-scanner -Dproject.settings=./.github/config/sonar-project.properties -Dsonar.login=$SONAR_COMMONALITY_TOKEN -Dsonar.projectVersion=$npm_package_version -X",
+    "code-quality:sonar": "sonar-scanner -Dproject.settings=./.github/config/sonar-project.properties -Dsonar.login=$SONAR_COMMONALITY_TOKEN -Dsonar.projectVersion=$npm_package_version -X",
     "docs": "npm run docs:toc && npm run docs:api",
-    "docs:api":
-      "jsdoc --package ./package.json --configure .github/config/.jsdoc.json --verbose",
+    "docs:api": "jsdoc --package ./package.json --configure .github/config/.jsdoc.json --verbose",
     "docs:changelog": "standard-version --commit-all",
-    "docs:toc":
-      "md-magic --config '.github/config/markdown.config.js' --ignore 'node_modules'",
-    "lint":
-      "npm run lint:js && npm run lint:json && npm run lint:manifest && npm run lint:md",
+    "docs:toc": "md-magic --config '.github/config/markdown.config.js' --ignore 'node_modules'",
+    "lint": "npm run lint:js && npm run lint:json && npm run lint:manifest && npm run lint:md",
     "lint:js": "eslint -c .github/config/.eslintrc.yml --ext .js . --fix",
-    "lint:json":
-      "prettier ./**/*.json --ignore-path '.github/config/.prettierignore' --write",
+    "lint:json": "prettier ./**/*.json --ignore-path '.github/config/.prettierignore' --write",
     "lint:manifest": "fixpack",
     "lint:md": "prettier ./**/*.md -prose-wrap always --write",
-    "posttest:ci:coverage:codacy":
-      "cat ./lib/__tests__/coverage/lcov.info | codacy-coverage -l javascript -t $CODACY_PROJECT_TOKEN_README_INSPECTOR",
-    "posttest:ci:coverage:coveralls":
-      "cat ./lib/__tests__/coverage/lcov.info | coveralls",
+    "posttest:ci:coverage:codacy": "cat ./lib/__tests__/coverage/lcov.info | codacy-coverage -l javascript -t $CODACY_PROJECT_TOKEN_README_INSPECTOR",
+    "posttest:ci:coverage:coveralls": "cat ./lib/__tests__/coverage/lcov.info | coveralls",
     "precommit": "lint-staged",
-    "prepare": "npm run lint && npm run security",
+    "prepare": "npm run snyk-protect && npm run lint && npm run security",
     "prepublish": "npm run security",
     "prepublishOnly": "npm run prepare",
     "pretest": "npm run lint",
@@ -190,12 +204,14 @@
     "test": "jest",
     "test:config": "jest --showConfig",
     "test:watch": "jest ./lib/__tests__/*.test.js --watch",
-    "test:watch:all": "jest ./lib/__tests__/*.test.js --watchAll"
+    "test:watch:all": "jest ./lib/__tests__/*.test.js --watchAll",
+    "snyk-protect": "snyk protect"
   },
   "standard-version": {
     "skip": {
       "commit": true,
       "tag": true
     }
-  }
+  },
+  "snyk": true
 }
