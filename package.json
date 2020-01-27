@@ -46,7 +46,7 @@
     "meow": "5.0.0"
   },
   "devDependencies": {
-    "@semantic-release/changelog": "2.0.2",
+    "@semantic-release/changelog": "5.0.0",
     "@semantic-release/git": "4.0.2",
     "@semantic-release/npm": "3.2.4",
     "ajv": "6.5.0",
