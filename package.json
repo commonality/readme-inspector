@@ -63,7 +63,7 @@
     "eslint-plugin-jsdoc": "3.6.3",
     "eslint-plugin-json": "1.2.0",
     "eslint-plugin-no-unsafe-innerhtml": "1.0.16",
-    "eslint-plugin-node": "6.0.1",
+    "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "^2.2.0",
     "eslint-plugin-promise": "3.7.0",
     "eslint-plugin-security": "1.4.0",
