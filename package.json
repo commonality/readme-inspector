@@ -39,7 +39,7 @@
     "dotenv": "5.0.1",
     "dotenv-extended": "2.0.2",
     "got": "8.3.1",
-    "insight": "0.10.1",
+    "insight": "0.10.2",
     "lodash.camelcase": "4.3.0",
     "lodash.mapkeys": "4.6.0",
     "lodash.noop": "3.0.1",
